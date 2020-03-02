@@ -15,4 +15,12 @@ class Mongoose{
   }
 }
 
-export const MongooseInstanceFn = (db = 'foo') => new Mongoose(`mongodb://0.0.0.0:27017/${ db }`)
+export const MongooseInstanceFn = () => {
+  const connectURL = process.env.MONGO_CONNECT_URL
+  if(!connectURL){
+    console.log('!connectURL')
+    process.exit()
+  }
+  return new Mongoose(connectURL)
+}
+// export const MongooseInstanceFn = (db = 'foo') => new Mongoose(`mongodb://0.0.0.0:27017/${ db }`)

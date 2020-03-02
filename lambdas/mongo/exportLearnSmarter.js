@@ -15,7 +15,7 @@ void (async function exportLearnSmarter(){
   const mongoLabel = camelCase(fsDbLabel)
   if(lastTimesChanges[mongoLabel] === null) return console.log('No changes')
 
-  const MongooseInstance = MongooseInstanceFn(mongoLabel)
+  const MongooseInstance = MongooseInstanceFn()
   await MongooseInstance.connect()
   const allRecords = await readAll(mongoLabel)
 

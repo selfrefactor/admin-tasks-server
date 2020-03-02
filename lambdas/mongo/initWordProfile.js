@@ -1,3 +1,6 @@
+import { envFn } from 'env-fn'
+envFn('special')
+
 import { init, loadJson, loadKeys } from 'db-fn'
 import { mapAsyncLimit} from 'rambdax'
 import { camelCase } from 'string-fn'
@@ -10,7 +13,7 @@ init(DATA_LOCATION)
 void (async function initWordProfile(){
   const fsDbLabel = 'word_profile'
   const mongoLabel = camelCase(fsDbLabel)
-  const MongooseInstance = MongooseInstanceFn(mongoLabel)
+  const MongooseInstance = MongooseInstanceFn()
   await MongooseInstance.connect()
   const allKeys = await loadKeys(fsDbLabel)
 

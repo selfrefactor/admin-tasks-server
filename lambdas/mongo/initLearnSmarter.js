@@ -1,3 +1,5 @@
+import { envFn } from 'env-fn'
+envFn('special')
 import { init, loadJson, loadKeys } from 'db-fn'
 import { mapAsyncLimit } from 'rambdax'
 import { camelCase } from 'string-fn'
@@ -11,7 +13,7 @@ void (async function initLearnSmarter(){
   try {
     const fsDbLabel = 'learn_smarter'
     const mongoLabel = camelCase(fsDbLabel)
-    const MongooseInstance = MongooseInstanceFn(mongoLabel)
+    const MongooseInstance = MongooseInstanceFn()
     await MongooseInstance.connect()
     const allKeys = await loadKeys(fsDbLabel)
     console.time(mongoLabel)
