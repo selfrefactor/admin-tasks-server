@@ -54,7 +54,7 @@ void (async function exportLearnSmarter(){
   )
 
   if (dirty) await syncDataRepo()
-  if( skippedCounter) log(`Skipped - '${ skippedCounter }'`, 'info')  
+  if (skippedCounter) log(`Skipped - '${ skippedCounter }'`, 'info')
 
   process.exit()
 })()

@@ -95,9 +95,9 @@ const core_1 = __webpack_require__(1);
 const env_fn_1 = __webpack_require__(2);
 env_fn_1.envFn('special');
 const app_module_1 = __webpack_require__(3);
-const cron_1 = __webpack_require__(14);
-const ngrok_1 = __webpack_require__(23);
-const constants_1 = __webpack_require__(25);
+const cron_1 = __webpack_require__(15);
+const ngrok_1 = __webpack_require__(24);
+const constants_1 = __webpack_require__(6);
 const PORT = process.env.PORT === undefined ? constants_1.DEFAULT_PORT : Number(process.env.PORT);
 const DEV_MODE = process.env.DEV_MODE === 'ON';
 async function bootstrap() {
@@ -138,15 +138,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const cat_controller_1 = __webpack_require__(4);
 const common_1 = __webpack_require__(5);
-const app_controller_1 = __webpack_require__(6);
-const app_service_1 = __webpack_require__(7);
-const mongoose_1 = __webpack_require__(8);
-const word_profile_module_1 = __webpack_require__(9);
+const constants_1 = __webpack_require__(6);
+const app_controller_1 = __webpack_require__(7);
+const app_service_1 = __webpack_require__(8);
+const mongoose_1 = __webpack_require__(9);
+const word_profile_module_1 = __webpack_require__(10);
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [mongoose_1.MongooseModule.forRoot('mongodb://0.0.0.0/wordProfile'), word_profile_module_1.WordProfileModule],
+        imports: [mongoose_1.MongooseModule.forRoot(constants_1.getMongoUrl()), word_profile_module_1.WordProfileModule],
         controllers: [cat_controller_1.CatController, app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
@@ -200,6 +201,22 @@ module.exports = require("@nestjs/common");
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_PORT = 4042;
+exports.MONGO_URL = process.env.MONGO_CONNECT_URL;
+exports.getMongoUrl = () => {
+    if (!exports.MONGO_URL)
+        process.exit();
+    return exports.MONGO_URL;
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -211,7 +228,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = __webpack_require__(5);
-const app_service_1 = __webpack_require__(7);
+const app_service_1 = __webpack_require__(8);
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -234,7 +251,7 @@ exports.AppController = AppController;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -259,13 +276,13 @@ exports.AppService = AppService;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("@nestjs/mongoose");
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -278,10 +295,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = __webpack_require__(5);
-const word_profile_controller_1 = __webpack_require__(10);
-const word_profile_service_1 = __webpack_require__(11);
-const mongoose_1 = __webpack_require__(8);
-const schemas_1 = __webpack_require__(13);
+const word_profile_controller_1 = __webpack_require__(11);
+const word_profile_service_1 = __webpack_require__(12);
+const mongoose_1 = __webpack_require__(9);
+const schemas_1 = __webpack_require__(14);
 let WordProfileModule = class WordProfileModule {
 };
 WordProfileModule = __decorate([
@@ -296,7 +313,7 @@ exports.WordProfileModule = WordProfileModule;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,7 +332,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = __webpack_require__(5);
-const word_profile_service_1 = __webpack_require__(11);
+const word_profile_service_1 = __webpack_require__(12);
 let WordProfileController = class WordProfileController {
     constructor(dbModel) {
         this.dbModel = dbModel;
@@ -370,7 +387,7 @@ exports.WordProfileController = WordProfileController;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -390,8 +407,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = __webpack_require__(5);
-const mongoose_1 = __webpack_require__(12);
-const mongoose_2 = __webpack_require__(8);
+const mongoose_1 = __webpack_require__(13);
+const mongoose_2 = __webpack_require__(9);
 let WordProfileService = class WordProfileService {
     constructor(wordProfileModel) {
         this.wordProfileModel = wordProfileModel;
@@ -429,19 +446,19 @@ exports.WordProfileService = WordProfileService;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("mongoose");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = __webpack_require__(12);
+const mongoose = __webpack_require__(13);
 const { Schema } = mongoose;
 const relatedSchema = {
     type: Array,
@@ -576,15 +593,15 @@ exports.readAll = readAll;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rambdax_1 = __webpack_require__(15);
-const runEveryTick_1 = __webpack_require__(16);
-const helpers_1 = __webpack_require__(17);
+const rambdax_1 = __webpack_require__(16);
+const runEveryTick_1 = __webpack_require__(17);
+const helpers_1 = __webpack_require__(18);
 const LOCK_KEY = 'LOCK_KEY';
 async function cron(everyMinutes = 1) {
     try {
@@ -610,21 +627,21 @@ exports.cron = cron;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("rambdax");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const rambdax_1 = __webpack_require__(15);
-const helpers_1 = __webpack_require__(17);
-const niketaTheme_1 = __webpack_require__(18);
+const rambdax_1 = __webpack_require__(16);
+const helpers_1 = __webpack_require__(18);
+const niketaTheme_1 = __webpack_require__(19);
 async function runEveryTick(lockKey) {
     if (rambdax_1.getter(lockKey)) {
         return helpers_1.log('Locked tick', 'error');
@@ -637,24 +654,24 @@ exports.runEveryTick = runEveryTick;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("helpers");
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = __webpack_require__(17);
-const string_fn_1 = __webpack_require__(19);
-const rambdax_1 = __webpack_require__(15);
-const fs_1 = __webpack_require__(20);
-const dayjs = __webpack_require__(21);
-const fs_extra_1 = __webpack_require__(22);
+const helpers_1 = __webpack_require__(18);
+const string_fn_1 = __webpack_require__(20);
+const rambdax_1 = __webpack_require__(16);
+const fs_1 = __webpack_require__(21);
+const dayjs = __webpack_require__(22);
+const fs_extra_1 = __webpack_require__(23);
 const darkModeEnv = process.env.NIKETA_DARK === 'ON';
 const advanced = rambdax_1.shuffle([
     'advanced.bat',
@@ -746,38 +763,38 @@ exports.niketaTheme = niketaTheme;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("string-fn");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("dayjs");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs-extra");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const ngrokLib = __webpack_require__(24);
-const constants_1 = __webpack_require__(25);
+const ngrokLib = __webpack_require__(25);
+const constants_1 = __webpack_require__(6);
 exports.ngrok = async (port = constants_1.DEFAULT_PORT) => {
     const token = process.env.NGROK_TOKEN;
     if (!token)
@@ -796,20 +813,10 @@ exports.ngrok = async (port = constants_1.DEFAULT_PORT) => {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("ngrok");
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_PORT = 4042;
-
 
 /***/ })
 /******/ ]);
