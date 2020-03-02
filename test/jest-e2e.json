@@ -1,0 +1,19 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "lib/ngrok/(.*)": "<rootDir>/../libs/ngrok/src/$1",
+    "lib/ngrok": "<rootDir>/../libs/ngrok/src",
+    "lib/constants/(.*)": "<rootDir>/../libs/constants/src/$1",
+    "lib/constants": "<rootDir>/../libs/constants/src"
+  }
+}

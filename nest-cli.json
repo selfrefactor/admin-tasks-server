@@ -1,0 +1,27 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "projects": {
+    "ngrok": {
+      "type": "library",
+      "root": "libs/ngrok",
+      "entryFile": "index",
+      "sourceRoot": "libs/ngrok/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/ngrok/tsconfig.lib.json"
+      }
+    },
+    "constants": {
+      "type": "library",
+      "root": "libs/constants",
+      "entryFile": "index",
+      "sourceRoot": "libs/constants/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/constants/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
