@@ -11,6 +11,7 @@
     "preon": "yarn out",
     "out": "nest build",
     "lint": "maid lint",
+    "niketa": "maid niketa",
     "on": "maid on",
     "prod": "node dist/main.js",
     "on:l": "maid on",

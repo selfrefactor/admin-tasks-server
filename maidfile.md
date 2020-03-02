@@ -86,7 +86,7 @@ prettier --no-semi --no-bracket-spacing --print-width 100 --single-quote --no-br
 
 ## on
 
-Run tasks `docker` `niketa` `mongo:export` `server:light` before this in parallel
+Run tasks `docker` `niketa` `server:light` before this in parallel
 
 ```bash
 echo "END"
@@ -94,7 +94,7 @@ echo "END"
 
 ## on:dark
 
-Run tasks `docker` `niketa` `mongo:export` `server:dark` before this in parallel
+Run tasks `docker` `niketa` `server:dark` before this in parallel
 
 ```bash
 echo "END"

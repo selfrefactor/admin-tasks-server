@@ -2,7 +2,6 @@ import { init, loadJson, save } from 'db-fn'
 import { log } from 'helpers'
 import { mapAsyncLimit, omit } from 'rambdax'
 import { camelCase } from 'string-fn'
-import { newIDs } from '../../libs/constants/src/changeable-status'
 
 import { DATA_LOCATION } from './constants'
 import { MongooseInstanceFn } from './mongo.js'
@@ -13,7 +12,6 @@ init(DATA_LOCATION)
 void (async function exportLearnSmarter(){
   const fsDbLabel = 'word_profile'
   const mongoLabel = camelCase(fsDbLabel)
-  if(newIDs[mongoLabel].length === 0) return console.log('No changes')
 
   const MongooseInstance = MongooseInstanceFn()
   await MongooseInstance.connect()
