@@ -1,3 +1,18 @@
+function validTime(time) {
+  const [hh, mm] = time.split`:`.map(x => ({str: x, num: +x}))
+  if (hh.num > 24 || hh.str.length !== 2) return false
+  if (mm.num > 60 || mm.str.length !== 2) return false
+  return true
+}
+
+test('valid time', () => {
+  expect(validTime('25:51')).toBe(false)
+  expect(validTime('24:51')).toBe(true)
+  expect(validTime('23:51')).toBe(true)
+  expect(validTime('02:51')).toBe(true)
+  expect(validTime('00:51')).toBe(true)
+})
+
 function getProductOfDigits(input) {
   const x = `${input}`
   if (x.length === 1) return input

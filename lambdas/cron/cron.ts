@@ -13,7 +13,7 @@ export async function cron(everyMinutes = 1) {
     setter(LOCK_KEY, false)
     for (const i of range(0, 1000)) {
       runEveryTick(LOCK_KEY)
-      log(`${i} | ${tickInput * i} minutes since start`, 'back')
+      log(`${tickInput * i} minutes since start`, 'back')
       await delay(tick)
 
       if (getter(LOCK_KEY)) {
