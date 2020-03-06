@@ -49,22 +49,24 @@ function rangeFn(start, end, darkModeOverwrite = undefined){
   return themes.slice(start, end)
 }
 
+const mostOfLight = rangeFn(0, 15)
+const allDarkThemes = rangeFn(0,themesDark.length)
 const MODES_LIGHT = {
   evening       : rangeFn(13, themesLight.length),
   lateEvening   : rangeFn(13, themesLight.length),
-  lateAfternoon : rangeFn(11, 15),
-  afternoon     : rangeFn(8, 15),
-  morning       : rangeFn(0, 6),
-  lateMorning   : rangeFn(0, 10),
+  lateAfternoon : mostOfLight,
+  afternoon     : mostOfLight,
+  morning       : mostOfLight,
+  lateMorning   : mostOfLight,
 }
 
 const MODES_DARK = {
-  evening       : rangeFn(0, themesDark.length),
-  lateEvening   : rangeFn(0, themesDark.length),
-  lateAfternoon : rangeFn(0, themesDark.length),
-  afternoon     : rangeFn(0, themesDark.length),
-  morning       : rangeFn(0, themesDark.length),
-  lateMorning   : rangeFn(0, themesDark.length),
+  evening       : allDarkThemes,
+  lateEvening   : allDarkThemes,
+  lateAfternoon : allDarkThemes,
+  afternoon     : allDarkThemes,
+  morning       : allDarkThemes,
+  lateMorning   : allDarkThemes,
 }
 
 const { HOME } = process.env
