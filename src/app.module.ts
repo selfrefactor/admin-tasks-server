@@ -6,8 +6,11 @@ import {AppService} from './app.service'
 import {MongooseModule} from '@nestjs/mongoose'
 import {WordProfileModule} from './word-profile/word-profile.module'
 
+// const mongoFlag = process.env.MONGO_ON === 'ON' 
+const mongoFlag = process.env.MONGO_ON !== 'OFF' 
+
 const importsStatements =
-  process.env.MONGO_ON === 'ON' ? [MongooseModule.forRoot(getMongoUrl()), WordProfileModule] : []
+  mongoFlag ? [MongooseModule.forRoot(getMongoUrl()), WordProfileModule] : []
 
 @Module({
   imports: importsStatements,
