@@ -3,7 +3,7 @@
 Start server with dark themes
 
 ```bash
-NGROK=ON CRON=15 NIKETA_DARK=ON node dist/c/main.js
+NGROK=ON CRON=15 NIKETA_DARK=ON node dist/main.js
 ```
 
 ## server:light
