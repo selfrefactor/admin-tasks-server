@@ -94,7 +94,7 @@ echo "END"
 
 ## on:dark
 
-Run tasks `docker` `niketa` `server:dark` before this in parallel
+Run tasks `niketa` `server:dark` before this in parallel
 
 ```bash
 echo "END"
