@@ -54,30 +54,6 @@ Run tasks `niketa:node:a` `niketa:node:b` `niketa:electron` before this in paral
 echo "NIKETA END"
 ```
 
-## mongo:export:learn_smarter
-
-Start server
-
-```bash
-node lambdas/mongo/exportLearnSmarterRun
-```
-
-## mongo:export:word_profile
-
-Start server
-
-```bash
-node lambdas/mongo/exportWordProfileRun
-```
-
-## mongo:export
-
-Run tasks `mongo:export:learn_smarter` `mongo:export:word_profile` before this in parallel
-
-```bash
-echo "MONGO EXPORT END"
-```
-
 ## lint
 
 ```bash
