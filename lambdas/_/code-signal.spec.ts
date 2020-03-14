@@ -1,3 +1,46 @@
+function dayOfWeek(birthdayDate) {
+  const [dd, mm, yy] = birthdayDate.split`-`
+  const asDate = new Date(birthdayDate)
+  const day = asDate.getDay()
+  const month = asDate.getMonth()
+
+  const result = Array(33)
+    .fill('')
+    .map((_, i) => {
+      const maybeDate = `${dd}-${mm}-${Number(yy) + i + 1}`
+      const xDate = new Date(maybeDate)
+      return xDate.getDay() === day && xDate.getMonth() === month
+    })
+
+  return result.indexOf(true) + 1
+}
+
+test('day of week', () => {
+  expect(dayOfWeek('02-01-2016')).toBe(5)
+  expect(dayOfWeek('02-29-2016')).toBe(28)
+})
+
+function getSeconds(input) {
+  const [hh, mm, ss] = input.split`:`.map(x =>
+    String(x)[0] === '0' ? Number(`${x}`[1]) : Number(x)
+  )
+
+  return hh * 3600 + mm * 60 + ss
+}
+
+function videoPart(part, whole) {
+  const gcm = (a, b) => (b === 0 ? a : gcm(b, a % b))
+  const partSeconds = getSeconds(part)
+  const wholeSeconds = getSeconds(whole)
+  const d = gcm(partSeconds, wholeSeconds)
+  return [partSeconds / d, wholeSeconds / d]
+}
+
+test('video part', () => {
+  expect(getSeconds('01:01:01')).toBe(3661)
+  expect(videoPart('07:32:29', '10:12:51')).toEqual([1597, 2163])
+})
+
 function validTime(time) {
   const [hh, mm] = time.split`:`.map(x => ({str: x, num: +x}))
   if (hh.num > 24 || hh.str.length !== 2) return false
