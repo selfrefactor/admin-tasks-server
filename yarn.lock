@@ -4399,9 +4399,10 @@ macos-release@^2.2.0:
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-2.3.0.tgz#eb1930b036c0800adebccd5f17bc4c12de8bb71f"
   integrity sha512-OHhSbtcviqMPt7yfw5ef5aghS2jzFVKEFyCJndQt2YpSQ9qRVSEv2axSJI1paVThEu+FFGs584h/1YhxjVqajA==
 
-"maid@https://github.com/selfrefactor/maid#0.6.0":
-  version "0.1.0"
-  resolved "https://github.com/selfrefactor/maid#bef6aa213e14ad9cf57012a1b3ebf729fee075e7"
+maided@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/maided/-/maided-0.1.1.tgz#c13c3e01778375f693a48bdc213587f8f07cb5c9"
+  integrity sha512-ZbWezSDRye0oYvWN0LdckTXhMvBcGnJHVjopsCbY4zaQjGkTVdFwlExZBa/i9km+oFUq76zDqkGWcsmvFWZw4w==
   dependencies:
     cac "^5.0.10"
     chalk "^3.0.0"
