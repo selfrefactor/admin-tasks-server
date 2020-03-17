@@ -31,11 +31,8 @@ export class WordProfileService {
     return found
   }
 
-  async findAll(): Promise<string> {
-    console.log(this.wordProfileModel)
-    return this.wordProfileModel.find().exec()
-  }
-  sk(): void {
-    console.log(12)
+  async all(): Promise<string> {
+    
+    return this.wordProfileModel.distinct('word').exec()
   }
 }

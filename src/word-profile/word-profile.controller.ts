@@ -12,23 +12,28 @@ export class WordProfileController {
 
     return saved
   }
- 
+
   @Post('remove')
   async removeInstance(@Body() removeFilter: Object) {
     const removed = await this.dbModel.remove(removeFilter)
 
     return `Removed document with id ${removed._id}`
-  } 
- 
+  }
+
   @Get('read/:word')
   async fi(): Promise<string> {
     return 'This action re1turns all 21'
   }
+
+  @Get('all')
+  async all(): Promise<string> {
+    return this.dbModel.all()
+  }
+
   @Get()
   async bar(): Promise<string> {
-    console.log(';fd')
     // console.log(await this.dbModel.create({word: 'foo',related: [{translated: 'foo'}]}));
-    return 'sk'
+    return 'word-profile'
   }
 }
 

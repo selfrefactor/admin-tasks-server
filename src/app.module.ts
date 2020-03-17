@@ -1,4 +1,3 @@
-import {CatController} from './cat.controller'
 import {Module} from '@nestjs/common'
 import {getMongoUrl} from 'lib/constants'
 import {AppController} from './app.controller'
@@ -15,7 +14,7 @@ const importsStatements = mongoFlag
 
 @Module({
   imports: importsStatements,
-  controllers: [CatController, AppController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
