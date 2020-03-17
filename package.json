@@ -91,5 +91,8 @@
       "lib/constants/(.*)": "<rootDir>/libs/constants/src/$1",
       "lib/constants": "<rootDir>/libs/constants/src"
     }
+  },
+  "commitMessage": {
+    "workInProgress": "word profile"
   }
 }
