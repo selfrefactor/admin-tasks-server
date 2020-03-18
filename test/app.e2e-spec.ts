@@ -1,14 +1,20 @@
+import {envFn} from 'env-fn'
+envFn('special')
 import axios from 'axios'
 import {pass} from 'rambdax'
 
 const URL = 'http://localhost:8080'
 const WORD_PROFILE = `${URL}/word-profile`
 
-describe('Actual requests against running dev server', () => {
+describe('Word profile', () => {
   it('/all (GET)', async () => {
     const {data} = await axios.get(`${WORD_PROFILE}/all`)
     expect(data.length).toBeGreaterThan(100) 
   })
+ 
+  it.only('/add/:word (POST)', async () => {
+    const a = await axios.post(`${WORD_PROFILE}/add`, {a:1, token: process.env.API_ACCESS_TOKEN})
+  }) 
 
   test.skip('create/delete word profile instance', async () => {
     const toSave = {

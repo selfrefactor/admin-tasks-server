@@ -20,6 +20,12 @@ export class WordProfileController {
     return `Removed document with id ${removed._id}`
   }
 
+  @Post('add')
+  async tryScrapeWord(@Body() body: Object) {
+    console.log(body)
+    return null
+  }
+
   @Get('read/:word')
   async fi(): Promise<string> {
     return 'This action re1turns all 21'

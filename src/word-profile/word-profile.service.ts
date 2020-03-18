@@ -25,7 +25,6 @@ export class WordProfileService {
   }
 
   async find(word: string): Promise<WordProfile> {
-    // normalize doc with lib
     const found = this.wordProfileModel.find({word}).exec()
     console.log({found})
     return found

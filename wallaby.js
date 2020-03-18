@@ -1,3 +1,6 @@
+const {envFn} = require('env-fn')
+envFn('special')
+
 module.exports = function(){
   return {
     files : [
@@ -33,7 +36,9 @@ module.exports = function(){
       { pattern : 'test/**/*spec.ts' },
       { pattern : 'lambdas/**/*spec.ts' },
     ],
-    env           : { type : 'node' },
+    env           : { 
+      type : 'node',
+    },
     testFramework : 'jest',
     debug         : true,
   }
