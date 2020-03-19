@@ -11,8 +11,9 @@
     "preon": "yarn out",
     "preondark": "yarn out",
     "out": "nest build",
-    "lint": "maid lint",
+    "lint": "maided lint",
     "niketa": "maided niketa",
+    "niketa:simple": "maided niketa:simple",
     "on": "maided on",
     "ondark": "maided on:dark",
     "prod": "node dist/main.js",
@@ -94,6 +95,9 @@
     }
   },
   "commitMessage": {
-    "workInProgress": "word profile"
+    "workInProgress": "word profile",
+    "support": [
+      "maid"
+    ]
   }
 }

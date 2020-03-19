@@ -46,13 +46,13 @@ cd $HOME/repos/niketa/packages/electron&&yarn prod
 cd $HOME/repos/niketa/packages/electron&&node recalculate.js
 ```
 
+## niketa:simple
+
+Run tasks `niketa:node:a` and `niketa:node:b` in parallel.
+
 ## niketa
 
-Run tasks `niketa:node:a` `niketa:node:b` `niketa:electron` before this in parallel
-
-```bash
-echo "NIKETA END"
-```
+Run tasks `niketa:node:a`, `niketa:node:b`, and `niketa:electron` in parallel.
 
 ## lint
 
@@ -62,16 +62,8 @@ prettier --no-semi --no-bracket-spacing --print-width 100 --single-quote --no-br
 
 ## on
 
-Run tasks `docker` `niketa` `server:light` before this in parallel
-
-```bash
-echo "END"
-```
+Run tasks `docker`, `niketa` and `server:light` in parallel.
 
 ## on:dark
 
-Run tasks `niketa` `server:dark` before this in parallel
-
-```bash
-echo "END"
-```
+Run tasks `docker`, `niketa` and `server:dark` in parallel.
