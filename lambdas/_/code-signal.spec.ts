@@ -1,3 +1,32 @@
+function normalize(x) {
+  const asString = String(x)
+  if (asString.length === 2) return asString
+
+  return `0${asString}`
+}
+
+function curiousClock(someTime, leavingTime) {
+  const someTimeDate = new Date(someTime)
+  const leavingTimeDate = new Date(leavingTime)
+  const diff = leavingTimeDate.getTime() - someTimeDate.getTime()
+  const answerDate = new Date(someTimeDate.getTime() - diff)
+  answerDate
+  const yy = answerDate.getFullYear()
+  const mm = normalize(answerDate.getMonth() + 1)
+  const dd = normalize(answerDate.getDate())
+  const hh = normalize(answerDate.getHours())
+  const min = normalize(answerDate.getMinutes())
+  return `${yy}-${mm}-${dd} ${hh}:${min}`
+}
+
+test('curiousClock', () => {
+  const someTime = '2016-08-26 22:40'
+  const leavingTime = '2016-08-29 10:00'
+  const result1 = curiousClock(someTime, leavingTime)
+  result1
+  expect(result1).toBe('2016-08-24 11:20')
+})
+
 function dayOfWeek(birthdayDate) {
   const [dd, mm, yy] = birthdayDate.split`-`
   const asDate = new Date(birthdayDate)
