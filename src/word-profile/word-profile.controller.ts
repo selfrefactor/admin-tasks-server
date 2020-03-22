@@ -1,46 +1,39 @@
-import {Post, Controller, Get, Body, Param, Header} from '@nestjs/common'
-import {WordProfileService} from './word-profile.service'
-import {WordProfile} from '../interfaces/word-profile.interface'
+import {pass} from 'rambdax'
+import {Controller, Post, Body, Get} from '@nestjs/common'
+import {InjectRepository} from '@nestjs/typeorm'
+import {MongoRepository} from 'typeorm'
+import {ObjectID} from 'mongodb'
+import {WordProfile} from './word-profile.entity'
 
 @Controller('word-profile')
 export class WordProfileController {
-  constructor(private dbModel: WordProfileService) {}
+  constructor(
+    @InjectRepository(WordProfile)
+    private readonly wordProfileRepository: MongoRepository<WordProfile>
+  ) {}
 
   @Post('create')
-  async createInstance(@Body() toSave: WordProfile) {
-    const saved = await this.dbModel.create(toSave)
-
-    return saved
+  async createInstance(
+    @Body() toSave: Partial<WordProfile>
+  ): Promise<WordProfile | void> {
+    // if(!pass(toSave))
+    // const saved = await this.wordProfileRepository.create(toSave)
+    // console.log({saved})
+    // return saved
   }
 
-  @Post('remove')
-  async removeInstance(@Body() removeFilter: Object) {
-    const removed = await this.dbModel.remove(removeFilter)
-
-    return `Removed document with id ${removed._id}`
-  }
-
-  @Post('add')
-  async tryScrapeWord(@Body() body: Object) {
-    console.log(body)
-    return null
-  }
-
-  @Get('read/:word')
-  async fi(): Promise<string> {
-    return 'This action re1turns all 21'
-  }
-
-  @Get('all')
-  async all(): Promise<string> {
-    return this.dbModel.all()
-  }
-
-  @Get()
-  async bar(): Promise<string> {
-    // console.log(await this.dbModel.create({word: 'foo',related: [{translated: 'foo'}]}));
-    return 'word-profile'
+  @Get('foo')
+  async create(): Promise<void> {
+    // const newPet = {
+    //   name: uuid(6, true),
+    //   animalType: 'foo',
+    // }
+    const saved = await this.wordProfileRepository.save(
+      new WordProfile({
+        word: 'genug',
+      })
+    )
+    console.log(saved)
+    return
   }
 }
-
-// console.log(await this.dbModel.findAll());

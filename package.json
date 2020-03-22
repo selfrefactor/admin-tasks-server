@@ -5,6 +5,7 @@
   "author": "selfrefactor",
   "license": "MIT",
   "scripts": {
+    "controller": "nest g controller --no-spec",
     "preout": "rimraf dist",
     "predev": "rimraf dist",
     "prein": "rimraf dist",
@@ -27,10 +28,12 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.10.14",
+    "@nestjs/config": "^0.4.0",
     "@nestjs/core": "^6.10.14",
     "@nestjs/mongoose": "^6.3.1",
     "@nestjs/platform-express": "^6.10.14",
     "@nestjs/platform-fastify": "^6.11.8",
+    "@nestjs/typeorm": "^7.0.0",
     "axios": "^0.19.2",
     "capture-error": "https://github.com/selfrefactor/capture-error#1.4.0",
     "client-helpers": "https://github.com/selfrefactor/client-helpers#2.0.0",
@@ -41,6 +44,7 @@
     "fs-extra": "^8.1.0",
     "helpers": "https://github.com/selfrefactor/helpers#2.4.0",
     "maided": "0.1.1",
+    "mongodb": "^3.5.5",
     "mongoose": "^5.9.2",
     "ngrok": "3.2.7",
     "rabbit-fn": "^1.2.0",
@@ -48,7 +52,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.4",
-    "string-fn": "^2.10.2"
+    "string-fn": "^2.10.2",
+    "typeorm": "^0.2.24"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.14.2",
@@ -66,8 +71,8 @@
     "ts-jest": "25.2.1",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.7.0",
-    "tslint-fn": "0.2.1",
     "tsconfig-paths": "^3.9.0",
+    "tslint-fn": "0.2.1",
     "typescript": "^3.8.3"
   },
   "jest": {
@@ -95,7 +100,7 @@
     }
   },
   "commitMessage": {
-    "workInProgress": "word profile",
+    "workInProgress": "",
     "support": [
       "maid"
     ]
