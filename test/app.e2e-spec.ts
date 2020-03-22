@@ -9,8 +9,9 @@ const WORD_PROFILE = `${URL}/word-profile`
 const PETS = `${URL}/pets`
 
 describe('Word profile', () => {
-  test('orm', async() => {
+  test.skip('orm', async() => {
     await axios.get(`${PETS}/foo`)
+    await axios.get(`${WORD_PROFILE}/foo`)
     // expect(data.length).toBeGreaterThan(100)
   })
   it.skip('/all (GET)', async() => {
