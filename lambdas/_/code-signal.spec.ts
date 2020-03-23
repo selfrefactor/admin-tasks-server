@@ -1,3 +1,17 @@
+function isSentenceCorrect(sentence) {
+  var re = /^[A-Z][^.?!]*[.?!]$/;
+  return re.test(sentence);
+}
+
+test('isSentenceCorrect', () => {
+  expect(
+    isSentenceCorrect('Something is !wrong! here.')
+  ).toBeFalsy()
+  expect(
+    isSentenceCorrect("This is an example of *correct* sentence.")
+  ).toBeTruthy()
+})
+
 function denormalizeTime(x) {
   if(x > 9) return x
 
@@ -37,7 +51,7 @@ function regularMonths(currMonth) {
   return found  
 }
 
-test('happy', () => {
+test('regularMonths', () => {
   expect(
     regularMonths("09-2099")
   ).toEqual("02-2100")
