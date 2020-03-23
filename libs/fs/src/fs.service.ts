@@ -14,7 +14,7 @@ export class FsService {
     })
   }
 
-  async readFromData(filePath){
+  async readFromData(filePath) : Promise<string>{
     const normalizedFilePath = when(x => x.startsWith('/'), tail)(filePath)
     const actualFilePath = `${DATA_FOLDER}/${normalizedFilePath}`
     return this.read(actualFilePath)
