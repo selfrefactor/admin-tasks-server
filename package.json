@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "controller": "nest g controller --no-spec",
+    "service": "nest g service --no-spec",
+    "module": "nest g module --no-spec",
     "preout": "rimraf dist",
     "predev": "rimraf dist",
     "prein": "rimraf dist",
@@ -102,7 +104,8 @@
   "commitMessage": {
     "workInProgress": "",
     "support": [
-      "maid"
+      "maid",
+      "codesignal"
     ]
   }
 }

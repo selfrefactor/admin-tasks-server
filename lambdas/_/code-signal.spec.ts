@@ -1,9 +1,51 @@
-function normalize(x) {
+function denormalizeTime(x) {
+  if(x > 9) return x
+
+  return `0${x}`
+}
+
+function normalizeTime(x) {
   const asString = String(x)
   if (asString.length === 2) return asString
 
   return `0${asString}`
 }
+
+function getNextMonth(mm, yyyy){
+  if(mm === '12'){
+    return ['01', String(Number(yyyy)+1)]
+  }
+  return [ String(Number(normalizeTime(mm))+1), yyyy]
+}
+
+function regularMonths(currMonth) {
+  let [mm, yyyy] = currMonth.split('-')
+  let found
+  const loop = Array(33).fill('')
+  
+  loop.forEach((_, i) => {
+    if(found!== undefined) return
+    [mm, yyyy] = getNextMonth(mm, yyyy)
+      const newDate = new Date(`${yyyy}-${mm}-01`)
+      const day = newDate.getDay()
+      if(day === 1){
+
+        found = `${denormalizeTime(mm)}-${yyyy}`
+      }
+    })
+
+  return found  
+}
+
+test('happy', () => {
+  expect(
+    regularMonths("09-2099")
+  ).toEqual("02-2100")
+  // expect(
+  //   regularMonths("02-2016")
+  // ).toEqual("08-2016")
+})
+
 
 function curiousClock(someTime, leavingTime) {
   const someTimeDate = new Date(someTime)
@@ -12,10 +54,10 @@ function curiousClock(someTime, leavingTime) {
   const answerDate = new Date(someTimeDate.getTime() - diff)
   answerDate
   const yy = answerDate.getFullYear()
-  const mm = normalize(answerDate.getMonth() + 1)
-  const dd = normalize(answerDate.getDate())
-  const hh = normalize(answerDate.getHours())
-  const min = normalize(answerDate.getMinutes())
+  const mm = normalizeTime(answerDate.getMonth() + 1)
+  const dd = normalizeTime(answerDate.getDate())
+  const hh = normalizeTime(answerDate.getHours())
+  const min = normalizeTime(answerDate.getMinutes())
   return `${yy}-${mm}-${dd} ${hh}:${min}`
 }
 
