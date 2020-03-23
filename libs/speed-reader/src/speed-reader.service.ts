@@ -14,26 +14,26 @@ const hash = {
   8: 'too_human',
   9: 'zaratustra',
   10: 'gogol',
-  demo: 'demo',
+  99: 'demo',
 }
 
 @Injectable()
 export class SpeedReaderService {
   constructor(private fsService: FsService) {}
 
-  async readBook<K>(id: string | number) {
-    if (!hash[id]) return ''
+  async readBook<K>(id: number) {
+    if (!hash[id]) return
 
     try {
       const contentRaw = await this.fsService.readFromData(
         `books/${hash[id]}.txt`
       )
-      const content = contentRaw.split` `.map(trim).map(x => x.split('\n'))
-      const result = flatten(content).map(trim)
+      const content = contentRaw.split(' ').map(trim).map(x => x.split('\n'))
+      const result = flatten<string>(content).map(trim)
       return result
     } catch (e) {
       console.log(e, 'read.book')
-      return ''
+      return
     }
   }
 }
