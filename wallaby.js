@@ -15,6 +15,14 @@ module.exports = function(){
         ignore  : true,
       },
       {
+        pattern : 'libs/**/*.ts',
+        load    : false,
+      },
+      {
+        pattern : 'libs/**/*spec.ts',
+        ignore  : true,
+      },
+      {
         pattern : 'test/**/*.ts',
         load    : false,
       },
@@ -32,6 +40,7 @@ module.exports = function(){
       },
     ],
     tests : [
+      { pattern : 'libs/**/*spec.ts' },
       { pattern : 'src/**/*spec.ts' },
       { pattern : 'test/**/*spec.ts' },
       { pattern : 'lambdas/**/*spec.ts' },

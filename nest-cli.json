@@ -19,6 +19,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/constants/tsconfig.lib.json"
       }
+    },
+    "speed-reader": {
+      "type": "library",
+      "root": "libs/speed-reader",
+      "entryFile": "index",
+      "sourceRoot": "libs/speed-reader/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/speed-reader/tsconfig.lib.json"
+      }
+    },
+    "fs": {
+      "type": "library",
+      "root": "libs/fs",
+      "entryFile": "index",
+      "sourceRoot": "libs/fs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/fs/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {
