@@ -5,6 +5,7 @@
   "author": "selfrefactor",
   "license": "MIT",
   "scripts": {
+    "library": "nest g library",
     "controller": "nest g controller --no-spec",
     "service": "nest g service --no-spec",
     "module": "nest g module --no-spec",
@@ -98,7 +99,11 @@
       "lib/ngrok/(.*)": "<rootDir>/libs/ngrok/src/$1",
       "lib/ngrok": "<rootDir>/libs/ngrok/src",
       "lib/constants/(.*)": "<rootDir>/libs/constants/src/$1",
-      "lib/constants": "<rootDir>/libs/constants/src"
+      "lib/constants": "<rootDir>/libs/constants/src",
+      "lib/speed-reader/(.*)": "<rootDir>/libs/speed-reader/src/$1",
+      "lib/speed-reader": "<rootDir>/libs/speed-reader/src",
+      "lib/fs/(.*)": "<rootDir>/libs/fs/src/$1",
+      "lib/fs": "<rootDir>/libs/fs/src"
     }
   },
   "commitMessage": {
