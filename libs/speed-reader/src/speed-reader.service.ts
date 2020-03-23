@@ -28,7 +28,10 @@ export class SpeedReaderService {
       const contentRaw = await this.fsService.readFromData(
         `books/${hash[id]}.txt`
       )
-      const content = contentRaw.split(' ').map(trim).map(x => x.split('\n'))
+      const content = contentRaw
+        .split(' ')
+        .map(trim)
+        .map(x => x.split('\n'))
       const result = flatten<string>(content).map(trim)
       return result
     } catch (e) {

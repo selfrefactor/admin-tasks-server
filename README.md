@@ -1,5 +1,11 @@
 # Server is on
 
+## Supported routes
+
+Check `app.e2e-spec.ts` file
+
+---
+
 Becase we need only one dedicated server
 
 ```javascript
