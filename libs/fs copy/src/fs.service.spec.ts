@@ -13,13 +13,10 @@ describe('FsService', () => {
     service = module.get<FsService>(FsService);
   });
 
-  test('read from data folder', async () => {
-    const result = await service.readFromData('books/demo.txt')
-    expect(result.length).toBeGreaterThan(11)
+  it('should be defined', () => {
+    expect(service).toBeDefined();
   });
-  test('read from data folder - fail', async () => {
-    await expect(
-      service.readFromData('books/foo.txt')
-    ).rejects.toThrow();
+  it('should be defined', () => {
+    expect(service.foo()).toBe(2)
   });
 });

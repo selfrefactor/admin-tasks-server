@@ -111,6 +111,9 @@
     "support": [
       "maid",
       "codesignal"
+    ],
+    "feature": [
+      "lib"
     ]
   }
 }
