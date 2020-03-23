@@ -21,7 +21,12 @@ describe('SpeedReaderService', () => {
   })
 
   test('read book - fail', async() => {
-    const result = await service.readBook('foo')
-    expect(result).toBe('')
+    const result = await service.readBook(55)
+    expect(result).toBeUndefined()
+  })
+
+  test('read book - demo', async() => {
+    const result = await service.readBook(99)
+    expect(result.length).toBe(6)
   })
 })

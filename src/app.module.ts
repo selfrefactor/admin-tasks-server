@@ -8,6 +8,7 @@ import {ConfigModule} from '@nestjs/config'
 import {Pet} from './pets/pet.entity'
 import {WordProfile} from './word-profile/word-profile.entity'
 import {WordProfileController} from './word-profile/word-profile.controller'
+import { LambdasController } from './lambdas/lambdas.controller';
 
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
@@ -33,7 +34,7 @@ const getImportStatements = () => {
 
 @Module({
   imports: getImportStatements(),
-  controllers: [AppController, WordProfileController, PetsController],
+  controllers: [AppController, WordProfileController, PetsController, LambdasController],
   providers: [AppService],
 })
 export class AppModule {}
