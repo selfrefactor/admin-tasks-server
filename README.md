@@ -4,6 +4,10 @@
 
 It could stop work for wrong `Jest` version in this project's `package.json`
 
+---
+
+Other issue is that it caches `node_modules` which is fixed by command `Update file snapshots`
+
 ## Supported routes
 
 Check `app.e2e-spec.ts` file

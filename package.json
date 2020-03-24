@@ -40,7 +40,7 @@
     "capture-error": "https://github.com/selfrefactor/capture-error#1.4.0",
     "client-helpers": "https://github.com/selfrefactor/client-helpers#2.0.0",
     "dayjs": "^1.8.19",
-    "db-fn": "^1.0.2",
+    "db-fn": "^3.0.0",
     "env-fn": "2.1.0",
     "execa": "^4.0.0",
     "fs-extra": "^8.1.0",
