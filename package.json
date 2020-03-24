@@ -5,7 +5,11 @@
   "author": "selfrefactor",
   "license": "MIT",
   "scripts": {
+    "middle": "nest g middleware",
+    "middleware": "nest g middleware",
+    "lib": "nest g library",
     "library": "nest g library",
+    "control": "nest g controller --no-spec",
     "controller": "nest g controller --no-spec",
     "service": "nest g service --no-spec",
     "module": "nest g module --no-spec",
