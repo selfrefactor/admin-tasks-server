@@ -10,14 +10,14 @@ const LAMBDAS = `${URL}/lambdas`
 
 // jest.setTimeout(30000)
 
-const getErrorMessage = (status) => {
+const getErrorMessage = status => {
   return `Request failed with status code ${status}`
 }
 
 let allowTest = true
 
 describe('Word profile', () => {
-  beforeAll(async () => {
+  beforeAll(async() => {
     try {
       await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
     } catch (error) {
@@ -26,27 +26,27 @@ describe('Word profile', () => {
   })
 
   test('speed reader - demo index', async() => {
-    if(!allowTest) return
+    if (!allowTest) return
     const {data} = await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
     expect(pass(data)([String])).toBeTruthy()
   })
 
   test('speed reader - wrong index', async() => {
-    if(!allowTest) return
+    if (!allowTest) return
     try {
       await axios.post(`${LAMBDAS}/speed-reader`, {id: 44})
     } catch (e) {
-      expect(e.message).toBe(getErrorMessage(400))  
+      expect(e.message).toBe(getErrorMessage(400))
     }
   })
 
   test('speed reader - missing input', async() => {
-    if(!allowTest) return
-    
+    if (!allowTest) return
+
     try {
       await axios.post(`${LAMBDAS}/speed-reader`)
     } catch (e) {
-      expect(e.message).toBe(getErrorMessage(400))  
+      expect(e.message).toBe(getErrorMessage(400))
     }
   })
 
