@@ -15,8 +15,8 @@ describe('FsDbService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  it('load keys', async () => {
-    const result = service.getKeys('word.profile')
-    console.log(result)
-  });
+  // it('load keys', async () => {
+  //   const result = service.getKeys('word.profile')
+  //   console.log(result)
+  // });
 });

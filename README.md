@@ -1,5 +1,9 @@
 # Server is on
 
+## Wallaby
+
+It could stop work for wrong `Jest` version in this project's `package.json`
+
 ## Supported routes
 
 Check `app.e2e-spec.ts` file
