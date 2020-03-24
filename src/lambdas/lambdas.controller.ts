@@ -1,5 +1,5 @@
 import {defaultTo} from 'rambdax'
-import {Controller, Post, Body, Res, Logger} from '@nestjs/common'
+import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
 
@@ -18,5 +18,10 @@ export class LambdasController {
     if (!result) return res.status(400).send()
 
     return res.status(200).send(result)
+  }
+
+  @Get()
+  fallbackResponse(){
+    return 'Lambdas route usually uses POST requests'
   }
 }

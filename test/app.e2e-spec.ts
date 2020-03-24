@@ -14,27 +14,64 @@ const getErrorMessage = status => {
   return `Request failed with status code ${status}`
 }
 
+const willFail = () => {
+  expect('willFail').toBe('should be reached')
+}
+
+const password = process.env.API_ACCESS_TOKEN
+
 let allowTest = true
 
-describe('Word profile', () => {
+describe('API', () => {
   beforeAll(async() => {
     try {
-      await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
+      await axios.get(URL)
     } catch (error) {
       allowTest = false
+    } 
+  })  
+    
+
+  test('auth - without token', async() => {
+    if (!allowTest) return
+    try {
+      await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
+      willFail()      
+    } catch (e) {
+      expect(e.message).toBe(getErrorMessage(403))
     }
+  })
+
+  test('auth - without body', async() => {
+    if (!allowTest) return
+    try {
+      await axios.post(`${LAMBDAS}/speed-reader`)
+      willFail()      
+    } catch (e) {
+      expect(e.message).toBe(getErrorMessage(403))
+    }
+  })
+
+  test('auth - get is bypassed', async() => {
+    if (!allowTest) return
+    await expect(
+      axios.get(`${LAMBDAS}/`)
+    ).resolves.not.toThrow();
   })
 
   test('speed reader - demo index', async() => {
     if (!allowTest) return
-    const {data} = await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
+    const body = {id: 99, password}
+    const {data} = await axios.post(`${LAMBDAS}/speed-reader`, body)
     expect(pass(data)([String])).toBeTruthy()
-  })
+  })  
+
 
   test('speed reader - wrong index', async() => {
     if (!allowTest) return
     try {
-      await axios.post(`${LAMBDAS}/speed-reader`, {id: 44})
+      const body = {id: 99, password}
+      await axios.post(`${LAMBDAS}/speed-reader`,body)
     } catch (e) {
       expect(e.message).toBe(getErrorMessage(400))
     }
@@ -42,11 +79,10 @@ describe('Word profile', () => {
 
   test('speed reader - missing input', async() => {
     if (!allowTest) return
-
     try {
       await axios.post(`${LAMBDAS}/speed-reader`)
     } catch (e) {
-      expect(e.message).toBe(getErrorMessage(400))
+      expect(e.message).toBe(getErrorMessage(403))
     }
   })
 

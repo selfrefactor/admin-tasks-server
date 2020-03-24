@@ -1,4 +1,4 @@
-import {Module} from '@nestjs/common'
+import {Module , RequestMethod, MiddlewareConsumer } from '@nestjs/common'
 import {getMongoConnectUrl} from 'lib/constants'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
@@ -11,11 +11,11 @@ import {WordProfileController} from './word-profile/word-profile.controller'
 import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
-
+import { AuthMiddleware } from './auth.middleware';
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
 
-const getImportStatements = () => {
+const getImportStatements = () => { 
   if (!mongoFlag) return []
   const typeOrm = TypeOrmModule.forRoot({
     type: 'mongodb',
@@ -44,4 +44,11 @@ const getImportStatements = () => {
   ],
   providers: [AppService, SpeedReaderService, FsService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes('lambdas');
+      // .forRoutes({ path: 'lambdas', method: RequestMethod.POST });
+  }
+}
