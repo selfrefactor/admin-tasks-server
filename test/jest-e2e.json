@@ -18,6 +18,8 @@
     "lib/speed-reader/(.*)": "<rootDir>/../libs/speed-reader/src/$1",
     "lib/speed-reader": "<rootDir>/../libs/speed-reader/src",
     "lib/fs/(.*)": "<rootDir>/../libs/fs/src/$1",
-    "lib/fs": "<rootDir>/../libs/fs/src"
+    "lib/fs": "<rootDir>/../libs/fs/src",
+    "lib/fs-db/(.*)": "<rootDir>/../libs/fs-db/src/$1",
+    "lib/fs-db": "<rootDir>/../libs/fs-db/src"
   }
 }

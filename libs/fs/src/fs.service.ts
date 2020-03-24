@@ -1,7 +1,7 @@
 import { when , tail } from 'rambdax'
 import { Injectable } from '@nestjs/common';
 import {readFile} from 'fs'
-import { DATA_FOLDER } from 'lib/constants';
+import { DATA_LOCATION } from 'lib/constants';
 
 @Injectable()
 export class FsService {
@@ -16,7 +16,7 @@ export class FsService {
 
   async readFromData(filePath) : Promise<string>{
     const normalizedFilePath = when(x => x.startsWith('/'), tail)(filePath)
-    const actualFilePath = `${DATA_FOLDER}/${normalizedFilePath}`
+    const actualFilePath = `${DATA_LOCATION}/${normalizedFilePath}`
     return this.read(actualFilePath)
   }
 }

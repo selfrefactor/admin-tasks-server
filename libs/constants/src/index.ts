@@ -1,5 +1,5 @@
-export const REPO_FOLDER = `${process.env.HOME}/repos`
-export const DATA_FOLDER = `${REPO_FOLDER}/data`
+export const REPO_LOCATION = `${process.env.HOME}/repos`
+export const DATA_LOCATION = `${REPO_LOCATION}/data`
 export const DEFAULT_PORT = 4042
 export const MONGO_URL = process.env.MONGO_CONNECT_URL
 export const MONGO_ATLAS_CONNECT = process.env.MONGO_ATLAS_CONNECT
