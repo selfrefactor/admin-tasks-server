@@ -8,8 +8,6 @@ const WORD_PROFILE = `${URL}/word-profile`
 const PETS = `${URL}/pets`
 const LAMBDAS = `${URL}/lambdas`
 
-// jest.setTimeout(30000)
-
 const getErrorMessage = status => {
   return `Request failed with status code ${status}`
 }
