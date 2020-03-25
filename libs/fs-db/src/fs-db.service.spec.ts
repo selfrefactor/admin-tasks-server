@@ -17,6 +17,6 @@ describe('FsDbService', () => {
   });
   it('load keys', async () => {
     const result = await service.getKeys('word.profile')
-    console.log(result)
+    expect(result.length).toBeGreaterThan(100)
   });
 });

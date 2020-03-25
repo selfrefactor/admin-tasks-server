@@ -1,6 +1,7 @@
 import {envFn} from 'env-fn'
 envFn('special')
 import axios from 'axios'
+import {log} from 'helpers'
 import {pass} from 'rambdax'
 
 const URL = 'http://localhost:8080'
@@ -25,6 +26,7 @@ describe('API', () => {
     try {
       await axios.get(URL)
     } catch (error) {
+      log('Server is not ON and e2e tests are skipped','warning')
       allowTest = false
     } 
   })  
