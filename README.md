@@ -1,12 +1,18 @@
 # Server is on
 
-## Wallaby
+## Issues
 
-It could stop work for wrong `Jest` version in this project's `package.json`
+Service importing service can lead to circular dependency while testing the service. Use `lib/fs` as a base, as it is used by `lib/speed-reader`
 
 ---
 
 Other issue is that it caches `node_modules` which is fixed by command `Update file snapshots`
+
+---
+
+> Wallaby
+
+It could stop work for wrong `Jest` version in this project's `package.json`
 
 ## Supported routes
 
