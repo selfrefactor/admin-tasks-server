@@ -1,43 +1,33 @@
-export function replace(
-  pattern, replacer, str
-){
-  if (replacer === undefined){
-    return (_replacer, _str) => replace(
-      pattern, _replacer, _str
-    )
-  } else if (str === undefined){
-    return _str => replace(
-      pattern, replacer, _str
-    )
+export function replace(pattern, replacer, str) {
+  if (replacer === undefined) {
+    return (_replacer, _str) => replace(pattern, _replacer, _str)
+  } else if (str === undefined) {
+    return _str => replace(pattern, replacer, _str)
   }
 
   return str.replace(pattern, replacer)
 }
 
-function remove(inputs, text){
-  if (!Array.isArray(inputs)){
-    return replace(
-      inputs, '', text
-    ).trim()
+function remove(inputs, text) {
+  if (!Array.isArray(inputs)) {
+    return replace(inputs, '', text).trim()
   }
 
   let textCopy = text
 
   inputs.forEach(singleInput => {
-    textCopy = replace(
-      singleInput, '', textCopy
-    ).trim()
+    textCopy = replace(singleInput, '', textCopy).trim()
   })
 
   return textCopy
 }
 
-function getFirstRow(input){
-    const [firstRow] = input.split('</tr>')
-    if(!firstRow) return
-    const rowContent = firstRow.split('<tr>')
-    console.log(rowContent[rowContent.length -1])
-    return remove(/<tr>/g, rowContent[rowContent.length -1])
+function getFirstRow(input) {
+  const [firstRow] = input.split('</tr>')
+  if (!firstRow) return
+  const rowContent = firstRow.split('<tr>')
+  console.log(rowContent[rowContent.length - 1])
+  return remove(/<tr>/g, rowContent[rowContent.length - 1])
 }
 
 function htmlTable(table, row, column) {
@@ -45,33 +35,28 @@ function htmlTable(table, row, column) {
   firstRow
 }
 
-
 test('html table', () => {
-  const table =  "<table><tr><td>1</td><td>TWO</td></tr><tr><td>three</td><td>FoUr4</td></tr></table>"
-const row =  0
-const column = 1  
-expect(
-  htmlTable(table, row, column)
-).toEqual("TWO")
+  const table =
+    '<table><tr><td>1</td><td>TWO</td></tr><tr><td>three</td><td>FoUr4</td></tr></table>'
+  const row = 0
+  const column = 1
+  expect(htmlTable(table, row, column)).toEqual('TWO')
 })
 
-
 function isSentenceCorrect(sentence) {
-  var re = /^[A-Z][^.?!]*[.?!]$/;
-  return re.test(sentence);
+  const re = /^[A-Z][^.?!]*[.?!]$/
+  return re.test(sentence)
 }
 
 test('isSentenceCorrect', () => {
+  expect(isSentenceCorrect('Something is !wrong! here.')).toBeFalsy()
   expect(
-    isSentenceCorrect('Something is !wrong! here.')
-  ).toBeFalsy()
-  expect(
-    isSentenceCorrect("This is an example of *correct* sentence.")
+    isSentenceCorrect('This is an example of *correct* sentence.')
   ).toBeTruthy()
 })
 
 function denormalizeTime(x) {
-  if(x > 9) return x
+  if (x > 9) return x
 
   return `0${x}`
 }
@@ -83,41 +68,37 @@ function normalizeTime(x) {
   return `0${asString}`
 }
 
-function getNextMonth(mm, yyyy){
-  if(mm === '12'){
-    return ['01', String(Number(yyyy)+1)]
+function getNextMonth(mm, yyyy) {
+  if (mm === '12') {
+    return ['01', String(Number(yyyy) + 1)]
   }
-  return [ String(Number(normalizeTime(mm))+1), yyyy]
+  return [String(Number(normalizeTime(mm)) + 1), yyyy]
 }
 
 function regularMonths(currMonth) {
   let [mm, yyyy] = currMonth.split('-')
   let found
   const loop = Array(33).fill('')
-  
+
   loop.forEach((_, i) => {
-    if(found!== undefined) return
-    [mm, yyyy] = getNextMonth(mm, yyyy)
-      const newDate = new Date(`${yyyy}-${mm}-01`)
-      const day = newDate.getDay()
-      if(day === 1){
+    if (found !== undefined) return
+    ;[mm, yyyy] = getNextMonth(mm, yyyy)
+    const newDate = new Date(`${yyyy}-${mm}-01`)
+    const day = newDate.getDay()
+    if (day === 1) {
+      found = `${denormalizeTime(mm)}-${yyyy}`
+    }
+  })
 
-        found = `${denormalizeTime(mm)}-${yyyy}`
-      }
-    })
-
-  return found  
+  return found
 }
 
 test('regularMonths', () => {
-  expect(
-    regularMonths("09-2099")
-  ).toEqual("02-2100")
+  expect(regularMonths('09-2099')).toEqual('02-2100')
   // expect(
   //   regularMonths("02-2016")
   // ).toEqual("08-2016")
 })
-
 
 function curiousClock(someTime, leavingTime) {
   const someTimeDate = new Date(someTime)
@@ -165,14 +146,14 @@ test('day of week', () => {
 
 function getSeconds(input) {
   const [hh, mm, ss] = input.split`:`.map(x =>
-    String(x)[0] === '0' ? Number(`${x}`[1]) : Number(x)
+    String(x).startsWith('0') ? Number(`${x}`[1]) : Number(x)
   )
 
   return hh * 3600 + mm * 60 + ss
 }
 
 function videoPart(part, whole) {
-  const gcm = (a, b) => (b === 0 ? a : gcm(b, a % b))
+  const gcm = (a, b) => b === 0 ? a : gcm(b, a % b)
   const partSeconds = getSeconds(part)
   const wholeSeconds = getSeconds(whole)
   const d = gcm(partSeconds, wholeSeconds)
@@ -225,7 +206,7 @@ function calculateNumberScore(input) {
 
   if (x.length === 1) return 0
   if (x.length === 2) return Math.abs(Number(x[0]) - Number(x[1]))
-  const sorted = x.sort((a, b) => (a < b ? 1 : -1))
+  const sorted = x.sort((a, b) => a < b ? 1 : -1)
 
   return Math.abs(Number(sorted[0]) - Number(sorted[sorted.length - 1]))
 }
