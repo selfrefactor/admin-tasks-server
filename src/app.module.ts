@@ -1,4 +1,4 @@
-import {Module , RequestMethod, MiddlewareConsumer } from '@nestjs/common'
+import {Module, MiddlewareConsumer } from '@nestjs/common'
 import {getMongoConnectUrl} from 'lib/constants'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
@@ -12,6 +12,8 @@ import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
 import { AuthMiddleware } from './auth.middleware';
+import { FsDbService } from '../libs/fs-db/src/fs-db.service';
+
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
 
@@ -42,13 +44,12 @@ const getImportStatements = () => {
     PetsController,
     LambdasController,
   ],
-  providers: [AppService, SpeedReaderService, FsService],
+  providers: [AppService, SpeedReaderService, FsService, FsDbService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
       .forRoutes('lambdas');
-      // .forRoutes({ path: 'lambdas', method: RequestMethod.POST });
   }
 }

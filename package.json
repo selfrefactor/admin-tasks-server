@@ -115,7 +115,8 @@
       "codesignal"
     ],
     "feature": [
-      "lib"
+      "lib",
+      "route"
     ]
   }
 }
