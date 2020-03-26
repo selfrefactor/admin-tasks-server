@@ -2,7 +2,7 @@
 
 ## Issues
 
-Service importing service can lead to circular dependency while testing the service. Use `lib/fs` as a base, as it is used by `lib/speed-reader`
+Service importing service can lead to circular dependency while testing the service. Resolved by direct relative import.
 
 ---
 

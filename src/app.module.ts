@@ -11,8 +11,9 @@ import {WordProfileController} from './word-profile/word-profile.controller'
 import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
+import {WordProfileService} from 'lib/word-profile'
 import { AuthMiddleware } from './auth.middleware';
-import { FsDbService } from '../libs/fs-db/src/fs-db.service';
+import { FsDbService } from 'lib/fs-db';
 
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'

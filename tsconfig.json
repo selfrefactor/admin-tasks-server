@@ -40,6 +40,12 @@
       ],
       "lib/fs-db/*": [
         "libs/fs-db/src/*"
+      ],
+      "lib/word-profile": [
+        "libs/word-profile/src"
+      ],
+      "lib/word-profile/*": [
+        "libs/word-profile/src/*"
       ]
     }
   },

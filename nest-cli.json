@@ -46,6 +46,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/fs-db/tsconfig.lib.json"
       }
+    },
+    "word-profile": {
+      "type": "library",
+      "root": "libs/word-profile",
+      "entryFile": "index",
+      "sourceRoot": "libs/word-profile/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/word-profile/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {

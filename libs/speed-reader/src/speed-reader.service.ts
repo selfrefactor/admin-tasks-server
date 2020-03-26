@@ -23,7 +23,7 @@ export class SpeedReaderService {
 
   async readBook<K>(id: number) {
     if (!hash[id]) return
-
+    
     try {
       const contentRaw = await this.fsService.readFromData(
         `books/${hash[id]}.txt`

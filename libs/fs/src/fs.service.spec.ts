@@ -1,13 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FsService } from './fs.service';
-import { SpeedReaderService } from 'lib/speed-reader';
 
 describe('FsService', () => {
   let service: FsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [FsService, SpeedReaderService],
+      providers: [FsService],
     }).compile();
 
     service = module.get<FsService>(FsService);

@@ -20,6 +20,8 @@
     "lib/fs/(.*)": "<rootDir>/../libs/fs/src/$1",
     "lib/fs": "<rootDir>/../libs/fs/src",
     "lib/fs-db/(.*)": "<rootDir>/../libs/fs-db/src/$1",
-    "lib/fs-db": "<rootDir>/../libs/fs-db/src"
+    "lib/fs-db": "<rootDir>/../libs/fs-db/src",
+    "lib/word-profile/(.*)": "<rootDir>/../libs/word-profile/src/$1",
+    "lib/word-profile": "<rootDir>/../libs/word-profile/src"
   }
 }
