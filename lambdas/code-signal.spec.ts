@@ -1,3 +1,61 @@
+export function replace(
+  pattern, replacer, str
+){
+  if (replacer === undefined){
+    return (_replacer, _str) => replace(
+      pattern, _replacer, _str
+    )
+  } else if (str === undefined){
+    return _str => replace(
+      pattern, replacer, _str
+    )
+  }
+
+  return str.replace(pattern, replacer)
+}
+
+function remove(inputs, text){
+  if (!Array.isArray(inputs)){
+    return replace(
+      inputs, '', text
+    ).trim()
+  }
+
+  let textCopy = text
+
+  inputs.forEach(singleInput => {
+    textCopy = replace(
+      singleInput, '', textCopy
+    ).trim()
+  })
+
+  return textCopy
+}
+
+function getFirstRow(input){
+    const [firstRow] = input.split('</tr>')
+    if(!firstRow) return
+    const rowContent = firstRow.split('<tr>')
+    console.log(rowContent[rowContent.length -1])
+    return remove(/<tr>/g, rowContent[rowContent.length -1])
+}
+
+function htmlTable(table, row, column) {
+  const firstRow = getFirstRow(table)
+  firstRow
+}
+
+
+test('html table', () => {
+  const table =  "<table><tr><td>1</td><td>TWO</td></tr><tr><td>three</td><td>FoUr4</td></tr></table>"
+const row =  0
+const column = 1  
+expect(
+  htmlTable(table, row, column)
+).toEqual("TWO")
+})
+
+
 function isSentenceCorrect(sentence) {
   var re = /^[A-Z][^.?!]*[.?!]$/;
   return re.test(sentence);
