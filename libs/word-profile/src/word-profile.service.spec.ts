@@ -13,7 +13,8 @@ describe('WordProfileService', () => {
     service = module.get<WordProfileService>(WordProfileService);
   });
 
-  it('should be defined', () => {
-    expect(service.foo()).toBe(4);
+  it('should be defined', async () => {
+    const allWords = service.getAllWords()
+    expect(allWords).toBeTruthy()
   });
 });
