@@ -2,17 +2,8 @@ import {defaultTo} from 'rambdax'
 import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
+import {safeWait} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
-
-async function safeWait<T>(fn: Promise<T>): Promise<T | void> {
-  try {
-    const result = await fn
-    return result
-  } catch (err) {
-    console.log(err)
-    return undefined
-  }
-}
 
 @Controller('lambdas')
 export class LambdasController {

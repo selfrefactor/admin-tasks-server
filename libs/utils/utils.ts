@@ -1,3 +1,9 @@
-export function fn(a: string): void {
-  console.log({a})
+export async function safeWait<T>(fn: Promise<T>): Promise<T | void> {
+  try {
+    const result = await fn
+    return result
+  } catch (err) {
+    console.log(err)
+    return undefined
+  }
 }

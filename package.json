@@ -123,7 +123,8 @@
     ],
     "feature": [
       "lib",
-      "route"
+      "route",
+      "util"
     ]
   }
 }
