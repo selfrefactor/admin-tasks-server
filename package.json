@@ -5,6 +5,7 @@
   "author": "selfrefactor",
   "license": "MIT",
   "scripts": {
+    "x":"jest libs/word-profile/src/word-profile.service.spec.ts",
     "update": "nest update",
     "middleware": "nest g middleware",
     "library": "nest g library",
@@ -107,7 +108,9 @@
       "lib/fs-db/(.*)": "<rootDir>/libs/fs-db/src/$1",
       "lib/fs-db": "<rootDir>/libs/fs-db/src",
       "lib/word-profile/(.*)": "<rootDir>/libs/word-profile/src/$1",
-      "lib/word-profile": "<rootDir>/libs/word-profile/src"
+      "lib/word-profile": "<rootDir>/libs/word-profile/src",
+      "lib/db-fs/(.*)": "<rootDir>/libs/db-fs/src/$1",
+      "lib/db-fs": "<rootDir>/libs/db-fs/src"
     }
   },
   "commitMessage": {

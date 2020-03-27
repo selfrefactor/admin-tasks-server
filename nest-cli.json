@@ -55,6 +55,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/word-profile/tsconfig.lib.json"
       }
+    },
+    "db-fs": {
+      "type": "library",
+      "root": "libs/db-fs",
+      "entryFile": "index",
+      "sourceRoot": "libs/db-fs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/db-fs/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {

@@ -46,6 +46,12 @@
       ],
       "lib/word-profile/*": [
         "libs/word-profile/src/*"
+      ],
+      "lib/db-fs": [
+        "libs/db-fs/src"
+      ],
+      "lib/db-fs/*": [
+        "libs/db-fs/src/*"
       ]
     }
   },

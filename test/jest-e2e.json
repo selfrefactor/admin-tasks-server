@@ -22,6 +22,8 @@
     "lib/fs-db/(.*)": "<rootDir>/../libs/fs-db/src/$1",
     "lib/fs-db": "<rootDir>/../libs/fs-db/src",
     "lib/word-profile/(.*)": "<rootDir>/../libs/word-profile/src/$1",
-    "lib/word-profile": "<rootDir>/../libs/word-profile/src"
+    "lib/word-profile": "<rootDir>/../libs/word-profile/src",
+    "lib/db-fs/(.*)": "<rootDir>/../libs/db-fs/src/$1",
+    "lib/db-fs": "<rootDir>/../libs/db-fs/src"
   }
 }

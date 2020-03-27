@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { FsDbService } from '../../fs-db/src/fs-db.service';
+import { DbFsService } from 'lib/db-fs';
 
 @Injectable()
 export class WordProfileService {
-  constructor(private bar: FsDbService){}
+  constructor(private bar: DbFsService){}
   foo(){
-    return 2
+    return 2 + this.bar.bar()
   }
 }

@@ -2,7 +2,7 @@
 
 ## Issues
 
-Service importing service can lead to circular dependency while testing the service. Resolved by direct relative import.
+Service importing service can lead to circular dependency while testing the service. Resolved by direct relative import.(Actually the issue was related to namespacing as there was already library `lib/fs` and the problem library was `fs-db`. Once the name was changed to `db-fs` the problem was solved.)
 
 ---
 
