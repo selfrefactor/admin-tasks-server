@@ -10,4 +10,7 @@ export class WordProfileService {
       'word.profile'
     )
   }
+  async getWord (word: string){
+    return this.databaseAccess.getItem('word.profile', word)
+  }
 }

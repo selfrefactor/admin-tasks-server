@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { WordProfileService } from './word-profile.service';
-import { DbFsService } from 'lib/db-fs';
+import { DbFsService, itemNotFound } from 'lib/db-fs';
 
 describe('WordProfileService', () => {
   let service: WordProfileService;
@@ -16,5 +16,22 @@ describe('WordProfileService', () => {
   it('should be defined', async () => {
     const allWords = service.getAllWords()
     expect(allWords).toBeTruthy()
+  });
+
+  it('WORD_PROFILE - get single word - happy', async () => {
+    const singleWord = await service.getWord(
+      'abbringen'
+    )
+    expect(singleWord).toBeTruthy()
+  });
+
+  it('WORD_PROFILE - get single word - fail', async () => {
+    await expect(
+      service.getWord(
+        'foo'
+      )
+    ).rejects.toThrow(
+      itemNotFound('foo')
+    );
   });
 });
