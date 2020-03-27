@@ -1,4 +1,4 @@
-export function replace(pattern, replacer, str) {
+function replace(pattern, replacer, str) {
   if (replacer === undefined) {
     return (_replacer, _str) => replace(pattern, _replacer, _str)
   } else if (str === undefined) {
@@ -22,25 +22,89 @@ function remove(inputs, text) {
   return textCopy
 }
 
+function getFirstColumn(input){
+  const [firstColumn] = input.split('</td>')
+  if (!firstColumn) return
+  const columnContent = firstColumn.split('<td>')
+  const foundColumn = remove(/<td>/g, columnContent[columnContent.length - 1])
+
+  return {
+    rest: remove(`<td>${foundColumn}</td>`, input),
+    foundColumn
+  }
+}
+
 function getFirstRow(input) {
   const [firstRow] = input.split('</tr>')
   if (!firstRow) return
   const rowContent = firstRow.split('<tr>')
-  console.log(rowContent[rowContent.length - 1])
-  return remove(/<tr>/g, rowContent[rowContent.length - 1])
+  const foundRow = remove(/<tr>/g, rowContent[rowContent.length - 1])
+  const rest = remove(`<tr>${foundRow}</tr>`, input)
+  if(firstRow.includes('<th>')) return {rest, foundRow: 'SKIP'}
+  return {
+    rest,
+    foundRow
+  }
 }
 
-function htmlTable(table, row, column) {
-  const firstRow = getFirstRow(table)
-  firstRow
+function htmlTable(table, rowIndex, columnIndex) {
+  const found = []
+  let firstStepReady = false
+  let firstStepHolder = table
+
+  Array(50).fill('').forEach(() => {
+    const row = []    
+    if(firstStepReady) return
+    const firstStep = getFirstRow(firstStepHolder)
+    if(!firstStep) return firstStepReady = true
+    if(firstStep.foundRow === '<table></table>') return firstStepReady = true
+    firstStepHolder = firstStep.rest
+
+    let secondStepReady = false
+    let secondStepHolder = firstStep.foundRow
+    Array(50).fill('').forEach(() => {
+      if(secondStepReady) return
+      const secondStep = getFirstColumn(secondStepHolder)
+      secondStep
+      if(!secondStep) return secondStepReady = true
+      row.push(secondStep.foundColumn)
+      secondStepHolder = secondStep.rest
+    })
+    found.push(row)
+  })
+  if(found[rowIndex] === undefined || found[rowIndex] === 'SKIP') return 'No such cell'
+
+  const maybeResult = found[rowIndex][columnIndex]
+
+  return [undefined, 'SKIP'].includes(maybeResult) ?
+    'No such cell':
+    found[rowIndex][columnIndex]
 }
 
-test('html table', () => {
+test('html table 1', () => {
   const table =
     '<table><tr><td>1</td><td>TWO</td></tr><tr><td>three</td><td>FoUr4</td></tr></table>'
   const row = 0
   const column = 1
   expect(htmlTable(table, row, column)).toEqual('TWO')
+})
+
+test('html table 2', () => {
+  const table =
+    '<table><tr><td>1</td><td>TWO</td></tr></table>'
+  const row = 1
+  const column = 0
+  expect(htmlTable(table, row, column)).toEqual('No such cell')
+})
+
+test('html table 3', () => {
+  const table = `<table>
+  <tr><th>CIRCUMFERENCE</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+  <tr><td>BITS</td><td>3</td><td>4</td><td>8</td><td>10</td><td>12</td><td>15</td></tr>
+  </table>`
+  const row = 1
+  const column = 6
+  expect(htmlTable(table, row, column)).toEqual('15')
 })
 
 function isSentenceCorrect(sentence) {
