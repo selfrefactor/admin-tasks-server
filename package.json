@@ -110,7 +110,9 @@
       "lib/word-profile/(.*)": "<rootDir>/libs/word-profile/src/$1",
       "lib/word-profile": "<rootDir>/libs/word-profile/src",
       "lib/db-fs/(.*)": "<rootDir>/libs/db-fs/src/$1",
-      "lib/db-fs": "<rootDir>/libs/db-fs/src"
+      "lib/db-fs": "<rootDir>/libs/db-fs/src",
+      "lib/utils/(.*)": "<rootDir>/libs/utils/$1",
+      "lib/utils": "<rootDir>/libs/utils/"
     }
   },
   "commitMessage": {

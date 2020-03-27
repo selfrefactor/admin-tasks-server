@@ -48,6 +48,12 @@
       ],
       "lib/db-fs/*": [
         "libs/db-fs/src/*"
+      ],
+      "lib/utils": [
+        "libs/utils/"
+      ],
+      "lib/utils/*": [
+        "libs/utils/*"
       ]
     }
   },
