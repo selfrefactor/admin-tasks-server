@@ -38,15 +38,23 @@ const hash = {
 }
 ```
 
----
-
-Becase we need only one server
+## Postponed TypeORM
 
 ```javascript
-export async function wordProfileDataAnt(currentWord, token){
-  if (!token) return
-  const { data } = await post(`${ API_URL }/word-profile/get/${ currentWord }`, { token })
-
-  return data
-}
+  test.skip('create/delete word profile instance', async() => {
+    const toSave = {
+      word: 'baz',
+      related: [{translated: 'foo'}],
+    }
+    const {data: saved} = await axios.post(
+      `${URL}/word-profile/create`,
+      toSave
+    )
+    expect(pass(saved)({related: Array})).toBeTruthy()
+    expect(pass(saved)({related: [{translated: String}]})).toBeTruthy()
+    const {data: deleted} = await axios.post(`${URL}/word-profile/remove`, {
+      _id: saved._id,
+    })
+    console.log(deleted)
+  })
 ```

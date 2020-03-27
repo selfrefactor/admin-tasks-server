@@ -24,10 +24,6 @@ export class WordProfileController {
 
   @Get('foo')
   async create(): Promise<void> {
-    // const newPet = {
-    //   name: uuid(6, true),
-    //   animalType: 'foo',
-    // }
     const saved = await this.wordProfileRepository.save(
       new WordProfile({
         word: 'genug',
