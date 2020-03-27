@@ -2,7 +2,7 @@ import {defaultTo} from 'rambdax'
 import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
-import { FsDbService } from 'lib/fs-db';
+import { WordProfileService } from 'lib/word-profile';
 
 type tupleTypeA<T> = [T, undefined]
 type tupleTypeB = [undefined, Error]
@@ -15,11 +15,21 @@ function wait<T>(fn): Promise<tupleTypeA<T>| tupleTypeB> {
   })
 }
 
+async function safeWait<T>(fn) : Promise<T|void>{
+  try {
+    const result = await fn
+    return result
+  } catch (err) {
+    console.log(err)
+    return undefined
+  }
+}
+
 @Controller('lambdas')
 export class LambdasController {
   private logger = new Logger('Lambdas');
  
-  constructor(private speedReader: SpeedReaderService, private fsDbService: FsDbService) {}
+  constructor(private speedReader: SpeedReaderService, private wordProfileService: WordProfileService) {}
 
   @Post('speed-reader')
   async createInstance(@Body() input: {id: number}, @Res() res: Response) {
@@ -35,7 +45,7 @@ export class LambdasController {
   @Post('word-profile/all-words')
   async getAllWords(@Res() res: Response) {
     this.logger.log('word.profile.all.words')
-    const result = await this.fsDbService.wordProfile().getAllWords()
+    const result = await this.wordProfileService.getAllWords()
 
     return res.status(200).send(result)
   }
@@ -44,7 +54,8 @@ export class LambdasController {
   async getWord(@Body() input: {word: string}, @Res() res: Response) {
     this.logger.log('word.profile', JSON.stringify(input))
     if (!input) return res.status(400).send()
-    const [result] = await wait<string[]>(this.fsDbService.wordProfile().getWord(input.word))
+    const result = await safeWait<string[]>(this.wordProfileService.getWord(input.word))
+    // const [result] = await wait<string[]>(this.wordProfileService.getWord(input.word))
     if (!result) return res.status(400).send()
 
     return res.status(200).send(result)

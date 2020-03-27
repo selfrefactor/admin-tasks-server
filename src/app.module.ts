@@ -13,7 +13,7 @@ import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import { AuthMiddleware } from './auth.middleware';
-import { FsDbService } from 'lib/fs-db';
+import { DbFsService } from 'lib/db-fs';
 
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
@@ -45,7 +45,7 @@ const getImportStatements = () => {
     PetsController,
     LambdasController,
   ],
-  providers: [AppService, SpeedReaderService, FsService, FsDbService],
+  providers: [AppService, SpeedReaderService, FsService, WordProfileService, DbFsService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

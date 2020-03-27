@@ -38,15 +38,6 @@
         "tsConfigPath": "libs/fs/tsconfig.lib.json"
       }
     },
-    "fs-db": {
-      "type": "library",
-      "root": "libs/fs-db",
-      "entryFile": "index",
-      "sourceRoot": "libs/fs-db/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/fs-db/tsconfig.lib.json"
-      }
-    },
     "word-profile": {
       "type": "library",
       "root": "libs/word-profile",

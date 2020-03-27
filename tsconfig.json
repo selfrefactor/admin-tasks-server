@@ -35,12 +35,6 @@
       "lib/fs/*": [
         "libs/fs/src/*"
       ],
-      "lib/fs-db": [
-        "libs/fs-db/src"
-      ],
-      "lib/fs-db/*": [
-        "libs/fs-db/src/*"
-      ],
       "lib/word-profile": [
         "libs/word-profile/src"
       ],
