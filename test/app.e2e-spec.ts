@@ -5,12 +5,11 @@ import {log} from 'helpers-fn'
 import {pass} from 'rambdax'
 
 const URL = 'http://localhost:8080'
-const WORD_PROFILEx = `${URL}/word-profile`
 const LAMBDAS = `${URL}/lambdas`
 const SPEED_READER = `${LAMBDAS}/speed-reader`
 const WORD_PROFILE = `${LAMBDAS}/word-profile`
 
-const getErrorMessage = status => {
+const getErrorMessage = (status: number) => {
   return `Request failed with status code ${status}`
 }
 
