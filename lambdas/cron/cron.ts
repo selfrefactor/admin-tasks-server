@@ -1,6 +1,6 @@
 import {ok, delay, range, setter, getter} from 'rambdax'
 import {runEveryTick} from './runEveryTick'
-import {log} from 'helpers'
+import {log} from 'helpers-fn'
 
 const LOCK_KEY = 'LOCK_KEY'
 

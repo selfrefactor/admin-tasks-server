@@ -1,7 +1,7 @@
 import {envFn} from 'env-fn'
 envFn('special')
 import axios from 'axios'
-import {log} from 'helpers'
+import {log} from 'helpers-fn'
 import {pass} from 'rambdax'
 
 const URL = 'http://localhost:8080'

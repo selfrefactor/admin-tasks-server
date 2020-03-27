@@ -2,20 +2,9 @@ import {defaultTo} from 'rambdax'
 import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
-import { WordProfileService } from 'lib/word-profile';
+import {WordProfileService, WordProfile} from 'lib/word-profile'
 
-type tupleTypeA<T> = [T, void]
-type tupleTypeB = [void, Error]
-
-function wait<T>(fn): Promise<tupleTypeA<T>| tupleTypeB> {
-  return new Promise(resolve => {
-    fn
-      .then(result => resolve([ result, undefined ]))
-      .catch(e => resolve([ undefined, e ]))
-  })
-}
-
-async function safeWait<T>(fn) : Promise<T|void>{
+async function safeWait<T>(fn: Promise<T>): Promise<T | void> {
   try {
     const result = await fn
     return result
@@ -27,9 +16,12 @@ async function safeWait<T>(fn) : Promise<T|void>{
 
 @Controller('lambdas')
 export class LambdasController {
-  private logger = new Logger('Lambdas');
- 
-  constructor(private speedReader: SpeedReaderService, private wordProfileService: WordProfileService) {}
+  private logger = new Logger('Lambdas')
+
+  constructor(
+    private speedReader: SpeedReaderService,
+    private wordProfileService: WordProfileService
+  ) {}
 
   @Post('speed-reader')
   async createInstance(@Body() input: {id: number}, @Res() res: Response) {
@@ -54,14 +46,16 @@ export class LambdasController {
   async getWord(@Body() input: {word: string}, @Res() res: Response) {
     this.logger.log('word.profile', JSON.stringify(input))
     if (!input) return res.status(400).send()
-    const result = await safeWait<string[]>(this.wordProfileService.getWord(input.word))
+    const result = await safeWait<WordProfile[]>(
+      this.wordProfileService.getWord(input.word)
+    )
     if (!result) return res.status(400).send()
 
     return res.status(200).send(result)
   }
 
   @Get()
-  fallbackResponse(){
+  fallbackResponse() {
     return 'Lambdas route usually uses POST requests'
   }
 }

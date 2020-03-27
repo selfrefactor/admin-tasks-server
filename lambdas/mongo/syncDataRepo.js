@@ -1,4 +1,4 @@
-import { log } from 'helpers'
+import { log } from 'helpers-fn'
 import { resolve } from 'path'
 
 import { execBee } from './exec'

@@ -2,7 +2,11 @@ import {flatten, trim} from 'rambdax'
 import {Injectable} from '@nestjs/common'
 import {FsService} from 'lib/fs'
 
-const hash = {
+interface Hash {
+  [key: string]: string,
+}
+
+const hash: Hash = {
   0: 'udhaus_fred',
   1: 'udhaus_napred',
   2: 'udhaus_pari',
@@ -23,7 +27,7 @@ export class SpeedReaderService {
 
   async readBook<K>(id: number) {
     if (!hash[id]) return
-    
+
     try {
       const contentRaw = await this.fsService.readFromData(
         `books/${hash[id]}.txt`

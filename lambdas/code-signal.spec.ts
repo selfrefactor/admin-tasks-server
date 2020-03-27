@@ -22,15 +22,18 @@ function remove(inputs, text) {
   return textCopy
 }
 
-function getFirstColumn(input){
+function getFirstColumn(input) {
   const [firstColumn] = input.split('</td>')
   if (!firstColumn) return
   const columnContent = firstColumn.split('<td>')
-  const foundColumn = remove(/<td>/g, columnContent[columnContent.length - 1])
+  const foundColumn = remove(
+    /<td>/g,
+    columnContent[columnContent.length - 1]
+  )
 
   return {
     rest: remove(`<td>${foundColumn}</td>`, input),
-    foundColumn
+    foundColumn,
   }
 }
 
@@ -40,10 +43,10 @@ function getFirstRow(input) {
   const rowContent = firstRow.split('<tr>')
   const foundRow = remove(/<tr>/g, rowContent[rowContent.length - 1])
   const rest = remove(`<tr>${foundRow}</tr>`, input)
-  if(firstRow.includes('<th>')) return {rest, foundRow: 'SKIP'}
+  if (firstRow.includes('<th>')) return {rest, foundRow: 'SKIP'}
   return {
     rest,
-    foundRow
+    foundRow,
   }
 }
 
@@ -52,33 +55,39 @@ function htmlTable(table, rowIndex, columnIndex) {
   let firstStepReady = false
   let firstStepHolder = table
 
-  Array(50).fill('').forEach(() => {
-    const row = []    
-    if(firstStepReady) return
-    const firstStep = getFirstRow(firstStepHolder)
-    if(!firstStep) return firstStepReady = true
-    if(firstStep.foundRow === '<table></table>') return firstStepReady = true
-    firstStepHolder = firstStep.rest
+  Array(50)
+    .fill('')
+    .forEach(() => {
+      const row = []
+      if (firstStepReady) return
+      const firstStep = getFirstRow(firstStepHolder)
+      if (!firstStep) return firstStepReady = true
+      if (firstStep.foundRow === '<table></table>')
+        return firstStepReady = true
+      firstStepHolder = firstStep.rest
 
-    let secondStepReady = false
-    let secondStepHolder = firstStep.foundRow
-    Array(50).fill('').forEach(() => {
-      if(secondStepReady) return
-      const secondStep = getFirstColumn(secondStepHolder)
-      secondStep
-      if(!secondStep) return secondStepReady = true
-      row.push(secondStep.foundColumn)
-      secondStepHolder = secondStep.rest
+      let secondStepReady = false
+      let secondStepHolder = firstStep.foundRow
+      Array(50)
+        .fill('')
+        .forEach(() => {
+          if (secondStepReady) return
+          const secondStep = getFirstColumn(secondStepHolder)
+          secondStep
+          if (!secondStep) return secondStepReady = true
+          row.push(secondStep.foundColumn)
+          secondStepHolder = secondStep.rest
+        })
+      found.push(row)
     })
-    found.push(row)
-  })
-  if(found[rowIndex] === undefined || found[rowIndex] === 'SKIP') return 'No such cell'
+  if (found[rowIndex] === undefined || found[rowIndex] === 'SKIP')
+    return 'No such cell'
 
   const maybeResult = found[rowIndex][columnIndex]
 
-  return [undefined, 'SKIP'].includes(maybeResult) ?
-    'No such cell':
-    found[rowIndex][columnIndex]
+  return [undefined, 'SKIP'].includes(maybeResult)
+    ? 'No such cell'
+    : found[rowIndex][columnIndex]
 }
 
 test('html table 1', () => {
@@ -90,8 +99,7 @@ test('html table 1', () => {
 })
 
 test('html table 2', () => {
-  const table =
-    '<table><tr><td>1</td><td>TWO</td></tr></table>'
+  const table = '<table><tr><td>1</td><td>TWO</td></tr></table>'
   const row = 1
   const column = 0
   expect(htmlTable(table, row, column)).toEqual('No such cell')

@@ -1,4 +1,4 @@
-import { log } from 'helpers'
+import { log } from 'helpers-fn'
 import mongoose from 'mongoose'
 
 class Mongoose{

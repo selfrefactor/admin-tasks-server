@@ -1,5 +1,5 @@
 import { init, loadJson, save } from 'db-fn'
-import { log } from 'helpers'
+import { log } from 'helpers-fn'
 import { equals, mapAsyncLimit, omit } from 'rambdax'
 import { camelCase } from 'string-fn'
 
