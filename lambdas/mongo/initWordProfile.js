@@ -1,16 +1,16 @@
-import { envFn } from 'env-fn'
+import {envFn} from 'env-fn'
 envFn('special')
 
-import { init, loadJson, loadKeys } from 'db-fn'
-import { mapAsyncLimit} from 'rambdax'
-import { camelCase } from 'string-fn'
+import {init, loadJson, loadKeys} from 'db-fn'
+import {mapAsyncLimit} from 'rambdax'
+import {camelCase} from 'string-fn'
 
-import { DATA_LOCATION } from './constants'
-import { MongooseInstanceFn } from './mongo.js'
-import { readWordProfile, save, deleteAll } from './schemas'
+import {DATA_LOCATION} from './constants'
+import {MongooseInstanceFn} from './mongo.js'
+import {readWordProfile, save, deleteAll} from './schemas'
 init(DATA_LOCATION)
 
-void (async function initWordProfile(){
+void (async function initWordProfile() {
   const fsDbLabel = 'word_profile'
   const mongoLabel = camelCase(fsDbLabel)
   const MongooseInstance = MongooseInstanceFn()

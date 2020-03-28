@@ -1,9 +1,9 @@
-import { exec as execModule } from 'child_process'
+import {exec as execModule} from 'child_process'
 
-export function execBee(input){
+export function execBee(input) {
   return new Promise((resolve, reject) => {
     const willReturn = []
-    const execCommand = execModule(input.command, { cwd : input.cwd })
+    const execCommand = execModule(input.command, {cwd: input.cwd})
 
     execCommand.stdout.on('data', chunk => {
       willReturn.push(chunk.toString('utf8'))

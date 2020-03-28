@@ -1,15 +1,15 @@
-import { log } from 'helpers-fn'
+import {log} from 'helpers-fn'
 import mongoose from 'mongoose'
 
-class Mongoose{
-  constructor(url){
+class Mongoose {
+  constructor(url) {
     this.url = url
   }
 
-  async connect(){
+  async connect() {
     await mongoose.connect(this.url, {
-      useUnifiedTopology : true,
-      useNewUrlParser    : true,
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
     })
     log('# MONGO connected', 'box')
   }
@@ -17,7 +17,7 @@ class Mongoose{
 
 export const MongooseInstanceFn = () => {
   const connectURL = process.env.MONGO_CONNECT_URL
-  if(!connectURL){
+  if (!connectURL) {
     console.log('!connectURL')
     process.exit()
   }

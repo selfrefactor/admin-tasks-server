@@ -6,7 +6,10 @@ const LOCK_KEY = 'LOCK_KEY'
 
 export async function cron(everyMinutes = 1) {
   try {
-    const tickInput = process.env.CRON === undefined ? everyMinutes : Number(process.env.CRON)
+    const tickInput =
+      process.env.CRON === undefined
+        ? everyMinutes
+        : Number(process.env.CRON)
     const tick = Math.floor(tickInput * 60000)
 
     ok(tick)(Number)

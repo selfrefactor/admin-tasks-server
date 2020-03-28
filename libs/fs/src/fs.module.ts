@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { FsService } from './fs.service';
+import {Module} from '@nestjs/common'
+import {FsService} from './fs.service'
 
 @Module({
   imports: [],

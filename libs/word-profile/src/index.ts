@@ -1,2 +1,2 @@
-export * from './word-profile.module';
-export * from './word-profile.service';
+export * from './word-profile.module'
+export * from './word-profile.service'

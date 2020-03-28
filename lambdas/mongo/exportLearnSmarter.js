@@ -1,15 +1,15 @@
-import { init, loadJson, save } from 'db-fn'
-import { log } from 'helpers-fn'
-import { equals, mapAsyncLimit, omit } from 'rambdax'
-import { camelCase } from 'string-fn'
+import {init, loadJson, save} from 'db-fn'
+import {log} from 'helpers-fn'
+import {equals, mapAsyncLimit, omit} from 'rambdax'
+import {camelCase} from 'string-fn'
 
-import { DATA_LOCATION } from './constants'
-import { MongooseInstanceFn } from './mongo.js'
-import { readAll } from './schemas'
-import { syncDataRepo } from './syncDataRepo'
+import {DATA_LOCATION} from './constants'
+import {MongooseInstanceFn} from './mongo.js'
+import {readAll} from './schemas'
+import {syncDataRepo} from './syncDataRepo'
 init(DATA_LOCATION)
 
-void (async function exportLearnSmarter(){
+void (async function exportLearnSmarter() {
   const fsDbLabel = 'learn_smarter'
   const mongoLabel = camelCase(fsDbLabel)
 
@@ -24,37 +24,31 @@ void (async function exportLearnSmarter(){
   }
   let skippedCounter = 0
 
-  const iterable = async ({ _doc: x }) => {
+  const iterable = async ({_doc: x}) => {
     const loaded = await loadJson(fsDbLabel, x.id)
     const toSave = omit('__v,_id', x)
 
-    if (loaded === undefined){
+    if (loaded === undefined) {
       setDirty()
-      log(`Saved - '${ toSave.deWord }'`, 'success')
+      log(`Saved - '${toSave.deWord}'`, 'success')
 
-      return save(
-        toSave, fsDbLabel, toSave.id
-      )
+      return save(toSave, fsDbLabel, toSave.id)
     }
 
-    if (equals(toSave, loaded)){
+    if (equals(toSave, loaded)) {
       return skippedCounter++
     }
 
-    log(`Update - '${ toSave.deWord }'`, 'success')
+    log(`Update - '${toSave.deWord}'`, 'success')
     setDirty()
 
-    return save(
-      toSave, fsDbLabel, toSave.id
-    )
+    return save(toSave, fsDbLabel, toSave.id)
   }
 
-  await mapAsyncLimit(
-    iterable, 10, allRecords
-  )
+  await mapAsyncLimit(iterable, 10, allRecords)
 
   if (dirty) await syncDataRepo()
-  if (skippedCounter) log(`Skipped - '${ skippedCounter }'`, 'info')
+  if (skippedCounter) log(`Skipped - '${skippedCounter}'`, 'info')
 
   process.exit()
 })()

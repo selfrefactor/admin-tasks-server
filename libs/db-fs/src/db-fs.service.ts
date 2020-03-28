@@ -1,11 +1,11 @@
-import {Injectable} from '@nestjs/common'
+import {Injectable, HttpStatus, HttpException} from '@nestjs/common'
 import {init, loadJson, loadKeys} from 'db-fn'
 import {DATA_LOCATION} from 'lib/constants'
 
-type AllowedLabels = 'word.profile' | 'translations' | 'i.learn.smarter'
-
 export const itemNotFound = (id: string) =>
   `Such item with id '${id}' was not found`
+
+type AllowedLabels = 'word.profile'
 
 @Injectable()
 export class DbFsService {
@@ -17,7 +17,9 @@ export class DbFsService {
   }
   async getItem<T>(label: AllowedLabels, id: string): Promise<T> {
     const maybeResult = await loadJson('word.profile', id)
-    if (!maybeResult) throw new Error(itemNotFound(id))
+    if (!maybeResult) {
+      throw new HttpException(itemNotFound(id), HttpStatus.BAD_REQUEST)
+    }
     return loadJson(label, id)
   }
 }

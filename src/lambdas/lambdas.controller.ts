@@ -1,22 +1,43 @@
-import {defaultTo} from 'rambdax'
+import {random, defaultTo} from 'rambdax'
 import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
-import {safeWait} from 'lib/utils'
+import {safeWait, getRandomIndexes} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
+import {FsService} from 'lib/fs'
 
 @Controller('lambdas')
 export class LambdasController {
   private logger = new Logger('Lambdas')
+  private allBulgarianWords: string[] = []
 
   constructor(
     private speedReader: SpeedReaderService,
-    private wordProfileService: WordProfileService
+    private wordProfileService: WordProfileService,
+    private fsService: FsService
   ) {}
+
+  private getRandomBulgarianWords(numberOfIndexes: number) {
+    const indexes = getRandomIndexes(
+      this.allBulgarianWords.length,
+      numberOfIndexes
+    )
+
+    return indexes.map(i => this.allBulgarianWords[i])
+  }
 
   @Post('random-bulgarian-word')
   async randomBulgarianWord() {
-    return '1'
+    if (this.allBulgarianWords.length > 0) {
+      return this.getRandomBulgarianWords(6)
+    }
+    const rawData = await this.fsService.readFromData(
+      'all-bulgarian-words.json'
+    )
+    const parsed = JSON.parse(rawData)
+    this.allBulgarianWords = parsed.data
+
+    return this.getRandomBulgarianWords(6)
   }
 
   @Post('speed-reader')

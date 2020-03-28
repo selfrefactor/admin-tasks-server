@@ -1,15 +1,15 @@
-import { init, loadJson, save } from 'db-fn'
-import { log } from 'helpers-fn'
-import { mapAsyncLimit, omit } from 'rambdax'
-import { camelCase } from 'string-fn'
+import {init, loadJson, save} from 'db-fn'
+import {log} from 'helpers-fn'
+import {mapAsyncLimit, omit} from 'rambdax'
+import {camelCase} from 'string-fn'
 
-import { DATA_LOCATION } from './constants'
-import { MongooseInstanceFn } from './mongo.js'
-import { readAll } from './schemas'
-import { syncDataRepo } from './syncDataRepo'
+import {DATA_LOCATION} from './constants'
+import {MongooseInstanceFn} from './mongo.js'
+import {readAll} from './schemas'
+import {syncDataRepo} from './syncDataRepo'
 init(DATA_LOCATION)
 
-void (async function exportLearnSmarter(){
+void (async function exportLearnSmarter() {
   const fsDbLabel = 'word_profile'
   const mongoLabel = camelCase(fsDbLabel)
 
@@ -24,27 +24,23 @@ void (async function exportLearnSmarter(){
   }
   let skippedCounter = 0
 
-  const iterable = async ({ _doc: x }) => {
+  const iterable = async ({_doc: x}) => {
     const loaded = await loadJson(fsDbLabel, x.word)
     const toSave = omit('__v,_id', x)
 
-    if (loaded === undefined){
+    if (loaded === undefined) {
       setDirty()
-      log(`Saved - '${ toSave.word }'`, 'success')
+      log(`Saved - '${toSave.word}'`, 'success')
 
-      return save(
-        toSave, fsDbLabel, toSave.word
-      )
+      return save(toSave, fsDbLabel, toSave.word)
     }
     skippedCounter++
   }
 
-  await mapAsyncLimit(
-    iterable, 5, allRecords
-  )
+  await mapAsyncLimit(iterable, 5, allRecords)
 
   if (dirty) await syncDataRepo()
-  if( skippedCounter) log(`Skipped - '${ skippedCounter }'`, 'info')  
-  
+  if (skippedCounter) log(`Skipped - '${skippedCounter}'`, 'info')
+
   process.exit()
 })()

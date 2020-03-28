@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { WordProfileService } from './word-profile.service';
-import { DbFsService } from 'libs/db-fs/src';
+import {Module} from '@nestjs/common'
+import {WordProfileService} from './word-profile.service'
+import {DbFsService} from 'libs/db-fs/src'
 
 @Module({
   imports: [],

@@ -2,7 +2,8 @@ import {envFn} from 'env-fn'
 envFn('special')
 import axios from 'axios'
 import {log} from 'helpers-fn'
-import {pass} from 'rambdax'
+import {isAttach} from 'rambdax'
+isAttach()
 
 const URL = 'http://localhost:8080'
 const LAMBDAS = `${URL}/lambdas`
@@ -21,8 +22,8 @@ const password = process.env.API_ACCESS_TOKEN
 
 let allowTest = true
 
-async function failTestWrapper(fn: Promise<any>, expectedError){
-  if(!allowTest) return
+async function failTestWrapper(fn: Promise<any>, expectedError: number) {
+  if (!allowTest) return
   try {
     await fn
     willFail()
@@ -41,6 +42,16 @@ describe('API', () => {
     }
   })
 
+  test('random bg word', async() => {
+      const response = await axios.post(`${LAMBDAS}/random-bulgarian-word`, {
+        password,
+      })
+      expect(
+        response.data.is(['string'])
+      ).toBeTruthy()
+    }
+  })
+
   test('auth - without token', async() => {
     await failTestWrapper(
       axios.post(`${LAMBDAS}/speed-reader`, {id: 99}),
@@ -49,10 +60,7 @@ describe('API', () => {
   })
 
   test('auth - without body', async() => {
-    await failTestWrapper(
-      axios.post(`${LAMBDAS}/speed-reader`),
-      403
-    )
+    await failTestWrapper(axios.post(`${LAMBDAS}/speed-reader`), 403)
   })
 
   test('auth - get is bypassed', async() => {
@@ -78,7 +86,9 @@ describe('API', () => {
 
   test('word profile - get single word - fail', async() => {
     await failTestWrapper(
-      axios.post(WORD_PROFILE, {password, word: 'foo'}), 400)
+      axios.post(WORD_PROFILE, {password, word: 'foo'}),
+      400
+    )
   })
 
   test('speed reader - demo index', async() => {
