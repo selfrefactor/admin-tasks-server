@@ -21,6 +21,16 @@ const password = process.env.API_ACCESS_TOKEN
 
 let allowTest = true
 
+async function failTestWrapper(fn: Promise<any>, expectedError){
+  if(!allowTest) return
+  try {
+    await fn
+    willFail()
+  } catch (e) {
+    expect(e.message).toBe(getErrorMessage(expectedError))
+  }
+}
+
 describe('API', () => {
   beforeAll(async() => {
     try {
@@ -32,23 +42,17 @@ describe('API', () => {
   })
 
   test('auth - without token', async() => {
-    if (!allowTest) return
-    try {
-      await axios.post(`${LAMBDAS}/speed-reader`, {id: 99})
-      willFail()
-    } catch (e) {
-      expect(e.message).toBe(getErrorMessage(403))
-    }
+    await failTestWrapper(
+      axios.post(`${LAMBDAS}/speed-reader`, {id: 99}),
+      403
+    )
   })
 
   test('auth - without body', async() => {
-    if (!allowTest) return
-    try {
-      await axios.post(`${LAMBDAS}/speed-reader`)
-      willFail()
-    } catch (e) {
-      expect(e.message).toBe(getErrorMessage(403))
-    }
+    await failTestWrapper(
+      axios.post(`${LAMBDAS}/speed-reader`),
+      403
+    )
   })
 
   test('auth - get is bypassed', async() => {
@@ -73,13 +77,8 @@ describe('API', () => {
   })
 
   test('word profile - get single word - fail', async() => {
-    if (!allowTest) return
-    try {
-      await axios.post(WORD_PROFILE, {password, word: 'foo'})
-      willFail()
-    } catch (e) {
-      expect(e.message).toBe(getErrorMessage(400))
-    }
+    await failTestWrapper(
+      axios.post(WORD_PROFILE, {password, word: 'foo'}), 400)
   })
 
   test('speed reader - demo index', async() => {
@@ -87,16 +86,6 @@ describe('API', () => {
     const body = {id: 99, password}
     const {data} = await axios.post(SPEED_READER, body)
     expect(pass(data)([String])).toBeTruthy()
-  })
-
-  test('speed reader - wrong index', async() => {
-    if (!allowTest) return
-    try {
-      const body = {id: 99, password}
-      await axios.post(`${LAMBDAS}/speed-reader`, body)
-    } catch (e) {
-      expect(e.message).toBe(getErrorMessage(400))
-    }
   })
 
   test('speed reader - missing input', async() => {

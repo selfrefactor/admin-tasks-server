@@ -14,6 +14,11 @@ export class LambdasController {
     private wordProfileService: WordProfileService
   ) {}
 
+  @Post('random-bulgarian-word')
+  async randomBulgarianWord() {
+    return '1'
+  }
+
   @Post('speed-reader')
   async createInstance(@Body() input: {id: number}, @Res() res: Response) {
     this.logger.log('speed.reader', JSON.stringify(input))
