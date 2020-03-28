@@ -43,13 +43,10 @@ describe('API', () => {
   })
 
   test('random bg word', async() => {
-      const response = await axios.post(`${LAMBDAS}/random-bulgarian-word`, {
-        password,
-      })
-      expect(
-        response.data.is(['string'])
-      ).toBeTruthy()
-    }
+    const response = await axios.post(`${LAMBDAS}/random-bulgarian-word`, {
+      password,
+    })
+    expect(response.data.is(['string'])).toBeTruthy()
   })
 
   test('auth - without token', async() => {
@@ -72,7 +69,7 @@ describe('API', () => {
     if (!allowTest) return
     const {data} = await axios.post(`${WORD_PROFILE}/all-words`, {password})
     expect(data).toBeTruthy()
-    expect(pass(data)([String])).toBeTruthy()
+    expect(data.is([String])).toBeTruthy()
   })
 
   test('word profile - get single word', async() => {
@@ -95,7 +92,7 @@ describe('API', () => {
     if (!allowTest) return
     const body = {id: 99, password}
     const {data} = await axios.post(SPEED_READER, body)
-    expect(pass(data)([String])).toBeTruthy()
+    expect(data.is([String])).toBeTruthy()
   })
 
   test('speed reader - missing input', async() => {

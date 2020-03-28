@@ -10,7 +10,7 @@ import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
-import {AuthMiddleware} from './utils/auth.middleware'
+import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
 
 // const mongoFlag = process.env.MONGO_ON === 'ON'

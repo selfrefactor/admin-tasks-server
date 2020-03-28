@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common'
+import {Injectable, NotFoundException} from '@nestjs/common'
 import {DbFsService} from 'lib/db-fs'
 
 export interface WordProfile {
@@ -13,7 +13,7 @@ export class WordProfileService {
   async getAllWords() {
     return this.databaseAccess.getKeys('word.profile')
   }
-  async getWord(word: string): Promise<WordProfile[]> {
-    return this.databaseAccess.getItem('word.profile', word)
+  async getWord(word: string): Promise<WordProfile> {
+    return this.databaseAccess.getItem<WordProfile>('word.profile', word)
   }
 }

@@ -1,10 +1,19 @@
-import {random, defaultTo} from 'rambdax'
-import {Controller, Post, Body, Res, Logger, Get} from '@nestjs/common'
+import {defaultTo} from 'rambdax'
+import {
+  Controller,
+  Post,
+  Body,
+  Res,
+  Logger,
+  Get,
+  ForbiddenException,
+} from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {safeWait, getRandomIndexes} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
 import {FsService} from 'lib/fs'
+import { NotFoundException } from '@nestjs/common';
 
 @Controller('lambdas')
 export class LambdasController {
@@ -63,10 +72,12 @@ export class LambdasController {
   async getWord(@Body() input: {word: string}, @Res() res: Response) {
     this.logger.log('word.profile', JSON.stringify(input))
     if (!input) return res.status(400).send()
-    const result = await safeWait<WordProfile[]>(
+
+    const result = await safeWait<WordProfile>(
       this.wordProfileService.getWord(input.word)
     )
-    if (!result) return res.status(400).send()
+
+    if (!result) throw new NotFoundException()
 
     return res.status(200).send(result)
   }

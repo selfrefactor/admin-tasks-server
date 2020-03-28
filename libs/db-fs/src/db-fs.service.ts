@@ -1,4 +1,4 @@
-import {Injectable, HttpStatus, HttpException} from '@nestjs/common'
+import {Injectable} from '@nestjs/common'
 import {init, loadJson, loadKeys} from 'db-fn'
 import {DATA_LOCATION} from 'lib/constants'
 
@@ -17,9 +17,8 @@ export class DbFsService {
   }
   async getItem<T>(label: AllowedLabels, id: string): Promise<T> {
     const maybeResult = await loadJson('word.profile', id)
-    if (!maybeResult) {
-      throw new HttpException(itemNotFound(id), HttpStatus.BAD_REQUEST)
-    }
+    if (!maybeResult) throw 'Item not found in db.fs'
+
     return loadJson(label, id)
   }
 }
