@@ -3,7 +3,7 @@
 Start server with dark themes
 
 ```bash
-NGROK=ON CRON=15 NIKETA_DARK=ON node dist/main.js
+CRON=15 NIKETA_DARK=ON node dist/main.js
 ```
 
 ## server:light
@@ -11,7 +11,7 @@ NGROK=ON CRON=15 NIKETA_DARK=ON node dist/main.js
 Start server with light themes
 
 ```bash
-NGROK=ON CRON=5 node dist/main.js
+CRON=5 node dist/main.js
 ```
 
 ## docker
