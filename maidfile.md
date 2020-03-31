@@ -54,12 +54,6 @@ Run tasks `niketa:node:a` and `niketa:node:b` in parallel.
 
 Run tasks `niketa:node:a`, `niketa:node:b`, and `niketa:electron` in parallel.
 
-## lint
-
-```bash
-prettier --no-semi --no-bracket-spacing --print-width 100 --single-quote --no-bracket-spacing --trailing-comma es5 --write "src/**/*.ts" "test/**/*.ts"
-```
-
 ## on
 
 Run tasks `docker`, `niketa` and `server:light` in parallel.

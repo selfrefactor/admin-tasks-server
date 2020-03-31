@@ -15,7 +15,7 @@ const getErrorMessage = (status: number) => {
 }
 
 const willFail = () => {
-  expect('willFail').toBe('should never be reached')
+  expect('this').toBe('should never be reached')
 }
 
 const password = process.env.API_ACCESS_TOKEN
