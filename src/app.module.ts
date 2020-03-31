@@ -12,12 +12,14 @@ import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
-
+console.log(124)
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
-
+  
 const getImportStatements = () => {
+  // console.log(12, getMongoConnectUrl(), 33)
   if (!mongoFlag) return []
+  console.log(13)
   const typeOrm = TypeOrmModule.forRoot({
     type: 'mongodb',
     url: getMongoConnectUrl(),
@@ -35,9 +37,17 @@ const getImportStatements = () => {
   ]
 }
 
+const baseControllers = [
+  AppController, 
+  LambdasController
+]
+const controllers = mongoFlag ?
+  [...baseControllers, WordProfileController]: 
+  baseControllers
+
 @Module({
   imports: getImportStatements(),
-  controllers: [AppController, WordProfileController, LambdasController],
+  controllers,
   providers: [
     AppService,
     SpeedReaderService,
