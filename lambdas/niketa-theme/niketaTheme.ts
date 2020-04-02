@@ -7,10 +7,14 @@ const darkModeEnv = process.env.NIKETA_DARK === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
+  'dancing.days',
   'funky.drummer',
   'glass.onion',
-  'dancing.days',
-  'hello.spaceboy'
+  'hello.spaceboy',
+  'kozmic.blues',
+  'led.zeppelin',
+  'strange.brew',
+  'sweat.leaf',
 ]
 
 const american = ['american.alien', 'american.dad', 'american.spy']
