@@ -1,11 +1,14 @@
 import {ok, delay, range, setter, getter} from 'rambdax'
-import {runEveryTick} from './runEveryTick'
+import {runEveryTick} from './run-every-tick'
+import {runOneTime} from './run-one-time'
 import {log} from 'helpers-fn'
 
 const LOCK_KEY = 'LOCK_KEY'
 
 export async function cron(everyMinutes = 1) {
   try {
+    runOneTime()
+
     const tickInput =
       process.env.CRON === undefined
         ? everyMinutes
