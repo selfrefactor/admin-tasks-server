@@ -27,7 +27,7 @@ export async function runOneTime(){
     return log('no need to reload sysctl','info')
   }
   sudo.exec('sysctl -p', options,
-    function(error: any, stdout: any, stderr: any) {
+    function(error: any, stdout: any) {
       if (error) throw error;
       console.log('stdout: ' + stdout);
     }
