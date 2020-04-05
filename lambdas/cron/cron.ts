@@ -4,14 +4,16 @@ import {runOneTime} from './run-one-time'
 import {log} from 'helpers-fn'
 
 const LOCK_KEY = 'LOCK_KEY'
+const fallbackEveryMinutes = 1
 
-export async function cron(everyMinutes = 1) {
+export async function cron(devMode: boolean) {
   try {
     runOneTime()
+    if(devMode) return
 
     const tickInput =
       process.env.CRON === undefined
-        ? everyMinutes
+        ? fallbackEveryMinutes
         : Number(process.env.CRON)
     const tick = Math.floor(tickInput * 60000)
 
