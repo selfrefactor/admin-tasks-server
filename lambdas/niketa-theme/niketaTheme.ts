@@ -17,13 +17,21 @@ const lightThemesList = [
   'strange.brew',
   'sweat.leaf',
 ]
+const darkThemesList = [
+  'american.dad',
+  'aqua.teen.hunger.force',
+  'archer',
+  'cleveland.show',
+  'curb.your.enthusiasm',
+  'dilbert',
+  'south.park',
+  'trip.tank',
+  'ugly.americans',
+]
 
-const american = ['american.alien', 'american.dad', 'american.spy']
-const hunger = ['hunger.force', 'hunger.shake', 'hunger.epiphany']
-const south = ['south.park', 'south.tegridy', 'south.authority']
 
 const allLightThemes = shuffle(lightThemesList)
-const allDarkThemes = shuffle([...american, ...south, ...hunger])
+const allDarkThemes = shuffle(darkThemesList)
 
 const {HOME} = process.env
 const stable = `${HOME}/.config/Code/User/settings.json`
