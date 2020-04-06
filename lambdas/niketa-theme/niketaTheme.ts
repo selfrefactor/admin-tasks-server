@@ -2,6 +2,7 @@ import {log} from 'helpers-fn'
 import {pascalCase} from 'string-fn'
 import {nextIndex, shuffle} from 'rambdax'
 import {readJsonSync, outputJsonSync} from 'fs-extra'
+import {existsSync} from 'fs'
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
 
@@ -30,6 +31,7 @@ const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
 function changeTheme(newTheme: string) {
   [stable, insiders].forEach(path => {
+    if(!existsSync(path)) return
     const content = readJsonSync(path)
     content['workbench.colorTheme'] = newTheme
 

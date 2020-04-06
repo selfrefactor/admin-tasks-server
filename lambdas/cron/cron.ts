@@ -25,7 +25,7 @@ export async function cron(devMode: boolean) {
       await delay(tick)
 
       if (getter(LOCK_KEY)) {
-        log('runEveryTick is too slow for such interval', 'error')
+        log(`runEveryTick is too slow for such interval ${tick}`, 'error')
         log(`SKIP loop - ${i}`, 'warning')
       }
     }
