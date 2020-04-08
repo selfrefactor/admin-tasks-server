@@ -11,7 +11,7 @@ CRON=15 NIKETA_DARK=ON node dist/main.js
 Start server with light themes
 
 ```bash
-CRON=5 node dist/main.js
+CRON=7 node dist/main.js
 ```
 
 ## docker
@@ -20,16 +20,10 @@ CRON=5 node dist/main.js
 cd $HOME/repos/docker&&./up.sh
 ```
 
-## niketa:node:a
+## niketa:client
 
 ```bash
-cd $HOME/repos/niketa/packages/node&&node ant
-```
-
-## niketa:node:b
-
-```bash
-cd $HOME/repos/niketa/packages/node&&node bee
+cd $HOME/repos/niketa/packages/node&&node start.js
 ```
 
 ## niketa:electron
@@ -46,13 +40,9 @@ cd $HOME/repos/niketa/packages/electron&&yarn prod
 cd $HOME/repos/niketa/packages/electron&&node recalculate.js
 ```
 
-## niketa:simple
-
-Run tasks `niketa:node:a` and `niketa:node:b` in parallel.
-
 ## niketa
 
-Run tasks `niketa:node:a`, `niketa:node:b`, and `niketa:electron` in parallel.
+Run tasks `niketa:client` and `niketa:electron` in parallel.
 
 ## on
 

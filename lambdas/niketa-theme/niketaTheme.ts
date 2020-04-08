@@ -29,7 +29,6 @@ const darkThemesList = [
   'ugly.americans',
 ]
 
-
 const allLightThemes = shuffle(lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
 
@@ -39,7 +38,7 @@ const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
 function changeTheme(newTheme: string) {
   [stable, insiders].forEach(path => {
-    if(!existsSync(path)) return
+    if (!existsSync(path)) return
     const content = readJsonSync(path)
     content['workbench.colorTheme'] = newTheme
 
