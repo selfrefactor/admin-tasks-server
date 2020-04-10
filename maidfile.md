@@ -17,7 +17,7 @@ CRON=30 node dist/main.js
 ## docker
 
 ```bash
-cd $HOME/repos/_/docker&&./up.sh
+cd $HOME/repos/docker&&./up.sh
 ```
 
 ## niketa
