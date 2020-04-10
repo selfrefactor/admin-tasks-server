@@ -20,7 +20,6 @@
     "predark": "yarn out",
     "out": "nest build",
     "niketa": "maided niketa",
-    "niketa:client": "maided niketa:client",
     "on": "maided on",
     "ondark": "maided on:dark",
     "light": "maided server:light",

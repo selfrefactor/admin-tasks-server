@@ -14,7 +14,7 @@ import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
-  
+
 const getImportStatements = () => {
   if (!mongoFlag) return []
   const typeOrm = TypeOrmModule.forRoot({
@@ -34,13 +34,10 @@ const getImportStatements = () => {
   ]
 }
 
-const baseControllers = [
-  AppController, 
-  LambdasController
-]
-const controllers = mongoFlag ?
-  [...baseControllers, WordProfileController]: 
-  baseControllers
+const baseControllers = [AppController, LambdasController]
+const controllers = mongoFlag
+  ? [...baseControllers, WordProfileController]
+  : baseControllers
 
 @Module({
   imports: getImportStatements(),

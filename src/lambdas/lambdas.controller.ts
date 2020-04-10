@@ -13,7 +13,7 @@ import {SpeedReaderService} from 'lib/speed-reader'
 import {safeWait, getRandomIndexes} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
 import {FsService} from 'lib/fs'
-import { NotFoundException } from '@nestjs/common';
+import {NotFoundException} from '@nestjs/common'
 
 @Controller('lambdas')
 export class LambdasController {

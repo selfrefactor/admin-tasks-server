@@ -17,32 +17,14 @@ CRON=30 node dist/main.js
 ## docker
 
 ```bash
-cd $HOME/repos/docker&&./up.sh
-```
-
-## niketa:client
-
-```bash
-cd $HOME/repos/niketa/packages/node&&node start.js
-```
-
-## niketa:electron
-
-Run tasks `niketa:electron:recalculate` before this
-
-```bash
-cd $HOME/repos/niketa/packages/electron&&yarn prod
-```
-
-## niketa:electron:recalculate
-
-```bash
-cd $HOME/repos/niketa/packages/electron&&node recalculate.js
+cd $HOME/repos/_/docker&&./up.sh
 ```
 
 ## niketa
 
-Run tasks `niketa:client` and `niketa:electron` in parallel.
+```bash
+cd $HOME/repos/niketa/packages/node&&node start.js
+```
 
 ## on
 
