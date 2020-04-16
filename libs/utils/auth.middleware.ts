@@ -12,7 +12,7 @@ export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: Function) {
     if (req.method !== 'POST') return next()
 
-    if (path('body.password', req) === process.env.API_ACCESS_TOKEN) {
+    if ([process.env.API_ACCESS_TOKEN, process.env.GUEST_ACCESS_TOKEN].includes(path('body.password', req)) {
       return next()
     }
 
