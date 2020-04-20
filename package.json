@@ -25,7 +25,7 @@
     "light": "maided server:light",
     "dark": "maided server:dark",
     "prod": "node dist/main.js",
-    "in": "DEV_MODE=ON PORT=8080 nest start --watch",
+    "in": "DEV_MODE=ON MONGO=ON PORT=8080 nest start --watch",
     "dev": "DEV_MODE=ON PORT=8070 nest start --debug --watch",
     "debug": "DEV_MODE=ON PORT=8080 nest start --debug --watch",
     "test": "jest",
