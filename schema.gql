@@ -17,7 +17,7 @@ type Mutation {
 
 type Query {
   items: [ItemType!]!
-  hello: String!
+  item(word: String!): ItemType!
 }
 
 type Related {

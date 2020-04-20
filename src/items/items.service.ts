@@ -5,6 +5,10 @@ import {ItemType} from './dto/create-item.dto'
 import {Item} from './interfaces/item.interface'
 import {ItemInput} from './input-items.input'
 
+const fallback: Item = {
+  word: 'fallback'
+}
+
 @Injectable()
 export class ItemsService {
   constructor(@InjectModel('Item') private itemModel: Model<Item>) {}
@@ -19,7 +23,9 @@ export class ItemsService {
   }
 
   async findOne(word: string): Promise<ItemType> {
-    return await this.itemModel.findOne({word})
+    const result = await this.itemModel.findOne({word})
+
+    return result ? result : fallback
   }
 
   async findOnex(id: string): Promise<ItemType> {

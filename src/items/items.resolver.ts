@@ -14,6 +14,11 @@ export class ItemsResolver {
     return this.itemsService.findAll()
   }
 
+  @Query(() => ItemType)
+  async item(@Args('word') input: string): Promise<ItemType> {
+    return this.itemsService.findOne(input)
+  }
+
   @Mutation(() => ItemType)
   async createItem(@Args('input') input: ItemInput): Promise<ItemInput> {
     return this.itemsService.create(input)
@@ -32,8 +37,8 @@ export class ItemsResolver {
   //   return this.itemsService.delete(id);
   // }
 
-  @Query(() => String)
-  async hello() {
-    return 'hello'
-  }
+  // @Query(() => String)
+  // async hello() {
+  //   return 'hello'
+  // }
 }
