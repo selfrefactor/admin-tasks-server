@@ -5,7 +5,7 @@ export const DEFAULT_PORT = 4042
 
 export const getMongoUrl = () => {
   if (!process.env.MONGO_CONNECT_URL) {
-    log('process will exit 1', 'error')
+    log('process will exit', 'error')
     process.exit()
   }
   return process.env.MONGO_CONNECT_URL
@@ -13,9 +13,18 @@ export const getMongoUrl = () => {
 
 export const getMongoConnectUrl = () => {
   if (!process.env.MONGO_CONNECT_URL_ADMIN) {
-    log('process will exit 2', 'error')
+    log('process will exit', 'error')
     process.exit()
   }
 
   return process.env.MONGO_CONNECT_URL_ADMIN
+}
+
+export const getWordProfileConnectUrl = () => {
+  if (!process.env.WORD_PROFILE_MONGO_CONNECT_URL) {
+    log('process will exit', 'error')
+    process.exit()
+  }
+
+  return process.env.WORD_PROFILE_MONGO_CONNECT_URL
 }

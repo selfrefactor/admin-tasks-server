@@ -1,11 +1,10 @@
+import {getWordProfileConnectUrl} from 'lib/constants'
 import {Module, MiddlewareConsumer} from '@nestjs/common'
-import {getMongoConnectUrl} from 'lib/constants'
+import {GraphQLModule} from '@nestjs/graphql'
+import {MongooseModule} from '@nestjs/mongoose'
+import {ItemsModule} from './items/items.module'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
-import {TypeOrmModule} from '@nestjs/typeorm'
-import {ConfigModule} from '@nestjs/config'
-import {WordProfile} from './word-profile/word-profile.entity'
-import {WordProfileController} from './word-profile/word-profile.controller'
 import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
@@ -17,38 +16,29 @@ const mongoFlag = process.env.MONGO_ON !== 'OFF'
 
 const getImportStatements = () => {
   if (!mongoFlag) return []
-  const typeOrm = TypeOrmModule.forRoot({
-    type: 'mongodb',
-    url: getMongoConnectUrl(),
-    database: 'word-profile',
-    entities: [WordProfile],
-    ssl: true,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-
   return [
-    ConfigModule.forRoot(),
-    typeOrm,
-    TypeOrmModule.forFeature([WordProfile]),
+    GraphQLModule.forRoot({
+      autoSchemaFile: 'schema.gql',
+    }),
+    ItemsModule,
+    MongooseModule.forRoot(getWordProfileConnectUrl()),
   ]
 }
 
-const baseControllers = [AppController, LambdasController]
-const controllers = mongoFlag
-  ? [...baseControllers, WordProfileController]
-  : baseControllers
+const controllers = [AppController, LambdasController]
+
+const providers = [
+  AppService,
+  SpeedReaderService,
+  FsService,
+  WordProfileService,
+  DbFsService,
+]
 
 @Module({
-  imports: getImportStatements(),
+  imports: getImportStatements(), 
   controllers,
-  providers: [
-    AppService,
-    SpeedReaderService,
-    FsService,
-    WordProfileService,
-    DbFsService,
-  ],
+  providers,
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

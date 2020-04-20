@@ -5,6 +5,7 @@ import {AppModule} from './app.module'
 import {cron} from '../lambdas/cron/cron'
 import {ngrok} from 'lib/ngrok'
 import {DEFAULT_PORT} from 'lib/constants'
+import {ValidationPipe} from '@nestjs/common'
 
 const PORT =
   process.env.PORT === undefined ? DEFAULT_PORT : Number(process.env.PORT)
@@ -17,6 +18,9 @@ async function bootstrap() {
   cron(DEV_MODE)
   const app = await NestFactory.create(AppModule)
   app.enableCors()
+  
+  app.useGlobalPipes(new ValidationPipe())
+
   await app.listen(PORT, '0.0.0.0')
 }
 bootstrap()
