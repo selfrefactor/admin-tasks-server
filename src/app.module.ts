@@ -2,10 +2,7 @@ import {Module, MiddlewareConsumer} from '@nestjs/common'
 import {getMongoConnectUrl} from 'lib/constants'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
-import {TypeOrmModule} from '@nestjs/typeorm'
 import {ConfigModule} from '@nestjs/config'
-import {WordProfile} from './word-profile/word-profile.entity'
-import {WordProfileController} from './word-profile/word-profile.controller'
 import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
 import {FsService} from 'lib/fs'
@@ -15,33 +12,21 @@ import {DbFsService} from 'lib/db-fs'
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
 
-const getImportStatements = () => {
-  if (!mongoFlag) return []
-  const typeOrm = TypeOrmModule.forRoot({
-    type: 'mongodb',
-    url: getMongoConnectUrl(),
-    database: 'word-profile',
-    entities: [WordProfile],
-    ssl: true,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-
-  return [
-    ConfigModule.forRoot(),
-    typeOrm,
-    TypeOrmModule.forFeature([WordProfile]),
-  ]
-}
+// const getImportStatements = () => {
+//   if (!mongoFlag) return []
+//   return [
+//     ConfigModule.forRoot(),
+//   ]
+// }
 
 const baseControllers = [AppController, LambdasController]
-const controllers = mongoFlag
-  ? [...baseControllers, WordProfileController]
-  : baseControllers
+// const controllers = mongoFlag
+//   ? [...baseControllers]
+//   : baseControllers
 
 @Module({
-  imports: getImportStatements(),
-  controllers,
+  imports: [],
+  controllers: baseControllers,
   providers: [
     AppService,
     SpeedReaderService,
