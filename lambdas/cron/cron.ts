@@ -9,7 +9,7 @@ const fallbackEveryMinutes = 1
 export async function cron(devMode: boolean) {
   try {
     runOneTime()
-    if(devMode) return
+    if (devMode) return
 
     const tickInput =
       process.env.CRON === undefined

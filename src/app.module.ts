@@ -1,5 +1,8 @@
-import {Module, MiddlewareConsumer} from '@nestjs/common'
 import {getMongoConnectUrl} from 'lib/constants'
+import {Module, MiddlewareConsumer} from '@nestjs/common'
+import {GraphQLModule} from '@nestjs/graphql'
+import {MongooseModule} from '@nestjs/mongoose'
+import {ItemsModule} from './items/items.module'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
 import {ConfigModule} from '@nestjs/config'
@@ -25,7 +28,13 @@ const baseControllers = [AppController, LambdasController]
 //   : baseControllers
 
 @Module({
-  imports: [],
+  imports: [
+    GraphQLModule.forRoot({
+      autoSchemaFile: 'schema.gql',
+    }),
+    ItemsModule,
+    MongooseModule.forRoot(getMongoConnectUrl()),
+  ], 
   controllers: baseControllers,
   providers: [
     AppService,
