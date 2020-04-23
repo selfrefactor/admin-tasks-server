@@ -21,7 +21,7 @@ const getImportStatements = () => {
       autoSchemaFile: 'schema.gql',
     }),
     ItemsModule,
-    MongooseModule.forRoot(getWordProfileConnectUrl()),
+    MongooseModule.forRoot(getWordProfileConnectUrl(),  { useNewUrlParser: true, useUnifiedTopology: true }),
   ]
 }
 
