@@ -21,7 +21,6 @@ export const ngrok = async(port = DEFAULT_PORT) => {
   } 
 
   const url = await ngrokLib.connect({
-    // proto: 'http',
     addr: port,
     subdomain: 'toteff',
     authtoken: token,
@@ -29,9 +28,6 @@ export const ngrok = async(port = DEFAULT_PORT) => {
     onStatusChange: status => {
       console.log({status, label: 'ngrok'})
     },
-    // onLogEvent: data => {
-    //   console.log({data})
-    // },
   })
   console.log(url)
 }
