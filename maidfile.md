@@ -26,10 +26,10 @@ cd $HOME/repos/docker&&./up.sh
 cd $HOME/repos/niketa/packages/node&&node start.js
 ```
 
-## on
+## on:light
 
 Run tasks `docker`, `niketa` and `server:light` in parallel.
 
-## on:dark
+## on
 
 Run tasks `docker`, `niketa` and `server:dark` in parallel.
