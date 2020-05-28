@@ -1,16 +1,20 @@
-import {populateSpeedReader, generateFileName, generageBookIndexes} from './populate-speed-reader'
-import { IS_WALLABY } from 'lib/constants'
+import {
+  populateSpeedReader,
+  generateFileName,
+  generageBookIndexes,
+} from './populate-speed-reader'
+import {IS_WALLABY} from 'lib/constants'
 
 test('happy', async() => {
-  if(IS_WALLABY) return
+  if (IS_WALLABY) return
   await populateSpeedReader()
 })
 
 test('generage book indexes', async() => {
-  if(IS_WALLABY) return
+  if (IS_WALLABY) return
   await generageBookIndexes()
 })
- 
+
 test('generate file name', () => {
   const files = [
     '/home/s/repos/on/lambdas/populate-speed-reader/assets/Ajn_Rand_-_Romanticheski_manifest_-8881-b.txt.zip',
@@ -45,10 +49,8 @@ test('generate file name', () => {
     '/home/s/repos/on/lambdas/populate-speed-reader/assets/P._G._Udhaus_-_Skrito-pokrito_-2104-b.txt.zip',
     '/home/s/repos/on/lambdas/populate-speed-reader/assets/P._G._Udhaus_-_Zakonyt_na_Ustyr_-4347-b.txt.zip',
     '/home/s/repos/on/lambdas/populate-speed-reader/assets/Temida_se_sheguva_-_Anekdoti_i_neverojatni_istorii_ot_praktikata_na_juristite-5182-b.txt.zip',
-    '/home/s/repos/on/lambdas/populate-speed-reader/assets/Volter_-_Filosofski_noveli_-656-b.txt.zip'
+    '/home/s/repos/on/lambdas/populate-speed-reader/assets/Volter_-_Filosofski_noveli_-656-b.txt.zip',
   ]
 
-  expect(
-    files.map(generateFileName)
-  ).toMatchSnapshot()
+  expect(files.map(generateFileName)).toMatchSnapshot()
 })
