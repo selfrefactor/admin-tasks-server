@@ -10,7 +10,7 @@ const GRAPH = `${URL}/graphql`
 describe('Graphql', () => {
   const item: Item = {
     word: uuid(3, true).toLowerCase(),
-  } 
+  }
 
   // const updatedItem: Item = {
   //   title: 'Great updated item',
@@ -29,7 +29,7 @@ describe('Graphql', () => {
       word
     }
   }`
- 
+
   it('createItem', async() => {
     try {
       const response = await axios.post(`${URL}/graphql`, {

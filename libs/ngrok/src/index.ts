@@ -2,10 +2,10 @@ import * as ngrokLib from 'ngrok'
 import axios from 'axios'
 import {DEFAULT_PORT} from 'lib/constants'
 
-async function checkAvailable(){
+async function checkAvailable() {
   try {
     const {status} = await axios.get('https://toteff.eu.ngrok.io/')
-    return status === 200 
+    return status === 200
   } catch (error) {
     return false
   }
@@ -16,9 +16,9 @@ export const ngrok = async(port = DEFAULT_PORT) => {
   if (!token) return console.log('!token', token)
   const alreadyUp = await checkAvailable()
 
-  if(alreadyUp){
+  if (alreadyUp) {
     return console.log('Already running in other instance or computer')
-  } 
+  }
 
   const url = await ngrokLib.connect({
     addr: port,

@@ -21,7 +21,10 @@ const getImportStatements = () => {
       autoSchemaFile: 'schema.gql',
     }),
     ItemsModule,
-    MongooseModule.forRoot(getWordProfileConnectUrl(),  { useNewUrlParser: true, useUnifiedTopology: true }),
+    MongooseModule.forRoot(getWordProfileConnectUrl(), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
   ]
 }
 
@@ -36,7 +39,7 @@ const providers = [
 ]
 
 @Module({
-  imports: getImportStatements(), 
+  imports: getImportStatements(),
   controllers,
   providers,
 })

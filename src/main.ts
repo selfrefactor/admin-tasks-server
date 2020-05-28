@@ -18,7 +18,7 @@ async function bootstrap() {
   cron(DEV_MODE)
   const app = await NestFactory.create(AppModule)
   app.enableCors()
-  
+
   app.useGlobalPipes(new ValidationPipe())
 
   await app.listen(PORT, '0.0.0.0')

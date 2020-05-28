@@ -43,6 +43,8 @@ describe('API', () => {
   })
 
   test('random bg word', async() => {
+    if (!allowTest) return
+
     const response = await axios.post(`${LAMBDAS}/random-bulgarian-word`, {
       password,
     })

@@ -6,7 +6,7 @@ import {Item} from './interfaces/item.interface'
 import {ItemInput} from './input-items.input'
 
 const fallback: Item = {
-  word: 'fallback'
+  word: 'fallback',
 }
 
 @Injectable()

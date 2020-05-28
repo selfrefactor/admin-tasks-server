@@ -3,7 +3,7 @@ import {init, loadJson, loadKeys} from 'db-fn'
 import {DATA_LOCATION} from 'lib/constants'
 
 export const itemNotFound = (id: string) =>
-  `Such item with id '${id}' was not found`
+  `Item with id '${id}' was not found`
 
 type AllowedLabels = 'word.profile'
 
@@ -17,7 +17,7 @@ export class DbFsService {
   }
   async getItem<T>(label: AllowedLabels, id: string): Promise<T> {
     const maybeResult = await loadJson('word.profile', id)
-    if (!maybeResult) throw 'Item not found in db.fs'
+    if (!maybeResult) throw new Error(itemNotFound(id))
 
     return loadJson(label, id)
   }

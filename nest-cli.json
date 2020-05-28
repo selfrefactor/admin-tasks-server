@@ -11,15 +11,6 @@
         "tsConfigPath": "libs/ngrok/tsconfig.lib.json"
       }
     },
-    "constants": {
-      "type": "library",
-      "root": "libs/constants",
-      "entryFile": "index",
-      "sourceRoot": "libs/constants/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/constants/tsconfig.lib.json"
-      }
-    },
     "speed-reader": {
       "type": "library",
       "root": "libs/speed-reader",

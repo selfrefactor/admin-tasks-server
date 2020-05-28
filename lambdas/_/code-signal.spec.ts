@@ -256,7 +256,7 @@ function getProductOfDigits(input) {
   const x = `${input}`
   if (x.length === 1) return input
 
-  return x.split``.reduce((prev, current) => prev * Number(current), 1)
+  return x.split('').reduce((prev, current) => prev * Number(current), 1)
 }
 
 function uniqueDigitProducts(input) {
@@ -274,7 +274,7 @@ test('unique digit products', () => {
 })
 
 function calculateNumberScore(input) {
-  const x = `${input}`.split``
+  const x = `${input}`.split('')
 
   if (x.length === 1) return 0
   if (x.length === 2) return Math.abs(Number(x[0]) - Number(x[1]))
