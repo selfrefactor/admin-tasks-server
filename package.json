@@ -29,12 +29,12 @@
 		"in": "DEV_MODE=ON MONGO=ON PORT=8080 nest start --watch",
 		"dev:unused": "DEV_MODE=ON PORT=8070 nest start --debug --watch",
 		"debug:unused": "DEV_MODE=ON PORT=8080 nest start --debug --watch",
-		"dev": "jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts --watch",
+		"dev": "jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts --watch -u",
 		"test": "jest",
 		"test:ts": "typescript-coverage-report --threshold=40",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"test:e2e": "jest --config ./test/jest-e2e.json",
-		"e2e": "jest --config ./test/jest-e2e.json"
+		"e2e": "jest --config ./test/jest-e2e.json" 
 	},
 	"dependencies": {
 		"@nestjs/common": "7.0.9",

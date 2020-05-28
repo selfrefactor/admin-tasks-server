@@ -1,6 +1,5 @@
 const {envFn} = require('env-fn')
 envFn('special')
-process.env.JEST = 'OFF'
 
 module.exports = function () {
   return {

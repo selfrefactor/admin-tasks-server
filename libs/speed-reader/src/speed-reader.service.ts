@@ -36,11 +36,10 @@ export class SpeedReaderService {
         .split(' ')
         .map(trim)
         .map(x => x.split('\n'))
-      const result = flatten<string>(content).map(trim)
-      return result
+
+      return flatten<string>(content).map(trim)
     } catch (e) {
       console.log(e, 'read.book')
-      return
     }
   }
 }
