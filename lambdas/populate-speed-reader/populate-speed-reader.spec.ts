@@ -1,9 +1,14 @@
-import {populateSpeedReader, generateFileName} from './populate-speed-reader'
+import {populateSpeedReader, generateFileName, generageBookIndexes} from './populate-speed-reader'
 import { IS_WALLABY } from 'lib/constants'
 
 test('happy', async() => {
   if(IS_WALLABY) return
   await populateSpeedReader()
+})
+
+test('generage book indexes', async() => {
+  if(IS_WALLABY) return
+  await generageBookIndexes()
 })
  
 test('generate file name', () => {

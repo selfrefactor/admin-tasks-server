@@ -35,6 +35,10 @@ module.exports = function () {
         load: false,
       },
       {
+        pattern: 'lambdas/**/*.json',
+        load: true,
+      },
+      {
         pattern: 'lambdas/**/*spec.ts',
         ignore: true,
       },

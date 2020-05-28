@@ -1,7 +1,7 @@
 import * as extractZip from 'extract-zip'
 import {parse, resolve} from 'path'
 import {scanFolder} from 'helpers-fn'
-import { move } from 'fs-extra'
+import { move, outputJson } from 'fs-extra'
 import {
   endsWith,
   init,
@@ -13,6 +13,7 @@ import {
   replace,
   test,
   toLower,
+  mapToObject
 } from 'rambdax'
 
 const extractDir = `${__dirname}/extracted`
@@ -21,6 +22,30 @@ const destinationDir = resolve(
   __dirname,
   '../../../data/books'
 )
+interface Hash {
+  [key: string]: string,
+}
+
+export async function generageBookIndexes(){
+  const allBooks = await scanFolder({
+    folder: destinationDir,
+    filterFn: x=> x.endsWith('.txt')&&!x.endsWith('demo.txt')
+  })
+  let counter = 0
+  const bookIndexes = mapToObject<string, Hash>(
+    bookPath => {
+      const parsed = parse(bookPath)
+
+      return { [counter++]: parsed.name}
+    }
+  ,allBooks)
+
+  await outputJson(
+    `${__dirname}/book-indexes.json`,
+    {bookIndexes: {...bookIndexes, '99': 'demo'}},
+    {spaces:2}
+  )
+}
 
 export function generateFileName(filePath){
   const matched = match(
