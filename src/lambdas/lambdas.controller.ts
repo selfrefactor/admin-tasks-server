@@ -6,7 +6,6 @@ import {
   Res,
   Logger,
   Get,
-  ForbiddenException,
 } from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
@@ -51,7 +50,7 @@ export class LambdasController {
 
   @Post('speed-reader')
   async createInstance(@Body() input: {id: number}, @Res() res: Response) {
-    this.logger.log('speed.reader', JSON.stringify(input))
+    // this.logger.log('speed.reader', JSON.stringify(input))
     if (!input) return res.status(400).send()
     const bookIndex = defaultTo(0, Number(input.id))
     const result = await this.speedReader.readBook(bookIndex)

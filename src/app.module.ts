@@ -11,6 +11,7 @@ import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
+
 // const mongoFlag = process.env.MONGO_ON === 'ON'
 const mongoFlag = process.env.MONGO_ON !== 'OFF'
 
