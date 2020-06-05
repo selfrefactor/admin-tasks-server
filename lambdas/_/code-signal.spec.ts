@@ -1,3 +1,62 @@
+function excludeIndexRange({list, from, to}){
+  return list.filter((_, i) => i < from || i> to)
+}
+
+function checkBar(glasses, limit = 3){
+  if(glasses.length ===0 )return {done:true}
+  let numberConsecutive = 1
+  const toReturn = []
+  let startIndex
+  let endIndex
+
+  glasses.reduce((prev, current, i)=>{
+    if(endIndex) return
+    if(prev === current){
+      if(numberConsecutive === 1) startIndex = i - 1
+      numberConsecutive++
+      if(numberConsecutive === limit){
+        endIndex = i
+      }
+    }else{
+      numberConsecutive = 1
+    }
+    return current
+  })
+  if(!endIndex) return {done: true}
+
+  const filtered = excludeIndexRange({list:glasses, from:startIndex,to:endIndex})
+  return {
+    glasses: filtered,
+    done: false
+  }
+}
+
+function brothersInBar(glasses){
+  let newGlasses = {done:false, glasses}
+  let counter = -1
+  while(newGlasses.done === false){
+    newGlasses = checkBar(newGlasses.glasses)
+    counter++
+  }
+  return counter
+}
+
+test('brothers in bar - 0', () => {
+  const glasses = [1,1,2,3,3,3,2,2,1]
+  expect(brothersInBar(glasses)).toBe(3)
+})
+
+test('brothers in bar - 1', () => {
+  const glasses = [1,2,3,1,2,3,3,3,2,2,1]
+  expect(brothersInBar(glasses)).toBe(2)
+})
+
+test('brothers in bar - 2', () => {
+  const glasses = [1,2,3]
+  expect(brothersInBar(glasses)).toBe(0)
+  expect(brothersInBar([])).toBe(0)
+})
+
 function replace(pattern, replacer, str) {
   if (replacer === undefined) {
     return (_replacer, _str) => replace(pattern, _replacer, _str)
