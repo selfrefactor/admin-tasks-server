@@ -1,3 +1,27 @@
+function sortByString(input, newOrder) {
+  const newString = [...input].map(console.log)
+}
+
+test('sort by string', () => {
+  const result = sortByString('weather', 'therapyw')
+  const expected = 'theeraw'
+  expect(result).toEqual(expected)
+})
+function containsDuplicates(a) {
+  const list = new Set(a)
+  return list.size !== a.length
+}
+
+test('contain duplicates - true', () => {
+  const list = [1,2,3,1]
+  expect(containsDuplicates(list)).toBeTruthy()  
+})
+
+test('contain duplicates - false', () => {
+  const list = [1,2,3]
+  expect(containsDuplicates(list)).toBeFalsy()  
+})
+
 function excludeIndexRange({list, from, to}){
   return list.filter((_, i) => i < from || i> to)
 }
