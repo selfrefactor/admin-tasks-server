@@ -1,3 +1,23 @@
+function switchLights(lights){
+  let state = lights.slice()
+
+  lights.forEach((_, i) => {
+    if(state[i] === 0 ) return
+
+    const newState = state.map((x, innerIndex) => {
+      if(innerIndex > i) return x
+      return x === 0 ? 1 : 0
+    })
+    state = newState
+  })
+
+  return state
+}
+
+test('switch lights', () => {
+  expect(switchLights([1, 1, 1, 1, 1])).toEqual([0, 1, 0, 1, 0])
+})
+
 function containsCloseNums(nums, k) {
   let maxDistance = -Infinity
 
