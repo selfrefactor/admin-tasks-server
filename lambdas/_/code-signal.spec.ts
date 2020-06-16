@@ -1,12 +1,24 @@
-function sortByString(input, newOrder) {
-  const newString = [...input].map(console.log)
+function containsCloseNums(nums, k) {
+  let maxDistance = -Infinity
+
+  nums.forEach((num, i) => {
+    const partial = nums.slice(i)
+    const maybeMaxDistance = partial.lastIndexOf(num)
+    if(maybeMaxDistance> maxDistance) maxDistance = maybeMaxDistance
+  })
+
+  return maxDistance <= k
 }
 
-test('sort by string', () => {
-  const result = sortByString('weather', 'therapyw')
-  const expected = 'theeraw'
-  expect(result).toEqual(expected)
+test('contains close nums', () => {
+  expect(
+    containsCloseNums([0, 1, 2, 3, 5, 2], 3)
+  ).toBeTruthy();
+  expect(
+    containsCloseNums([0, 1, 2, 3, 5, 2], 2)
+  ).toBeFalsy();
 })
+
 function containsDuplicates(a) {
   const list = new Set(a)
   return list.size !== a.length

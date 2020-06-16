@@ -10,7 +10,6 @@ export class SpeedReaderService {
   async readBook<K>(id: number) {
     if (!bookIndexes[id]) return
 
-    try {
       const contentRaw = await this.fsService.readFromData(
         `books/${bookIndexes[id]}.txt`
       )
@@ -20,8 +19,5 @@ export class SpeedReaderService {
         .map(x => x.split('\n'))
 
       return flatten<string>(content).map(trim)
-    } catch (e) {
-      console.log(e, 'read.book')
-    }
   }
 }
