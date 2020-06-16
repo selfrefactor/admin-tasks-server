@@ -1,3 +1,50 @@
+function composeRanges(list){
+  if(list.length === 0) return []
+  if(list.length === 1) return [String(list[0])]
+  if(list.length === 2){
+
+    return list[1] - list[0] === 1 ? [`${list[0]}->${list[1]}`] : [String(list[0]), String(list[1])]
+  } 
+
+  let marker = list[0]
+  const toReturn = []
+
+  list.reduce((prev, current, i)=> {
+    if(current - prev !== 1){
+      const toPush = marker === prev ? String(prev) : `${marker}->${prev}`
+      toReturn.push(toPush)
+      
+      if(i === list.length - 1) toReturn.push(String(current))
+      marker = current
+    }
+    return current
+  })
+  
+  return toReturn.length === 0 ? [`${list[0]}->${list[list.length - 1]}`] :toReturn
+}
+
+test('compose ranges 1', () => {
+  const result = composeRanges([0, 1, 2])
+  result
+  expect(result).toEqual(["0->2"])
+})
+
+test('compose ranges 2', () => {
+  const result = composeRanges([0, 5, 9])
+  result
+  expect(result).toEqual(["0", 
+  "5", 
+  "9"])
+})
+
+test('compose ranges', () => {
+  const result = composeRanges([-1, 0, 1, 2, 6, 7, 9])
+  result
+  expect(result).toEqual(["-1->2", 
+  "6->7", 
+  "9"])
+})
+
 function switchLights(lights){
   let state = lights.slice()
 
