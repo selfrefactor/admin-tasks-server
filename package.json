@@ -23,7 +23,7 @@
     "prein": "rimraf dist",
     "prelight": "yarn out",
     "preonclean": "yarn out",
-    "preondarkclean": "yarn out",
+    "preonlightclean": "yarn out",
     "preout": "rimraf dist",
     "prod": "node dist/main.js",
     "service": "nest g service --no-spec",
