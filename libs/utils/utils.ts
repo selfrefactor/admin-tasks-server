@@ -1,4 +1,5 @@
 import {random} from 'rambdax'
+import {exec} from 'helpers-fn'
 
 export async function safeWait<T>(fn: Promise<T>): Promise<T | void> {
   try {
@@ -24,4 +25,11 @@ export function getRandomIndexes(
   }
 
   return toReturn
+}
+
+export async function notifyOS(message: string){
+  await exec({
+    cwd: __dirname,
+    command: `notify-send '${message}' --icon=dialog-information`
+  })
 }
