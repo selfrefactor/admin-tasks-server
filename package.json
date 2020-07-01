@@ -91,7 +91,11 @@
   "license": "MIT",
   "author": "selfrefactor",
   "depFn": [
+    "apollo-server-express",
+    "graphql",
+    "graphql-tools",
     "typeorm",
+    "type-graphql",
     "typescript",
     "jest"
   ],
