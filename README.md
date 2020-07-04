@@ -1,5 +1,15 @@
 # Server is on
 
+## Scripts
+
+### Books
+
+`yarn books` - when new books are downloaded
+
+### Lint folder
+
+`yarn folders` - lint folder structure 
+
 ## Issues
 
 Service importing service can lead to circular dependency while testing the service. Resolved by direct relative import.(Actually the issue was related to namespacing as there was already library `lib/fs` and the problem library was `fs-db`. Once the name was changed to `db-fs` the problem was solved.)
@@ -21,6 +31,7 @@ Check `app.e2e-spec.ts` file
 ## Speed reader
 
 List of books
+
 ```
 const hash = {
   0: 'udhaus_fred',

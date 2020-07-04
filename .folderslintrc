@@ -1,0 +1,10 @@
+{
+  "rules": [
+    "src/**",
+    "dist/**",
+    "libs/*/src",
+    "test", // this disallows folders inside
+    "lambdas/**",
+    "node_modules/**"
+   ]
+}
