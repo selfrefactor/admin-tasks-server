@@ -1,3 +1,31 @@
+function turnToBinary(num){
+  let toReturn = []
+  const list = [128, 64, 32, 16, 8, 4, 2, 1]
+  list.forEach(x => {
+    if(num>=x){
+      toReturn.push(1)
+      num -= x
+    }else{
+      toReturn.push(0)
+    }
+  })
+
+  return toReturn.join('')
+}
+
+test('turnToBinary', () => {
+  expect(turnToBinary(8)).toBe('00001000')
+})
+
+function arrayPacking(list) {
+  const total = list.reverse().map(turnToBinary).join('')
+  return parseInt(total, 2);
+}
+
+test('arrayPacking', () => {
+  expect(arrayPacking([24, 85, 0])).toBe(21784)
+})
+
 function composeRanges(list){
   if(list.length === 0) return []
   if(list.length === 1) return [String(list[0])]
