@@ -1,3 +1,20 @@
+function countSmallerToTheRight(list) {
+  let count = 0
+  list.forEach((listInstance,i) => {
+    const partial = list.slice(i+ 1)
+    if(partial.length === 0) return
+    count += partial.filter(x => listInstance > x).length
+  })
+
+  return count
+}
+
+test('countSmallerToTheRight', () => {
+  expect(
+    countSmallerToTheRight([3, 8, 4, 1])
+  ).toEqual(4)
+})
+
 function areSimilar(x, y){
   if(x.length !== y.length ) return false;
   let foundSingleDifference = false
