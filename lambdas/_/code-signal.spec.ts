@@ -1,3 +1,38 @@
+function areSimilar(x, y){
+  if(x.length !== y.length ) return false;
+  let foundSingleDifference = false
+  let foundMoreDifferences = false
+  let marker
+
+  x.forEach((xInstance, i) => {
+    if(foundMoreDifferences) return
+    if(xInstance === y[i]) return
+    if(foundSingleDifference){
+      foundMoreDifferences = true
+      return
+    }
+
+    if(marker === undefined){
+      marker = y[i]
+      return
+    }
+    if(marker === xInstance && !foundSingleDifference){
+      foundSingleDifference = true
+      marker = undefined
+      return
+    }
+    foundMoreDifferences = true
+  })
+
+  return marker === undefined && !foundMoreDifferences
+}
+
+test('areSimilar', () => {
+  expect(areSimilar([4, 6, 3], [3,4,6])).toBeFalsy()
+  expect(areSimilar([1,2,3], [2,1,3])).toBeTruthy()
+  expect(areSimilar([1,1,3], [2,1,3])).toBeFalsy()
+})
+
 function turnToBinary(num){
   let toReturn = []
   const list = [128, 64, 32, 16, 8, 4, 2, 1]
@@ -13,14 +48,14 @@ function turnToBinary(num){
   return toReturn.join('')
 }
 
-test('turnToBinary', () => {
-  expect(turnToBinary(8)).toBe('00001000')
-})
-
 function arrayPacking(list) {
   const total = list.reverse().map(turnToBinary).join('')
   return parseInt(total, 2);
 }
+
+test('turnToBinary', () => {
+  expect(turnToBinary(8)).toBe('00001000')
+})
 
 test('arrayPacking', () => {
   expect(arrayPacking([24, 85, 0])).toBe(21784)
