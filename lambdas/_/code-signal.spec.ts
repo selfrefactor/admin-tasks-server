@@ -1,3 +1,27 @@
+function reverseVowelsOfString(input) {
+  const vowels = [ "a", "e", "i", "o", "u"]
+  const vowelsInString = []
+  const withPlaceholder = input.split('').map(char => {
+    if(vowels.includes(char.toLowerCase())) {
+      vowelsInString.push(char)
+      return '__'
+    }
+    return char
+  })
+  vowelsInString.reverse()
+  let counter = 0
+  const replaced = withPlaceholder.map(char => {
+    if(char!== '__') return char
+    return vowelsInString[counter++]
+  })
+  return replaced.join('')
+}
+
+test('reverseVowelsOfString', () => {
+  expect(reverseVowelsOfString('hello, world')).toBe('hollo, werld')
+  expect(reverseVowelsOfString('eIaOyU')).toBe('UOaIye')
+})
+
 function countSmallerToTheRight(list) {
   let count = 0
   list.forEach((listInstance,i) => {
