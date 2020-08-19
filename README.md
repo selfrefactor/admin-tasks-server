@@ -1,5 +1,9 @@
 # Server is on
 
+## Marbles
+
+`jest-marbles` require `6.6.2` version of `rxjs` even though the whole app works with `7.0.0.beta`
+
 ## Scripts
 
 ### Books

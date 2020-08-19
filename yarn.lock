@@ -4962,7 +4962,7 @@ jest-config@^24.9.0:
     pretty-format "^24.9.0"
     realpath-native "^1.1.0"
 
-jest-diff@^24.9.0:
+jest-diff@24.9.0, jest-diff@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-24.9.0.tgz#931b7d0d5778a1baf7452cb816e325e3724055da"
   integrity sha512-qMfrTs8AdJE2iqrTp0hzh7kTd2PQWrsFyj9tORoKmu32xjPjeE4NyjVRDz8ybYwqS2ik8N4hsIpiVTyFeo2lBQ==
@@ -5082,7 +5082,15 @@ jest-leak-detector@^24.9.0:
     jest-get-type "^24.9.0"
     pretty-format "^24.9.0"
 
-jest-matcher-utils@^24.9.0:
+jest-marbles@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/jest-marbles/-/jest-marbles-2.5.1.tgz#4a869fdea1b59d65f205a24bbfb3b7105f1b164b"
+  integrity sha512-BsHEqrHLMTsfqagWeWJ+vJrSPNcn7vIFpx+e4G/sKGnx8JLDniRBbiwtHfUP5yoQtXDi+56I6atr5WdgJUknmw==
+  dependencies:
+    jest-diff "24.9.0"
+    jest-matcher-utils "24.9.0"
+
+jest-matcher-utils@24.9.0, jest-matcher-utils@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-24.9.0.tgz#f5b3661d5e628dffe6dd65251dfdae0e87c3a073"
   integrity sha512-OZz2IXsu6eaiMAwe67c1T+5tUAtQyQx27/EMEkbFAGiw52tB9em+uGbzpcgYVpA8wl0hlxKPZxrly4CXU/GjHA==
@@ -7252,10 +7260,10 @@ rxjs@6.5.4:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@7.0.0-beta.0:
-  version "7.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.0.0-beta.0.tgz#41f730761e00ba7b5a28955e0f177afba8e2a134"
-  integrity sha512-MMsqDczs2RzsTvBiH6SKjJkdAh7WaI6Q0axP/DX+1ljwFm6+18AhQ3kVT8gD7G0dHIVfh5hDFoqLaW79pkiGag==
+rxjs@6.6.2:
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.2.tgz#8096a7ac03f2cc4fe5860ef6e572810d9e01c0d2"
+  integrity sha512-BHdBMVoWC2sL26w//BCu3YzKT4s2jip/WhwsGEDmeKYBhKDZeYezVUnHatYB7L85v5xs0BAQmg6BEYJEKxBabg==
   dependencies:
     tslib "^1.9.0"
 
