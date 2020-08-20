@@ -1,6 +1,5 @@
 import * as ngrokLib from 'ngrok'
 import axios from 'axios'
-import {DEFAULT_PORT} from 'lib/constants'
 import {notifyOS} from 'lib/utils'
 
 async function checkAvailable() {
@@ -12,7 +11,7 @@ async function checkAvailable() {
   }
 }
 
-export const ngrok = async(port = DEFAULT_PORT) => {
+export const ngrok = async(port) => {
   const token = process.env.NGROK_TOKEN
   if (!token) return console.log('!token', token)
   const alreadyUp = await checkAvailable()
@@ -27,7 +26,7 @@ export const ngrok = async(port = DEFAULT_PORT) => {
     authtoken: token,
     region: 'eu',
     onStatusChange: status => {
-      notifyOS('NGROK connected')
+      notifyOS(`NGROK connected at port "${port}"`)
     },
   })
   console.log(url)
