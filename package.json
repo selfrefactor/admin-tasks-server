@@ -25,7 +25,6 @@
 		"out": "nest build",
 		"predev": "rimraf dist",
 		"prein": "rimraf dist",
-		"prelight": "yarn out",
 		"preonclean": "yarn out",
 		"preonwork": "yarn out",
 		"preonlightwork": "yarn out",
