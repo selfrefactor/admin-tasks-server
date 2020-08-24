@@ -13,7 +13,7 @@ const DEV_MODE = process.env.DEV_MODE === 'ON'
 
 async function bootstrap() {
   if (!DEV_MODE) {
-    ngrok(NGROK_PORT)
+    ngrok(NGROK_PORT, NGROK_PORT === DEFAULT_PORT)
   }
   cron(DEV_MODE)
   const app = await NestFactory.create(AppModule)
