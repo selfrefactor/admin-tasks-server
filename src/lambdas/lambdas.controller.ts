@@ -69,7 +69,7 @@ export class LambdasController {
 
   @Post('word-profile')
   async getWord(@Body() input: {word: string}, @Res() res: Response) {
-    this.logger.log('word.profile', JSON.stringify(input))
+    this.logger.log('word.profile', input.word)
     if (!input) return res.status(400).send()
 
     const result = await safeWait<WordProfile>(
