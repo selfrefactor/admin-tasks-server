@@ -1,6 +1,6 @@
 function reverseVowelsOfString(input) {
   const vowels = [ "a", "e", "i", "o", "u"]
-  console.log(vowels)
+
   const vowelsInString = []
   const withPlaceholder = input.split('').map(char => {
     if(vowels.includes(char.toLowerCase())) {
@@ -10,9 +10,9 @@ function reverseVowelsOfString(input) {
     console.log(char)
     return char
   })
-  console.log(vowelsInString)
+
   vowelsInString.reverse()
-  console.log(vowelsInString)
+  
   let counter = 0
   const replaced = withPlaceholder.map(char => {
     if(char!== '__') return char

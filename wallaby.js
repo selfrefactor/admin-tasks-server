@@ -3,6 +3,8 @@ envFn('special')
 
 module.exports = function () {
   return {
+    "wallaby.useWsl": true,
+    runMode: 'onsave',
     files: [
       'tsconfig.json',
       'package.json',
