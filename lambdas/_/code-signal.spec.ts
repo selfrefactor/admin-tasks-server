@@ -1,8 +1,7 @@
 function reverseVowelsOfString(input) {
   const vowels = [ "a", "e", "i", "o", "u"]
-
-  const vowelsInString = []
-  const withPlaceholder = input.split('').map(char => {
+  const vowelsInString = [] 
+  const withPlaceholder = input.split('')/*?*/.map(char => {
     if(vowels.includes(char.toLowerCase())) {
       vowelsInString.push(char)
       return '__'
@@ -31,7 +30,7 @@ function countSmallerToTheRight(list) {
   list.forEach((listInstance,i) => {
     const partial = list.slice(i+ 1)
     if(partial.length === 0) return
-    count += partial.filter(x => listInstance > x).length
+    count += partial.filter(x => listInstance > x).length;
   })
 
   return count
