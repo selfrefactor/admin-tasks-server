@@ -2,9 +2,10 @@ import {omit, path, uuid} from 'rambdax'
 import axios from 'axios'
 import {Item} from '../src/items/interfaces/item.interface'
 import {envFn} from 'env-fn'
+import {DEFAULT_PORT} from 'lib/constants'
 envFn('special')
 
-const URL = 'http://localhost:8080'
+const URL = `http://localhost:${DEFAULT_PORT}`
 const GRAPH = `${URL}/graphql`
 
 describe('Graphql', () => {
