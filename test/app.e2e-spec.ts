@@ -5,7 +5,7 @@ import axios from 'axios'
 import { DEFAULT_PORT, DEV_PORT } from 'lib/constants'
 
 let port
- 
+  
 const URL = () => `http://localhost:${port}`
 const LAMBDAS = () => `${URL()}/lambdas`
 const SPEED_READER = () =>  `${LAMBDAS()}/speed-reader`

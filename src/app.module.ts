@@ -1,4 +1,3 @@
-import {getWordProfileConnectUrl} from 'lib/constants'
 import {Module, MiddlewareConsumer} from '@nestjs/common'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
