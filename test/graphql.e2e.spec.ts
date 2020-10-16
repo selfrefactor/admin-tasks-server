@@ -6,7 +6,7 @@ import {envFn} from 'env-fn'
 import {DEFAULT_PORT} from 'lib/constants'
 envFn('special')
 
-const URL = `http://localhost:8080`
+const URL = `http://localhost:8080` // dev port when `yarn in` is started
 // const URL = `http://localhost:${DEFAULT_PORT}`
 const GRAPH = `${URL}/graphql`
 
@@ -14,13 +14,6 @@ describe('Graphql', () => {
   const item: Item = {
     word: randomString(3, true).toLowerCase(),
   }
-  item /*?*/
-
-  // const updatedItem: Item = {
-  //   title: 'Great updated item',
-  //   price: 20,
-  //   description: 'Updated description of this great item',
-  // }
 
   const createitemObject = JSON.stringify(item).replace(
     /\"([^(\")"]+)\":/g,
@@ -92,21 +85,27 @@ describe('Graphql', () => {
     }
   })
 
-  // it('deleteItem', () => {
-  //   const deleteItemQuery = `
-  //     mutation {
-  //       deleteItem(id: "${id}") {
-  //         title
-  //         price
-  //         description
-  //         id
-  //       }
-  //     }`;
+  test('delete single item', async() => {
+    try {
+      const word = 'xux'
 
-  //   return request(app.getHttpServer())
-  //     .post('/graphql')
-  //     .send({
-  //       operationName: null,
-  //       query: deleteItemQuery,
-  //     })
+      const deleteItemQuery = `
+    mutation {
+      deleteItem(input: "${word}") {
+        word
+      }
+    }`
+      const response = await axios({
+        url: GRAPH,
+        method: 'post',
+        data: {
+          query: deleteItemQuery,
+        },
+      })
+      response /*? $.data*/
+    } catch (e) {
+      console.log(e /*? $.config */)
+      expect(0).toBe(1)
+    }
+  })
 })

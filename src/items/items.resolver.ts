@@ -33,8 +33,9 @@ export class ItemsResolver {
     return this.itemsService.update(input.word, input.newWord)
   }
 
-  // @Mutation(() => ItemType)
-  // async deleteItem(@Args('id') id: string): Promise<ItemInput> {
-  //   return this.itemsService.delete(id);
-  // }
+  @Mutation(() => ItemType)
+  async deleteItem(@Args('input') input: string): Promise<ItemInput | void> {
+    console.log({input})
+    return this.itemsService.delete(input)
+  }
 }

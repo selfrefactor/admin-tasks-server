@@ -29,24 +29,23 @@ export class ItemsService {
     return result ? result : fallback
   }
 
-  async findOnex(id: string): Promise<ItemType> {
-    return await this.itemModel.findOne({_id: id})
-  }
-
   async findID(word: string): Promise<string | false> {
     const result = await this.itemModel.findOne({word})
-    console.log({findIDResult: result})
+    console.log({findResult: result, word})
     if (result) return result._id
     return false
   }
 
-  async delete(id: string): Promise<ItemType> {
+  async delete(word: string): Promise<ItemType | void> {
+    const id = await this.findID(word)
+    if (!id) return console.log('no success delete', word)
+
     return await this.itemModel.findByIdAndRemove(id)
   }
 
   async update(word: string, newWord: string): Promise<void | ItemType> {
     const id = await this.findID(word)
-    if (!id) return console.log('no success', word)
+    if (!id) return console.log('no success update', word)
 
     const updated = await this.itemModel.findByIdAndUpdate(
       id,
@@ -55,9 +54,5 @@ export class ItemsService {
     )
     console.log({updated})
     return {word: newWord}
-  }
-
-  async updatex(id: string, item: Item): Promise<ItemType> {
-    return await this.itemModel.findByIdAndUpdate(id, item, {new: true})
   }
 }
