@@ -6,7 +6,7 @@ import {Item} from './interfaces/item.interface'
 import {ItemInput} from './input-items.input'
 
 const fallback: Item = {
-  word: 'fallback',
+  word: 'FALLBACK',
 }
 
 @Injectable()
@@ -15,6 +15,7 @@ export class ItemsService {
 
   async create(createItemDto: ItemInput): Promise<ItemType> {
     const createdItem = new this.itemModel(createItemDto)
+    console.log({create: createItemDto})
     return await createdItem.save()
   }
 
@@ -24,7 +25,7 @@ export class ItemsService {
 
   async findOne(word: string): Promise<ItemType> {
     const result = await this.itemModel.findOne({word})
-
+    console.log({searchResult: result, word})
     return result ? result : fallback
   }
 
@@ -32,11 +33,31 @@ export class ItemsService {
     return await this.itemModel.findOne({_id: id})
   }
 
+  async findID(word: string): Promise<string | false> {
+    const result = await this.itemModel.findOne({word})
+    console.log({findIDResult: result})
+    if (result) return result._id
+    return false
+  }
+
   async delete(id: string): Promise<ItemType> {
     return await this.itemModel.findByIdAndRemove(id)
   }
 
-  async update(id: string, item: Item): Promise<ItemType> {
+  async update(word: string, newWord: string): Promise<void | ItemType> {
+    const id = await this.findID(word)
+    if (!id) return console.log('no success', word)
+
+    const updated = await this.itemModel.findByIdAndUpdate(
+      id,
+      {word: newWord},
+      {new: true}
+    )
+    console.log({updated})
+    return {word: newWord}
+  }
+
+  async updatex(id: string, item: Item): Promise<ItemType> {
     return await this.itemModel.findByIdAndUpdate(id, item, {new: true})
   }
 }

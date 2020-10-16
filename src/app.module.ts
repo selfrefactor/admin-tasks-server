@@ -24,6 +24,7 @@ const getImportStatements = () => {
     ItemsModule,
     MongooseModule.forRoot(getWordProfileConnectUrl(), {
       useNewUrlParser: true,
+      useFindAndModify: false,
       useUnifiedTopology: true,
     }),
   ]

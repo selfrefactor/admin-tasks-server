@@ -13,6 +13,7 @@ type ItemType {
 
 type Mutation {
   createItem(input: ItemInput!): ItemType!
+  updateItem(input: UpdateItemInput!): ItemType!
 }
 
 type Query {
@@ -23,4 +24,9 @@ type Query {
 type Related {
   text: String!
   translated: String!
+}
+
+input UpdateItemInput {
+  word: String!
+  newWord: String!
 }
