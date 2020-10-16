@@ -40,7 +40,7 @@ describe('Graphql', () => {
     }
   })
 
-  test('read single item', async() => {
+  test('read all items', async() => {
     try {
       const response = await axios({
         url: GRAPH,
