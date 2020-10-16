@@ -242,7 +242,7 @@ function checkBar(glasses, limit = 3){
 }
 
 function brothersInBar(glasses){
-  let newGlasses = {done:false, glasses}
+  let newGlasses: {done: boolean, glasses?: any} = {done:false, glasses}
   let counter = -1
   while(newGlasses.done === false){
     newGlasses = checkBar(newGlasses.glasses)
