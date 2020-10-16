@@ -1,13 +1,15 @@
+import {  ok } from 'rambdax'
 import {envFn} from 'env-fn'
 envFn('special')
 import axios from 'axios'
-import {log} from 'helpers-fn'
-import { DEFAULT_PORT } from 'lib/constants'
+import { DEFAULT_PORT, DEV_PORT } from 'lib/constants'
 
-const URL = `http://localhost:${DEFAULT_PORT}`
-const LAMBDAS = `${URL}/lambdas`
-const SPEED_READER = `${LAMBDAS}/speed-reader`
-const WORD_PROFILE = `${LAMBDAS}/word-profile`
+let port
+ 
+const URL = () => `http://localhost:${port}`
+const LAMBDAS = () => `${URL()}/lambdas`
+const SPEED_READER = () =>  `${LAMBDAS()}/speed-reader`
+const WORD_PROFILE = () => `${LAMBDAS()}/word-profile`
 
 const getErrorMessage = (status: number) => {
   return `Request failed with status code ${status}`
@@ -19,63 +21,56 @@ const willFail = () => {
 
 const password = process.env.API_ACCESS_TOKEN
 
-let allowTest = true
-
 async function failTestWrapper(fn: Promise<any>, expectedError: number) {
-  if (!allowTest) return
   try {
     await fn
     willFail()
   } catch (e) {
     expect(e.message).toBe(getErrorMessage(expectedError))
   }
-}
+} 
 
 describe('API', () => {
   beforeAll(async() => {
     try {
-      await axios.get(URL)
+      await axios.get(`http://localhost:${DEFAULT_PORT}`)
+      port = DEFAULT_PORT
     } catch (error) {
-      log('Server is not ON and e2e tests are skipped', 'warning')
-      allowTest = false
+      port = DEV_PORT
     }
   })
 
   test('random bg word', async() => {
-    if (!allowTest) return
-
-    const response = await axios.post(`${LAMBDAS}/random-bulgarian-word`, {
+    LAMBDAS() /*?*/
+    const response = await axios.post(`${LAMBDAS()}/random-bulgarian-word`, {
       password,
     })
-    // expect(response.data.is(['string'])).toBeTruthy()
-  })
+    
+    ok(response.data)([String])
+  }) 
 
   test('auth - without token', async() => {
     await failTestWrapper(
-      axios.post(`${LAMBDAS}/speed-reader`, {id: 99}),
+      axios.post(`${LAMBDAS()}/speed-reader`, {id: 99}),
       403
     )
-  })
+  }) 
 
   test('auth - without body', async() => {
-    await failTestWrapper(axios.post(`${LAMBDAS}/speed-reader`), 403)
+    await failTestWrapper(axios.post(`${LAMBDAS()}/speed-reader`), 403)
   })
 
   test('auth - get is bypassed', async() => {
-    if (!allowTest) return
-    await expect(axios.get(`${LAMBDAS}/`)).resolves.not.toThrow()
+    await expect(axios.get(`${LAMBDAS()}/`)).resolves.not.toThrow()
   })
 
   test('word profile - get all words', async() => {
-    if (!allowTest) return
-    const {data} = await axios.post(`${WORD_PROFILE}/all-words`, {password})
-    expect(data).toBeTruthy()
-    // expect(data.is([String])).toBeTruthy()
+    const {data} = await axios.post(`${WORD_PROFILE()}/all-words`, {password})
+    ok(data)([String])
   })
 
   test('word profile - get single word', async() => {
-    if (!allowTest) return
-    const {data} = await axios.post(WORD_PROFILE, {
+    const {data} = await axios.post(WORD_PROFILE(), {
       password,
       word: 'abbringen',
     })
@@ -84,23 +79,21 @@ describe('API', () => {
 
   test('word profile - get single word - fail', async() => {
     await failTestWrapper(
-      axios.post(WORD_PROFILE, {password, word: 'foo'}),
+      axios.post(WORD_PROFILE(), {password, word: 'foo'}),
       404
       // before it was 400
     )
   })
 
   test('speed reader - demo index', async() => {
-    if (!allowTest) return
     const body = {id: 99, password}
-    const {data} = await axios.post(SPEED_READER, body)
-    // expect(data.is([String])).toBeTruthy()
+    const {data} = await axios.post(SPEED_READER(), body)
+    ok(data)([String])
   })
 
   test('speed reader - missing input', async() => {
-    if (!allowTest) return
     try {
-      await axios.post(`${LAMBDAS}/speed-reader`)
+      await axios.post(`${LAMBDAS()}/speed-reader`)
       willFail()
     } catch (e) {
       expect(e.message).toBe(getErrorMessage(403))

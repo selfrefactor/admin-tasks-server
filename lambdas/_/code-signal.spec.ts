@@ -248,7 +248,7 @@ function brothersInBar(glasses){
     newGlasses = checkBar(newGlasses.glasses)
     counter++
   }
-  return counter
+  return counter 
 }
 
 test('brothers in bar - 0', () => {
