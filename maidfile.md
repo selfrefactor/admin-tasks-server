@@ -39,6 +39,12 @@ cd $HOME/repos/docker&&./up.sh
 ## niketa
 
 ```bash
+run niketa
+```
+
+## niketa:local
+
+```bash
 cd $HOME/repos/niketa/packages/node&&node start.js
 ```
 
