@@ -13,7 +13,7 @@
 		"light": "maided server:light",
 		"middleware": "nest g middleware",
 		"module": "nest g module --no-spec",
-		"niketa": "maided niketa",
+		"niketa": "maided niketa:local",
 		"on": "maided on",
 		"onclean": "maided on",
 		"onwork": "maided on:work",
