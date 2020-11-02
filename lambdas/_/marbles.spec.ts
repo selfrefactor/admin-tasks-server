@@ -1,10 +1,16 @@
-import { merge } from 'rxjs/operators';
-import {cold, hot, time} from 'jest-marbles'
+import { of } from 'rxjs';
+import { filter,map } from 'rxjs/operators';
+import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
 test('happy', () => {
-    const e1 = hot('----a--^--b-------c--|', {a: 0});
-    const e2 = hot('  ---d-^--e---------f-----|', {a: 0});
-    const expected = cold('---(be)----c-f-----|', {a: 0});
+    const result$ = of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).pipe(
+      filter(n => n % 2 !== 0),
+      map(x => x * 10)
+    );
 
-    expect(e1.pipe(merge(e2))).toBeObservable(expected);
+    const observerSpy = subscribeSpyTo(result$);
+        console.log(observerSpy.getValues());
+        
+    expect(observerSpy.getValues()).toEqual([10, 30, 50, 70, 90]);
+
 })
