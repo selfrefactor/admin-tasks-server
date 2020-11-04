@@ -7,6 +7,7 @@
 		"dark": "maided server:dark",
 		"marbles": "jest lambdas/_/marbles.spec.ts",
 		"x": "jest lambdas/_/code-signal.spec.ts",
+		"clean": "ts-prune -p tsconfig.json ",
 		"dev": "jest libs/speed-reader/src/speed-reader.service.spec.ts --watch -u",
 		"in": "DEV_MODE=ON PORT=8087 nest start --watch",
 		"library": "nest g library",
@@ -58,6 +59,7 @@
 		"sudo-prompt": "9.2.1"
 	},
 	"devDependencies": {
+		"ts-prune":"0.8.4",
 		"@hirez_io/observer-spy":"2.0.0",
 		"@nestjs/cli": "7.5.1",
 		"@nestjs/schematics": "7.1.2",
