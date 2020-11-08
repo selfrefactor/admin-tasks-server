@@ -1,4 +1,3 @@
-import * as sudo from 'sudo-prompt'
 import {exec as execModule} from 'child_process'
 import {log} from 'helpers-fn'
 
@@ -15,10 +14,6 @@ function execBee(input: any): Promise<string[]> {
   })
 }
 
-const options = {
-  name: 'Fix VSCode watchers',
-}
-
 export async function runOneTime() {
   const [currentWatchers] = await execBee({
     command: 'cat /proc/sys/fs/inotify/max_user_watches',
@@ -26,10 +21,8 @@ export async function runOneTime() {
   })
 
   if (currentWatchers.trim() === '524288') {
-    return log('no need to reload sysctl', 'info')
+    return log('no need to reload sysctl', 'success')
   }
-  sudo.exec('sysctl -p', options, function(error: any, stdout: any) {
-    if (error) throw error
-    console.log('stdout: ' + stdout)
-  })
+
+  log('Fix VSCode watchers', 'error')
 }

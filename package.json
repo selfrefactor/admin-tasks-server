@@ -55,8 +55,7 @@
 		"rambdax": "6.2.0",
 		"reflect-metadata": "0.1.13",
 		"rxjs": "6.6.3",
-		"string-fn": "2.12.2",
-		"sudo-prompt": "9.2.1"
+		"string-fn": "2.12.2"
 	},
 	"devDependencies": {
 		"ts-prune":"0.8.4",
