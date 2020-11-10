@@ -14,22 +14,6 @@ Start server with light themes
 CRON=30 node dist/main.js
 ```
 
-## server:dark:work
-
-Start server with dark themes and NGROK pointed at work related port
-
-```bash
-WORK=ON CRON=25 NIKETA_DARK=ON node dist/main.js
-```
-
-## server:light:work
-
-Start server with dark themes and NGROK pointed at work related port
-
-```bash
-WORK=ON CRON=30 node dist/main.js
-```
-
 ## docker
 
 ```bash
@@ -63,11 +47,3 @@ Run tasks `docker`, `niketa` and `server:light` in parallel.
 ## on
 
 Run tasks `docker`, `niketa` and `server:dark` in parallel.
-
-## on:work
-
-Run tasks `docker`, `niketa` and `server:dark:work` in parallel.
-
-## on:light:work
-
-Run tasks `docker`, `niketa` and `server:light:work` in parallel.

@@ -1,10 +1,11 @@
 import * as ngrokLib from 'ngrok'
 import axios from 'axios'
-import {notifyOS} from 'lib/utils'
+import { log } from 'helpers-fn'
 
-async function checkAvailable(isDefaultPort) {
+async function checkAvailable() {
   try {
-    const addressToCheck = isDefaultPort ? 'https://toteff.eu.ngrok.io/' : 'https://toteff.ngrok.io/'
+    const addressToCheck = 'https://toteff.eu.ngrok.io/'
+
     const {status} = await axios.get(addressToCheck)
     return status === 200
   } catch (error) {
@@ -12,23 +13,22 @@ async function checkAvailable(isDefaultPort) {
   }
 }
 
-export const ngrok = async(port, isDefaultPort) => {
+export const ngrok = async(port) => {
   const token = process.env.NGROK_TOKEN
   if (!token) return console.log('!token', token)
-  const alreadyUp = await checkAvailable(isDefaultPort)
+  const alreadyUp = await checkAvailable()
 
   if (alreadyUp) {
     return console.log('Already running in other instance or computer')
   }
 
-  const url = await ngrokLib.connect({
-    ...(isDefaultPort ? {region:'eu'}: {}),
+  await ngrokLib.connect({
+    region:'eu',
     addr: port,
     subdomain: 'toteff',
     authtoken: token,
     onStatusChange: status => {
-      notifyOS(`NGROK connected at port "${port}"`)
+      log(`NGROK connected at port "${port}"`, 'info')
     },
   })
-  console.log(url)
 }
