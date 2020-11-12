@@ -1,13 +1,71 @@
-function whenNumber(str, num){
-  const zeroIndex = str.lastIndexOf('0');
-  const newString = `${str.substring(1, zeroIndex)}${num}${str.substring(zeroIndex + 1)}`;
-  return newString;
+function allanagrams(string) {
+  if (string.length === 0) return ['']
+  const result = {}
+  string.split('').forEach(function(letter, i) {
+    const remainingLetters = string.slice(0, i) + string.slice(i + 1)
+
+    allanagrams(remainingLetters).forEach(function(anagram) {
+      result[letter + anagram] = true
+    })
+  })
+  return Object.keys(result)
 }
 
-function whenStar(x){
-  const starIndex = x.indexOf('*');
+function areAnagrams(stringA, stringB) {
+  if(stringA.length !== stringB.length) return false
+  stringA = stringA.replace(/[^\w]/g, "").toLowerCase()
+  stringB = stringB.replace(/[^\w]/g, "").toLowerCase()
+
+  const charMapA = getCharMap(stringA)
+  const charMapB = getCharMap(stringB)
+
+  for (let char in charMapA) {
+      if (charMapA[char] !== charMapB[char]) {
+          return false
+      }
+  }
+
+  return true
+}
+
+function getCharMap(string) {
+  let charMap = {}
+
+  for (let char of string) {
+      charMap[char] = charMap[char] + 1 || 1
+  }
+  return charMap
+}
+
+function countAnagrams(dictionary, query) {
+  return dictionary.filter(d =>  areAnagrams(d, query)).length
+}
+
+function stringAnagram(dictionary, query) {
+  return query.map((singleQuery) => countAnagrams(dictionary, singleQuery))
+}
+
+test('count anagrams', () => {
+  const dictionary = ['heater', 'cold', 'clod', 'reheat', 'docl']
+  const query = ['codl', 'heater', 'abcd']
+  const result = stringAnagram(dictionary,query)
+  expect(result).toEqual([3,2,0])
+})
+
+function whenNumber(str, num) {
+  const zeroIndex = str.lastIndexOf('0')
+  const newString = `${str.substring(1, zeroIndex)}${num}${str.substring(
+    zeroIndex + 1
+  )}`
+  return newString
+}
+
+function whenStar(x) {
+  const starIndex = x.indexOf('*')
   starIndex /*?*/
-  const newString = `${x.substring(0, starIndex - 2)}${x[starIndex - 1]}${x[starIndex - 2]}${x.substring(starIndex + 1)}`
+  const newString = `${x.substring(0, starIndex - 2)}${x[starIndex - 1]}${
+    x[starIndex - 2]
+  }${x.substring(starIndex + 1)}`
 
   return newString
 }
@@ -15,38 +73,44 @@ function whenStar(x){
 function decryptPassword(str) {
   let decrypted = str
   const numZeros = str.split('').filter(x => Number(x) === 0).length
-  const numStars /*?*/= str.split('').filter(x => x === '*').length
-  Array(numZeros).fill(null).forEach((_,i)=> {
-    decrypted = whenNumber(decrypted, str[i])
-  })
-  
-  Array(numStars).fill(null).forEach((_,i)=> {
-    decrypted = whenStar(decrypted, str)
-  })
+  const numStars /*?*/ = str.split('').filter(x => x === '*').length
+  Array(numZeros)
+    .fill(null)
+    .forEach((_, i) => {
+      decrypted = whenNumber(decrypted, str[i])
+    })
+
+  Array(numStars)
+    .fill(null)
+    .forEach((_, i) => {
+      decrypted = whenStar(decrypted, str)
+    })
   return decrypted
 }
 
 test('decrypt', () => {
-  expect(decryptPassword('51Pa*0Lp*0e')).toBe('aP1pL5e')  
+  expect(decryptPassword('51Pa*0Lp*0e')).toBe('aP1pL5e')
 })
 
 function reverseVowelsOfString(input) {
-  const vowels = [ "a", "e", "i", "o", "u"]
-  const vowelsInString = [] 
-  const withPlaceholder = input.split('')/*?*/.map(char => {
-    if(vowels.includes(char.toLowerCase())) {
-      vowelsInString.push(char)
-      return '__'
-    }
-    console.log(char)
-    return char
-  })
+  const vowels = ['a', 'e', 'i', 'o', 'u']
+  const vowelsInString = []
+  const withPlaceholder = input
+    .split('') /*?*/
+    .map(char => {
+      if (vowels.includes(char.toLowerCase())) {
+        vowelsInString.push(char)
+        return '__'
+      }
+      console.log(char)
+      return char
+    })
 
   vowelsInString.reverse()
-  
+
   let counter = 0
   const replaced = withPlaceholder.map(char => {
-    if(char!== '__') return char
+    if (char !== '__') return char
     return vowelsInString[counter++]
   })
   return replaced.join('')
@@ -59,40 +123,38 @@ test('reverseVowelsOfString', () => {
 
 function countSmallerToTheRight(list) {
   let count = 0
-  list.forEach((listInstance,i) => {
-    const partial = list.slice(i+ 1)
-    if(partial.length === 0) return
-    count += partial.filter(x => listInstance > x).length;
+  list.forEach((listInstance, i) => {
+    const partial = list.slice(i + 1)
+    if (partial.length === 0) return
+    count += partial.filter(x => listInstance > x).length
   })
 
   return count
 }
 
 test('countSmallerToTheRight', () => {
-  expect(
-    countSmallerToTheRight([3, 8, 4, 1])
-  ).toEqual(4)
+  expect(countSmallerToTheRight([3, 8, 4, 1])).toEqual(4)
 })
 
-function areSimilar(x, y){
-  if(x.length !== y.length ) return false;
+function areSimilar(x, y) {
+  if (x.length !== y.length) return false
   let foundSingleDifference = false
   let foundMoreDifferences = false
   let marker
 
   x.forEach((xInstance, i) => {
-    if(foundMoreDifferences) return
-    if(xInstance === y[i]) return
-    if(foundSingleDifference){
+    if (foundMoreDifferences) return
+    if (xInstance === y[i]) return
+    if (foundSingleDifference) {
       foundMoreDifferences = true
       return
     }
 
-    if(marker === undefined){
+    if (marker === undefined) {
       marker = y[i]
       return
     }
-    if(marker === xInstance && !foundSingleDifference){
+    if (marker === xInstance && !foundSingleDifference) {
       foundSingleDifference = true
       marker = undefined
       return
@@ -104,19 +166,19 @@ function areSimilar(x, y){
 }
 
 test('areSimilar', () => {
-  expect(areSimilar([4, 6, 3], [3,4,6])).toBeFalsy()
-  expect(areSimilar([1,2,3], [2,1,3])).toBeTruthy()
-  expect(areSimilar([1,1,3], [2,1,3])).toBeFalsy()
+  expect(areSimilar([4, 6, 3], [3, 4, 6])).toBeFalsy()
+  expect(areSimilar([1, 2, 3], [2, 1, 3])).toBeTruthy()
+  expect(areSimilar([1, 1, 3], [2, 1, 3])).toBeFalsy()
 })
 
-function turnToBinary(num){
-  let toReturn = []
+function turnToBinary(num) {
+  const toReturn = []
   const list = [128, 64, 32, 16, 8, 4, 2, 1]
   list.forEach(x => {
-    if(num>=x){
+    if (num >= x) {
       toReturn.push(1)
       num -= x
-    }else{
+    } else {
       toReturn.push(0)
     }
   })
@@ -126,7 +188,7 @@ function turnToBinary(num){
 
 function arrayPacking(list) {
   const total = list.reverse().map(turnToBinary).join('')
-  return parseInt(total, 2);
+  return parseInt(total, 2)
 }
 
 test('turnToBinary', () => {
@@ -137,61 +199,60 @@ test('arrayPacking', () => {
   expect(arrayPacking([24, 85, 0])).toBe(21784)
 })
 
-function composeRanges(list){
-  if(list.length === 0) return []
-  if(list.length === 1) return [String(list[0])]
-  if(list.length === 2){
-
-    return list[1] - list[0] === 1 ? [`${list[0]}->${list[1]}`] : [String(list[0]), String(list[1])]
-  } 
+function composeRanges(list) {
+  if (list.length === 0) return []
+  if (list.length === 1) return [String(list[0])]
+  if (list.length === 2) {
+    return list[1] - list[0] === 1
+      ? [`${list[0]}->${list[1]}`]
+      : [String(list[0]), String(list[1])]
+  }
 
   let marker = list[0]
   const toReturn = []
 
-  list.reduce((prev, current, i)=> {
-    if(current - prev !== 1){
+  list.reduce((prev, current, i) => {
+    if (current - prev !== 1) {
       const toPush = marker === prev ? String(prev) : `${marker}->${prev}`
       toReturn.push(toPush)
-      
-      if(i === list.length - 1) toReturn.push(String(current))
+
+      if (i === list.length - 1) toReturn.push(String(current))
       marker = current
     }
     return current
   })
-  
-  return toReturn.length === 0 ? [`${list[0]}->${list[list.length - 1]}`] :toReturn
+
+  return toReturn.length === 0
+    ? [`${list[0]}->${list[list.length - 1]}`]
+    : toReturn
 }
 
 test('compose ranges 1', () => {
   const result = composeRanges([0, 1, 2])
   result
-  expect(result).toEqual(["0->2"])
+  expect(result).toEqual(['0->2'])
 })
 
 test('compose ranges 2', () => {
   const result = composeRanges([0, 5, 9])
   result
-  expect(result).toEqual(["0", 
-  "5", 
-  "9"])
+  expect(result).toEqual(['0', '5', '9'])
 })
 
 test('compose ranges', () => {
   const result = composeRanges([-1, 0, 1, 2, 6, 7, 9])
   result
-  expect(result).toEqual(["-1->2", 
-  "6->7", 
-  "9"])
+  expect(result).toEqual(['-1->2', '6->7', '9'])
 })
 
-function switchLights(lights){
+function switchLights(lights) {
   let state = lights.slice()
 
   lights.forEach((_, i) => {
-    if(state[i] === 0 ) return
+    if (state[i] === 0) return
 
     const newState = state.map((x, innerIndex) => {
-      if(innerIndex > i) return x
+      if (innerIndex > i) return x
       return x === 0 ? 1 : 0
     })
     state = newState
@@ -210,19 +271,15 @@ function containsCloseNums(nums, k) {
   nums.forEach((num, i) => {
     const partial = nums.slice(i)
     const maybeMaxDistance = partial.lastIndexOf(num)
-    if(maybeMaxDistance> maxDistance) maxDistance = maybeMaxDistance
+    if (maybeMaxDistance > maxDistance) maxDistance = maybeMaxDistance
   })
 
   return maxDistance <= k
 }
 
 test('contains close nums', () => {
-  expect(
-    containsCloseNums([0, 1, 2, 3, 5, 2], 3)
-  ).toBeTruthy();
-  expect(
-    containsCloseNums([0, 1, 2, 3, 5, 2], 2)
-  ).toBeFalsy();
+  expect(containsCloseNums([0, 1, 2, 3, 5, 2], 3)).toBeTruthy()
+  expect(containsCloseNums([0, 1, 2, 3, 5, 2], 2)).toBeFalsy()
 })
 
 function containsDuplicates(a) {
@@ -231,70 +288,74 @@ function containsDuplicates(a) {
 }
 
 test('contain duplicates - true', () => {
-  const list = [1,2,3,1]
-  expect(containsDuplicates(list)).toBeTruthy()  
+  const list = [1, 2, 3, 1]
+  expect(containsDuplicates(list)).toBeTruthy()
 })
 
 test('contain duplicates - false', () => {
-  const list = [1,2,3]
-  expect(containsDuplicates(list)).toBeFalsy()  
+  const list = [1, 2, 3]
+  expect(containsDuplicates(list)).toBeFalsy()
 })
 
-function excludeIndexRange({list, from, to}){
-  return list.filter((_, i) => i < from || i> to)
+function excludeIndexRange({list, from, to}) {
+  return list.filter((_, i) => i < from || i > to)
 }
 
-function checkBar(glasses, limit = 3){
-  if(glasses.length ===0 )return {done:true}
+function checkBar(glasses, limit = 3) {
+  if (glasses.length === 0) return {done: true}
   let numberConsecutive = 1
   const toReturn = []
   let startIndex
   let endIndex
 
-  glasses.reduce((prev, current, i)=>{
-    if(endIndex) return
-    if(prev === current){
-      if(numberConsecutive === 1) startIndex = i - 1
+  glasses.reduce((prev, current, i) => {
+    if (endIndex) return
+    if (prev === current) {
+      if (numberConsecutive === 1) startIndex = i - 1
       numberConsecutive++
-      if(numberConsecutive === limit){
+      if (numberConsecutive === limit) {
         endIndex = i
       }
-    }else{
+    } else {
       numberConsecutive = 1
     }
     return current
   })
-  if(!endIndex) return {done: true}
+  if (!endIndex) return {done: true}
 
-  const filtered = excludeIndexRange({list:glasses, from:startIndex,to:endIndex})
+  const filtered = excludeIndexRange({
+    list: glasses,
+    from: startIndex,
+    to: endIndex,
+  })
   return {
     glasses: filtered,
-    done: false
+    done: false,
   }
 }
 
-function brothersInBar(glasses){
-  let newGlasses: {done: boolean, glasses?: any} = {done:false, glasses}
+function brothersInBar(glasses) {
+  let newGlasses: {done: boolean, glasses?: any} = {done: false, glasses}
   let counter = -1
-  while(newGlasses.done === false){
+  while (!newGlasses.done) {
     newGlasses = checkBar(newGlasses.glasses)
     counter++
   }
-  return counter 
+  return counter
 }
 
 test('brothers in bar - 0', () => {
-  const glasses = [1,1,2,3,3,3,2,2,1]
+  const glasses = [1, 1, 2, 3, 3, 3, 2, 2, 1]
   expect(brothersInBar(glasses)).toBe(3)
 })
 
 test('brothers in bar - 1', () => {
-  const glasses = [1,2,3,1,2,3,3,3,2,2,1]
+  const glasses = [1, 2, 3, 1, 2, 3, 3, 3, 2, 2, 1]
   expect(brothersInBar(glasses)).toBe(2)
 })
 
 test('brothers in bar - 2', () => {
-  const glasses = [1,2,3]
+  const glasses = [1, 2, 3]
   expect(brothersInBar(glasses)).toBe(0)
   expect(brothersInBar([])).toBe(0)
 })
