@@ -1,3 +1,35 @@
+function whenNumber(str, num){
+  const zeroIndex = str.lastIndexOf('0');
+  const newString = `${str.substring(1, zeroIndex)}${num}${str.substring(zeroIndex + 1)}`;
+  return newString;
+}
+
+function whenStar(x){
+  const starIndex = x.indexOf('*');
+  starIndex /*?*/
+  const newString = `${x.substring(0, starIndex - 2)}${x[starIndex - 1]}${x[starIndex - 2]}${x.substring(starIndex + 1)}`
+
+  return newString
+}
+
+function decryptPassword(str) {
+  let decrypted = str
+  const numZeros = str.split('').filter(x => Number(x) === 0).length
+  const numStars /*?*/= str.split('').filter(x => x === '*').length
+  Array(numZeros).fill(null).forEach((_,i)=> {
+    decrypted = whenNumber(decrypted, str[i])
+  })
+  
+  Array(numStars).fill(null).forEach((_,i)=> {
+    decrypted = whenStar(decrypted, str)
+  })
+  return decrypted
+}
+
+test('decrypt', () => {
+  expect(decryptPassword('51Pa*0Lp*0e')).toBe('aP1pL5e')  
+})
+
 function reverseVowelsOfString(input) {
   const vowels = [ "a", "e", "i", "o", "u"]
   const vowelsInString = [] 
