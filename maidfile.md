@@ -25,13 +25,7 @@ cd $HOME/repos/docker&&./up.sh
 'run niketa'
 
 ```bash
-cd $HOME/repos/niketa/packages/node&&node start.js
-```
-
-## niketa:local
-
-```bash
-cd $HOME/repos/niketa/packages/node&&node start.js
+cd $HOME/repos/niketa/packages/node-ts/dist/src&&node start.js
 ```
 
 ## books

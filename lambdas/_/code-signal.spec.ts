@@ -1,3 +1,11 @@
+function staircase(num){
+  const logList = Array(num).fill(null).map((_, i)=> {
+    const sk = Array(num - i - 1).fill(' ').join('') + Array(i+1).fill('#').join('')
+    return sk
+  })
+  logList.forEach(x => console.log(x))
+}
+
 function allanagrams(string) {
   if (string.length === 0) return ['']
   const result = {}
