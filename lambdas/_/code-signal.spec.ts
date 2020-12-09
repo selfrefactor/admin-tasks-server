@@ -91,7 +91,7 @@ function decryptPassword(str) {
   Array(numStars)
     .fill(null)
     .forEach((_, i) => {
-      decrypted = whenStar(decrypted, str)
+      decrypted = whenStar(decrypted)
     })
   return decrypted
 }
