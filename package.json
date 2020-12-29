@@ -14,6 +14,7 @@
 		"middleware": "nest g middleware",
 		"module": "nest g module --no-spec",
 		"on": "maided on",
+		"onl": "yarn onlight",
 		"onclean": "maided on",
 		"onlight": "maided on:light",
 		"onlightclean": "maided on:light",
