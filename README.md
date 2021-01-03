@@ -8,6 +8,8 @@
 
 ### Books
 
+Expects new *.txt.zip files in `lambdas/populate-speed-reader/assets` 
+
 `yarn books` - when new books are downloaded
 
 ### Lint folder

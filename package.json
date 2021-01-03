@@ -1,7 +1,7 @@
 {
 	"name": "on",
 	"scripts": {
-		"books": "maided books",
+		"books": "jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts -u",
 		"controller": "nest g controller --no-spec",
 		"dark": "maided server:dark",
 		"marbles": "jest lambdas/_/marbles.spec.ts",

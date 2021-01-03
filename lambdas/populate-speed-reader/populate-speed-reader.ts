@@ -49,7 +49,8 @@ export async function generageBookIndexes(){
 
 export function generateFileName(filePath){
   const matched = match(
-    /assets\/[a-zA-Z_\.]+-[a-zA-Z_\.]+/
+    /assets\/[a-zA-Z_\-\.]+-/
+    // /assets\/[a-zA-Z_\.]+-[a-zA-Z_\.]+/
   )(filePath)
 
   if(matched.length === 0) throw new Error('either file path or regex is wrong')
@@ -59,13 +60,15 @@ export function generateFileName(filePath){
     remove(
       ['assets/', 'b.txt.zip']
     ),
-    replace('_-_','.'),
+    replace('_-_','-'),
+    replace('_-',''),
     replace(/_/g,'.'),
+    replace(/-/g,'.'),
+    replace(/\.\./g,'.'),
     replace(/\.\./g,'.'),
     x => x.endsWith('.') ? init(x) : x,
     toLower
   )
-
   const okResult = test(
     /^[a-z\.]+$/
   )(result)
@@ -99,7 +102,7 @@ export async function populateSpeedReader() {
       filterFn: endsWith('.zip')
     }) 
 
-    await mapAsync(processSingleZip)(allZips)
+    await mapAsync(processSingleZip, allZips)
   } catch (error) {
     console.log(error, 'populate.speed.reader')
   }

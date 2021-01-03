@@ -28,12 +28,6 @@ cd $HOME/repos/docker&&./up.sh
 cd $HOME/repos/niketa/packages/node-ts/dist/src&&node start.js
 ```
 
-## books
-
-```bash
-jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts
-```
-
 ## on:light
 
 Run tasks `docker`, `niketa` and `server:light` in parallel.
