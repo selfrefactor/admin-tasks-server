@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Jest Tests",
+      "name": "CodeSignal - Debug Jest",
       "type": "node",
       "request": "launch",
       "runtimeArgs": [
@@ -10,7 +10,8 @@
         "${workspaceRoot}/node_modules/.bin/jest",
         "--runInBand",
         "--coverage",
-        "false"
+        "false",
+        "lambdas/_/code-signal.spec.ts"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
