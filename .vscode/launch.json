@@ -4,6 +4,7 @@
     {
       "name": "CodeSignal - Debug Jest",
       "type": "node",
+      "stopOnEntry": true ,
       "request": "launch",
       "runtimeArgs": [
         "--inspect-brk",

@@ -6,8 +6,7 @@ import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
-
-const controllers = [AppController, LambdasController]
+import { CorsController } from './cors/cors.controller';
 
 const providers = [
   SpeedReaderService,
@@ -18,8 +17,8 @@ const providers = [
 
 @Module({
   imports: [],
-  controllers,
   providers,
+  controllers: [AppController, LambdasController, CorsController],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
