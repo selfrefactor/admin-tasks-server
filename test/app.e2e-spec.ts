@@ -5,7 +5,7 @@ import axios from 'axios'
 import { DEFAULT_PORT, DEV_PORT } from 'lib/constants'
 
 let port
-console.log({port})  
+
 const URL = () => `http://localhost:${port}`
 const LAMBDAS = () => `${URL()}/lambdas`
 const CORS = () => `${URL()}/cors`
@@ -41,7 +41,7 @@ describe('API', () => {
     }
   })
 
-  test.only('cors', async() => {
+  test('cors', async() => {
     LAMBDAS() /*?*/
     const response = await axios.post(`${CORS()}`, {
       password,

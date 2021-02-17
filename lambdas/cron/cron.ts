@@ -2,13 +2,14 @@ import {ok, delay, range} from 'rambdax'
 import {niketaTheme} from '../niketa-theme/niketaTheme'
 import {log} from 'helpers-fn'
 
-const fallbackEveryMinutes = 1
+const fallbackEveryMinutes = 30
 
 const tickInput =
-  process.env.CRON === undefined
+  process.env.NIKETA_THEME_CRON === undefined
     ? fallbackEveryMinutes
-    : Number(process.env.CRON)
-
+    : Number(process.env.NIKETA_THEME_CRON)
+    
+console.log(tickInput, 'NIKETA_THEME_CRON')
 const tick = Math.floor(tickInput * 60000)
 
 export async function cron(devMode: boolean) {
