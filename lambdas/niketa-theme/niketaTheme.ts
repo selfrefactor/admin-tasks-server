@@ -22,7 +22,7 @@ const darkThemesList = [
   'aqua.teen.hunger.force',
   'archer',
   'cleveland.show',
-  'curb.your.enthusiasm',
+  'home.movies',
   'dilbert',
   'south.park',
   'trip.tank',
