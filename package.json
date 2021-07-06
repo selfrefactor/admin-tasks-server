@@ -4,6 +4,7 @@
 		"books": "jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts -u",
 		"controller": "nest g controller --no-spec",
 		"dark": "maided server:dark",
+    "eslint": "eslint --fix src/app.controller.ts",
 		"marbles": "jest lambdas/_/marbles.spec.ts",
 		"clean": "ts-prune -p tsconfig.json ",
 		"watch": "jest libs/speed-reader/src/speed-reader.service.spec.ts --watch -u",

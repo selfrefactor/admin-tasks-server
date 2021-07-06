@@ -1,7 +1,7 @@
 const {envFn} = require('env-fn')
 envFn('special')
 
-module.exports = function () {
+module.exports = function() {
   return {
     runMode: 'onsave',
     files: [

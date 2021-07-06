@@ -4,6 +4,6 @@ import {Controller, Get} from '@nestjs/common'
 export class AppController {
   @Get('*')
   getAny(): string {
-    return 'You hit wildcard route'
+    return      'You hit wildcard route'
   }
 }
