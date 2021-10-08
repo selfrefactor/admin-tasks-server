@@ -18,15 +18,15 @@ const lightThemesList = [
   'sweat.leaf',
 ]
 const darkThemesList = [
-  // 'american.dad',
-  // 'aqua.teen.hunger.force',
-  // 'archer',
-  // 'cleveland.show',
-  // 'home.movies',
-  // 'dilbert',
-  // 'south.park',
-  // 'trip.tank',
-  // 'ugly.americans',
+  'american.dad',
+  'aqua.teen.hunger.force',
+  'archer',
+  'cleveland.show',
+  'home.movies',
+  'dilbert',
+  'south.park',
+  'trip.tank',
+  'ugly.americans',
   'Tokyo Night Pro'
 ]
 const customThemes = [
