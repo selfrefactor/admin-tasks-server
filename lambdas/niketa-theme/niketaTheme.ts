@@ -18,18 +18,20 @@ const lightThemesList = [
   'sweat.leaf',
 ]
 const darkThemesList = [
-  'american.dad',
-  'aqua.teen.hunger.force',
-  'archer',
-  'cleveland.show',
-  'home.movies',
-  'dilbert',
-  'south.park',
-  'trip.tank',
-  'ugly.americans',
+  // 'american.dad',
+  // 'aqua.teen.hunger.force',
+  // 'archer',
+  // 'cleveland.show',
+  // 'home.movies',
+  // 'dilbert',
+  // 'south.park',
+  // 'trip.tank',
+  // 'ugly.americans',
   'Tokyo Night Pro'
 ]
-
+const customThemes = [
+  'Tokyo Night Pro'
+]
 const allLightThemes = shuffle(lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
 
@@ -51,7 +53,7 @@ let themeIndex = -1
 export async function niketaTheme() {
   const currentThemes = darkModeEnv ? allDarkThemes : allLightThemes
   const newThemeIndex = nextIndex(themeIndex, currentThemes)
-  const currentTheme = pascalCase(currentThemes[newThemeIndex])
+  const currentTheme = customThemes.includes(currentThemes[newThemeIndex]) ? currentThemes[newThemeIndex] : pascalCase(currentThemes[newThemeIndex])
 
   changeTheme(currentTheme)
   themeIndex = newThemeIndex
