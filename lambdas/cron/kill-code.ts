@@ -5,7 +5,7 @@ const options = {
 }
 
 export async function killCode() {
-  sudo.exec('sudo pkill -9 code', options, function(error: any, stdout: any) {
+  sudo.exec('pkill -9 code', options, function(error: any, stdout: any) {
     if (error) throw error
     console.log('killCode stdout: ' + stdout)
   })

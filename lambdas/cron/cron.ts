@@ -19,7 +19,10 @@ export async function cron(devMode: boolean) {
   ok(tick)(Number)
   for (const i of range(0, 1000)) {
     niketaTheme()
-    killCode()
+
+    if(i % 2 === 1){
+      killCode()
+    }
     log(`${tickInput * i} minutes since start`, 'back')
     await delay(tick)
   }

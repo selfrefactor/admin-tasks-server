@@ -55,15 +55,15 @@ export function generateFileName(filePath){
 
   if(matched.length === 0) throw new Error('either file path or regex is wrong')
 
-  const result = piped<string>(
+  const result = piped(
     matched[0],
     remove(
       ['assets/', 'b.txt.zip']
     ),
     replace('_-_','-'),
     replace('_-',''),
-    replace(/_/g,'.'),
-    replace(/-/g,'.'),
+    replace(/_|-/g,'.'),
+    // replace(/-/g,'.'),
     replace(/\.\./g,'.'),
     replace(/\.\./g,'.'),
     x => x.endsWith('.') ? init(x) : x,
