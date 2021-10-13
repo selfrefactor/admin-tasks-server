@@ -1,7 +1,7 @@
 import {ok, delay, range} from 'rambdax'
 import {niketaTheme} from '../niketa-theme/niketaTheme'
 import {log} from 'helpers-fn'
-import { killCode } from './kill-code'
+import { killCode, startCode } from './kill-code'
 
 const fallbackEveryMinutes = 30
 
@@ -21,7 +21,9 @@ export async function cron(devMode: boolean) {
     niketaTheme()
 
     if(i % 2 === 1){
-      killCode()
+      await killCode()
+      await delay(5000)
+      await startCode()
     }
     log(`${tickInput * i} minutes since start`, 'back')
     await delay(tick)
