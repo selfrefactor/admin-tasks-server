@@ -2,6 +2,7 @@ import {ok, delay, range} from 'rambdax'
 import {niketaTheme} from '../niketa-theme/niketaTheme'
 import {log} from 'helpers-fn'
 import { killCode, startCode } from './kill-code'
+import { fixWallaby } from './fix-wallaby'
 
 const fallbackEveryMinutes = 25
 
@@ -15,7 +16,7 @@ const tick = Math.floor(tickInput * 60000)
 
 export async function cron(devMode: boolean) {
   if (devMode) return log('skip cron','info')
-
+  await fixWallaby()
   ok(tick)(Number)
   for (const i of range(0, 1000)) {
     niketaTheme()
