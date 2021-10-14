@@ -13,7 +13,7 @@ const tickInput =
     
 console.log(tickInput, 'NIKETA_THEME_CRON minutes')
 const tick = Math.floor(tickInput * 60000)
-const KILL_VSCODE = process.env.KILL_VSCODE ?? false
+const KILL_VSCODE = process.env.KILL_VSCODE === 'ON'
 
 export async function cron(devMode: boolean) {
   if (devMode) return log('skip cron','info')
