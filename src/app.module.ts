@@ -23,5 +23,6 @@ const providers = [
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(AuthMiddleware).forRoutes('lambdas')
+    consumer.apply(AuthMiddleware).forRoutes('')
   }
 }

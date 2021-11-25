@@ -10,6 +10,7 @@ import {Request, Response} from 'express'
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: Function) {
+    console.log(`req1`, req.rawHeaders)
     if (req.method !== 'POST') return next()
 
     if (
