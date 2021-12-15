@@ -51,7 +51,8 @@ function changeTheme(newTheme: string) {
 
 let themeIndex = -1
 export async function niketaTheme() {
-  const currentThemes = darkModeEnv ? allDarkThemes : allLightThemes
+  const currentThemes = allLightThemes
+  // const currentThemes = darkModeEnv ? allDarkThemes : allLightThemes
   const newThemeIndex = nextIndex(themeIndex, currentThemes)
   const currentTheme = customThemes.includes(currentThemes[newThemeIndex]) ? currentThemes[newThemeIndex] : pascalCase(currentThemes[newThemeIndex])
 
