@@ -30,8 +30,16 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&&node start.js
 
 ## on:light
 
+Run tasks `niketa` and `server:light` in parallel.
+
+## on:light:ref
+
 Run tasks `docker`, `niketa` and `server:light` in parallel.
 
 ## on
+
+Run tasks `niketa` and `server:dark` in parallel.
+
+## on:ref
 
 Run tasks `docker`, `niketa` and `server:dark` in parallel.
