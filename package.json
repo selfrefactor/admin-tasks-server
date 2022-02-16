@@ -1,6 +1,7 @@
 {
 	"name": "on",
 	"scripts": {
+		"foo": "node foo.js | aplay -f cd",
 		"books": "jest lambdas/populate-speed-reader/populate-speed-reader.spec.ts -u",
 		"controller": "nest g controller --no-spec",
 		"dark": "maided server:dark",
