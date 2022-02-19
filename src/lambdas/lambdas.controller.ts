@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common'
 import {Response} from 'express'
 import {SpeedReaderService} from 'lib/speed-reader'
+import {RssTranslateService} from 'lib/rss-translate' 
 import {safeWait, getRandomIndexes} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
 import {FsService} from 'lib/fs'
@@ -21,10 +22,11 @@ export class LambdasController {
 
   constructor(
     private speedReader: SpeedReaderService,
+    private rssTranslate: RssTranslateService,
     private wordProfileService: WordProfileService,
     private fsService: FsService
   ) {}
-
+ 
   private getRandomBulgarianWords(numberOfIndexes: number) {
     const indexes = getRandomIndexes(
       this.allBulgarianWords.length,
@@ -46,6 +48,17 @@ export class LambdasController {
     this.allBulgarianWords = parsed.data
 
     return this.getRandomBulgarianWords(6)
+  }
+
+  @Post('rss-translate')
+  async rssTranslateRoute(@Body() input: {id: number}, @Res() res: Response) {
+    return res.status(200).send('rss')
+    if (!input) return res.status(400).send()
+    const bookIndex = defaultTo(0, Number(input.id))
+    const result = await this.speedReader.readBook(bookIndex)
+    if (!result) return res.status(400).send()
+
+    return res.status(200).send(result)
   }
 
   @Post('speed-reader')

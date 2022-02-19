@@ -24,6 +24,8 @@
     "lib/word-profile/(.*)": "<rootDir>/../libs/word-profile/src/$1",
     "lib/word-profile": "<rootDir>/../libs/word-profile/src",
     "lib/db-fs/(.*)": "<rootDir>/../libs/db-fs/src/$1",
-    "lib/db-fs": "<rootDir>/../libs/db-fs/src"
+    "lib/db-fs": "<rootDir>/../libs/db-fs/src",
+    "lib/rss-translate/(.*)": "<rootDir>/../libs/rss-translate/src/$1",
+    "lib/rss-translate": "<rootDir>/../libs/rss-translate/src"
   }
 }

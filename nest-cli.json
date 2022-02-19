@@ -46,6 +46,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/db-fs/tsconfig.lib.json"
       }
+    },
+    "rss-translate": {
+      "type": "library",
+      "root": "libs/rss-translate",
+      "entryFile": "index",
+      "sourceRoot": "libs/rss-translate/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rss-translate/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {

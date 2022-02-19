@@ -55,6 +55,12 @@
       ],
       "lib/utils/*": [
         "libs/utils/*"
+      ],
+      "lib/rss-translate": [
+        "libs/rss-translate/src"
+      ],
+      "lib/rss-translate/*": [
+        "libs/rss-translate/src/*"
       ]
     }
   },

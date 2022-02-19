@@ -11,12 +11,13 @@ import {Request, Response} from 'express'
 export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: Function) {
     if (req.method !== 'POST') return next()
-
+    const password = path<string>('body.password', req)
+    console.log(`password`, password)
     if (
       [
         process.env.API_ACCESS_TOKEN,
         process.env.GUEST_ACCESS_TOKEN,
-      ].includes(path('body.password', req))
+      ].includes(password)
     ) {
       return next()
     }
