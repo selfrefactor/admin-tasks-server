@@ -1,7 +1,6 @@
 import {ok, delay, range} from 'rambdax'
 import {niketaTheme} from '../niketa-theme/niketaTheme'
 import {log} from 'helpers-fn'
-import { killCode, startCode } from './kill-code'
 import { fixWallaby } from './fix-wallaby'
 
 const fallbackEveryMinutes = 25
@@ -13,7 +12,6 @@ const tickInput =
     
 console.log(tickInput, 'NIKETA_THEME_CRON minutes')
 const tick = Math.floor(tickInput * 60000)
-const KILL_VSCODE = process.env.KILL_VSCODE === 'ON'
 
 export async function cron(devMode: boolean) {
   if (devMode) return log('skip cron','info')
@@ -22,12 +20,6 @@ export async function cron(devMode: boolean) {
   for (const i of range(0, 1000)) {
     niketaTheme()
 
-    if(i % 2 === 1 && KILL_VSCODE){
-      await killCode()
-      await delay(5000)
-      await startCode()
-      log(`VSCode restarted`, 'box')
-    }
     log(`${tickInput * i} minutes since start`, 'back')
     await delay(tick)
   }
