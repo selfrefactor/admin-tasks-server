@@ -2,7 +2,9 @@
 
 ## Troubleshooting
 
-ECONNREFUSED ::1: - it did happen with `  await app.listen(PORT, '0.0.0.0')`
+- ECONNREFUSED ::1: - it did happen with `  await app.listen(PORT, '0.0.0.0')`
+
+- creating lib - as `@app` is default, it leads to errors. try with `lib` instead.
 
 ## Marbles
 

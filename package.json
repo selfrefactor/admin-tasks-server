@@ -29,6 +29,7 @@
     "preout": "rimraf dist",
     "prod": "node dist/main.js",
     "service": "nest g service",
+    "type-coverage":"npx type-coverage",
     "test": "jest",
     "test:e2e": "jest --config ./test/jest-e2e.json -u",
     "test:e2e:watch": "jest  --watch --config ./test/jest-e2e.json -u",
