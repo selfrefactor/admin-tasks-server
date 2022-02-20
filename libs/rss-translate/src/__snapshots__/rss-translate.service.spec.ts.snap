@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RssTranslateService foo 1`] = `1`;
+
 exports[`RssTranslateService read 1`] = `
 Array [
   "https://t3n.de/news/dezentralisierung-chrome-rss-gut-1380199/",

@@ -15,4 +15,9 @@ describe('DbFsService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined()
   })
+  it('should be defined', () => {
+    const url = 'https://t3n.de/news/slack-messenger-25-tipps-tricks-661440/'
+    const result = service.createKeyForUrl(url)
+    console.log(result)
+  })
 })
