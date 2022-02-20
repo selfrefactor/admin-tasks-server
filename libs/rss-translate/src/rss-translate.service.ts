@@ -1,12 +1,15 @@
 import {Injectable} from '@nestjs/common'
-import {parse} from 'rss-to-json'
+import * as Parser from 'rss-parser';
+
+const parser = new Parser({})
 
 @Injectable()
 export class RssTranslateService {
   async read(url) {
-    console.log(parse ,1)
-    const rss = await (parse as any)(url)
-    console.log(rss)
-    // return JSON.stringify(rss, null, 2)
+    const feed = await parser.parseURL(url);
+    return feed.items.map(x => {
+      const [content] = x.link.split('?utm_source')
+      return content
+    })
   }
 }

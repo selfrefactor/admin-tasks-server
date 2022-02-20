@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RssTranslateService read 1`] = `
+Array [
+  "https://t3n.de/news/dezentralisierung-chrome-rss-gut-1380199/",
+  "https://t3n.de/news/slack-messenger-25-tipps-tricks-661440/",
+  "https://t3n.de/news/erweiterungen-firefox-1165556/",
+  "https://t3n.de/news/tipps-content-diebstahl-1025210/",
+  "https://t3n.de/news/rss-reader-feedly-340092/",
+  "https://t3n.de/news/10-nuetzliche-slack-erweiterungen-587167/",
+  "https://t3n.de/news/serie-arbeit-motivation-5-753879/",
+  "https://t3n.de/news/facebook-instant-articles-anlegen-696589/",
+  "https://t3n.de/news/reclaim-data-tools-daten-kontrolle-datenhoheit-555073/",
+  "https://t3n.de/magazin/tipps-redaktionsplan-content-marketing-233327/",
+  "https://t3n.de/news/hootsuite-beginners-guide-479218/",
+  "https://t3n.de/news/programmierst-rss-reader-30-464628/",
+  "https://t3n.de/news/weg-google-co-hostest-alle-451096/",
+  "https://t3n.de/magazin/seo-besseres-google-ranking-wordpress-230243/",
+  "https://t3n.de/magazin/news-aggregatoren-vergleich-web-magazin-231139/",
+  "https://t3n.de/magazin/typo3-entwicklung-typo3-sozialen-netzwerken-verknupfen-229577/",
+  "https://t3n.de/news/pinterest-tracking-findest-375393/",
+  "https://t3n.de/news/google-rss-einfach-erzeugst-367675/",
+  "https://t3n.de/news/kundenbeziehungen-e-mail-newsletter-intensivieren-315016/",
+  "https://t3n.de/magazin/twitter-facebook-joomla-anbinden-joomla-social-web-224713/",
+]
+`;

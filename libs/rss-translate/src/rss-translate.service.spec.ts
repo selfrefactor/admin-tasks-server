@@ -12,10 +12,15 @@ describe('RssTranslateService', () => {
     service = module.get<RssTranslateService>(RssTranslateService);
   });
 
-  it('read', async () => {
-    // const result = await service.read(`https://t3n.de/tag/rss/rss.xml`)
-    const result = await service.read(`'https://blog.ethereum.org/feed.xml'`)
-    console.log(`result`, result)
+  it('should be defined', () => {
+    expect(service).toBeDefined()
+  })
+  
+  it.skip('read', async () => {
+    const result = await service.read(`https://t3n.de/tag/rss/rss.xml`)
+    expect(
+      result
+    ).toMatchSnapshot()
   });
 })
 ;
