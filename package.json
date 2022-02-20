@@ -29,7 +29,7 @@
     "preout": "rimraf dist",
     "prod": "node dist/main.js",
     "service": "nest g service",
-    "type-coverage":"npx type-coverage",
+    "type-coverage": "npx type-coverage",
     "test": "jest",
     "test:e2e": "jest --config ./test/jest-e2e.json -u",
     "test:e2e:watch": "jest  --watch --config ./test/jest-e2e.json -u",
@@ -55,6 +55,7 @@
     "rambdax": "8.0.1",
     "reflect-metadata": "0.1.13",
     "rss-parser": "3.12.0",
+    "rss-to-json": "^2.0.2",
     "rxjs": "7.5.4",
     "string-fn": "3.1.0"
   },
@@ -69,7 +70,7 @@
     "@types/jest": "27.4.0",
     "@types/node": "17.0.18",
     "axios": "0.26.0",
-    "jest": "27.5.1",
+		"jest": "^27.0.0",
     "maided": "0.1.3",
     "rimraf": "3.0.2",
     "ts-jest": "27.1.3",
@@ -82,5 +83,13 @@
   },
   "license": "MIT",
   "author": "selfrefactor",
-  "description": "Turn the server ON"
+  "description": "Turn the server ON",
+  "wallaby": {
+    "autoDetect": true,
+    "runMode": "onsave",
+    "workers": {
+      "initial": 1,
+      "regular": 1
+    }
+  }
 }
