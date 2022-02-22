@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common'
-import {init, loadJson, loadKeys, } from 'db-fn'
+import {init, loadJson, loadKeys, load, save} from 'db-fn'
 import {DATA_LOCATION} from 'lib/constants'
 import { piped,remove } from 'rambdax'
 import { wordsX } from 'string-fn'
@@ -17,6 +17,14 @@ export class DbFsService {
   createKeyForUrl(url: string) {
     const cleaner = piped(url, remove('https://'), remove('http://'))
     return wordsX(cleaner).join('.')
+  }
+  async updateOrGetKey(label: string, id: string, newValue: unknown) {
+    const intermediateResult = await load(id, label)
+    if(intermediateResult) return intermediateResult
+
+    await save(newValue, label, id)
+
+    return newValue
   }
   async getKeys(label: AllowedLabels) {
     return loadKeys(label)
