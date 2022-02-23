@@ -17,17 +17,15 @@ describe('RssTranslateService', () => {
     expect(service).toBeDefined()
   })
 
-  it('read 1', async () => {
+  it.skip('read 1', async () => {
     const result = await service.read(`https://www.zdnet.de/feed/`, 'zdnet')
-    // expect(
-    //   result
-    // ).toMatchSnapshot()
+    expect(
+      result
+    ).toMatchSnapshot()
   });
-  it.skip('read', async () => {
-    const result = await service.read(`https://t3n.de/tag/rss/rss.xml`,'threen')
-    // expect(
-    //   result
-    // ).toMatchSnapshot()
+  it.only('scrape', async () => {
+    const result = await service.scrape(`https://www.zdnet.de/88399391/betriebsunterbrechungen-vermeiden/`, 'zdnet')
+console.log(`result`, result) 
   });
 })
 ;

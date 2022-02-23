@@ -18,6 +18,22 @@
       "internalConsoleOptions": "neverOpen"
     },
     {
+      "name": "Scrape - Debug Jest",
+      "type": "node",
+      "stopOnEntry": true ,
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/.bin/jest",
+        "--runInBand",
+        "--coverage",
+        "false",
+        "libs/rss-translate/src/rss-translate.service.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Debug Nest Framework",

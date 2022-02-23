@@ -18,9 +18,9 @@ export class DbFsService {
     const cleaner = piped(url, remove('https://'), remove('http://'))
     return wordsX(cleaner).join('.')
   }
-  async updateOrGetKey(label: string, id: string, newValue: unknown) {
+  async updateOrGetKey(label: string, id: string, newValue: unknown, forceSave = false) {
     const intermediateResult = await load(id, label)
-    if(intermediateResult) return intermediateResult
+    if(intermediateResult && !forceSave) return intermediateResult
 
     await save(newValue, label, id)
 
