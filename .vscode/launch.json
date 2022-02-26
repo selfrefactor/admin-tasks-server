@@ -28,7 +28,7 @@
         "--runInBand",
         "--coverage",
         "false",
-        "libs/rss-translate/src/rss-translate.service.spec.ts"
+        "libs/rss-translate/src/modules/scrape.spec.ts"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

@@ -23,7 +23,7 @@ describe('RssTranslateService', () => {
       result
     ).toMatchSnapshot()
   });
-  it.only('scrape', async () => {
+  it.skip('scrape', async () => {
     const result = await service.scrape(`https://www.zdnet.de/88399391/betriebsunterbrechungen-vermeiden/`, 'zdnet')
 console.log(`result`, result) 
   });
