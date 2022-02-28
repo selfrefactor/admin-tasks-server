@@ -32,7 +32,7 @@ export class RssTranslateService {
     return feed.items
   }
   async scrape(url, labelInput){
-    const result = await scrapeMethod(url)
+    const result = await scrapeMethod(url, labelInput)
     console.log(`result`, result)
     return 1
   }
