@@ -40,7 +40,7 @@ const stable = `${HOME}/.config/Code/User/settings.json`
 const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
 function changeTheme(newTheme: string) {
-  [stable].forEach(path => {
+  [stable, insiders].forEach(path => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
     content['workbench.colorTheme'] = newTheme
