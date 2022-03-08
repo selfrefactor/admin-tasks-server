@@ -1,10 +1,10 @@
-import {log} from 'helpers-fn'
 import {pascalCase} from 'string-fn'
 import {nextIndex, shuffle} from 'rambdax'
 import {readJsonSync, outputJsonSync} from 'fs-extra'
 import {existsSync} from 'fs'
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
+const mixModeEnv = process.env.NIKETA_MIX_MODE === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
@@ -29,9 +29,6 @@ const darkThemesList = [
   'ugly.americans',
   'Tokyo Night Pro'
 ]
-const customThemes = [
-  'Tokyo Night Pro'
-]
 const allLightThemes = shuffle(lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
 
@@ -39,23 +36,30 @@ const {HOME} = process.env
 const stable = `${HOME}/.config/Code/User/settings.json`
 const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
-function changeTheme(newTheme: string) {
-  [stable, insiders].forEach(path => {
+function changeTheme(newStableTheme: string, newInsidersTheme: string) {
+  [stable, insiders].forEach((path, i) => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
-    content['workbench.colorTheme'] = newTheme
+    content['workbench.colorTheme'] = i === 0 ? newStableTheme : newInsidersTheme
 
     outputJsonSync(path, content, {spaces: 2})
   })
 }
 
+function getCurrentThemes(){
+  if(darkModeEnv) return [allDarkThemes,allDarkThemes]
+  if(mixModeEnv) return [allDarkThemes,allLightThemes]
+
+  return [allLightThemes, allLightThemes]
+}
+
 let themeIndex = -1
 export async function niketaTheme() {
-  const currentThemes = darkModeEnv ? allDarkThemes : allLightThemes
-  const newThemeIndex = nextIndex(themeIndex, currentThemes)
-  const currentTheme = customThemes.includes(currentThemes[newThemeIndex]) ? currentThemes[newThemeIndex] : pascalCase(currentThemes[newThemeIndex])
+  const [stableThemes, insidersThemes] =  getCurrentThemes()
+  const newThemeIndex = nextIndex(themeIndex, stableThemes)
+  const currentStableTheme = pascalCase(stableThemes[newThemeIndex])
+  const currentInsidersTheme = pascalCase(insidersThemes[newThemeIndex])
 
-  changeTheme(currentTheme)
+  changeTheme(currentStableTheme, currentInsidersTheme)
   themeIndex = newThemeIndex
-  log(currentTheme, 'box')
 }
