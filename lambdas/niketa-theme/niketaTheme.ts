@@ -5,6 +5,7 @@ import {existsSync} from 'fs'
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
 const mixModeEnv = process.env.NIKETA_MIX_MODE === 'ON'
+const legacyLightMode = process.env.NIKETA_LEGACY_LIGHT_MODE === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
@@ -17,6 +18,17 @@ const lightThemesList = [
   'strange.brew',
   'sweat.leaf',
 ]
+const lightThemesListLegacy = [
+  'advanced.cat',
+  'advanced.engine',
+  'advanced.immigrant',
+  'advanced.hook',
+  'brave.habits',
+  'brave.homer',
+  'cicrus.ajax',
+  'cicrus.owl',
+  'cicrus.whisky',
+]
 const darkThemesList = [
   'american.dad',
   'aqua.teen.hunger.force',
@@ -28,7 +40,7 @@ const darkThemesList = [
   'trip.tank',
   'ugly.americans',
 ]
-const allLightThemes = shuffle(lightThemesList)
+const allLightThemes = shuffle(legacyLightMode ? lightThemesListLegacy :lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
 
 const {HOME} = process.env
