@@ -10,7 +10,6 @@ const URL = () => `http://localhost:${port}`
 const LAMBDAS = () => `${URL()}/lambdas`
 const CORS = () => `${URL()}/cors`
 const SPEED_READER = () =>  `${LAMBDAS()}/speed-reader`
-const RSS_TRANSLATE = () =>  `${LAMBDAS()}/rss-translate`
 const WORD_PROFILE = () => `${LAMBDAS()}/word-profile`
 
 const getErrorMessage = (status: number) => {
@@ -93,13 +92,6 @@ describe('API', () => {
       axios.post(WORD_PROFILE(), {password, word: 'foo'}),
       404
     )
-  })
-
-  test.only('rss translate', async () => {
-    const body = {id: 99, password}
-    const {data} = await axios.post(RSS_TRANSLATE(), body)
-    console.log(`data`, data)
-    // ok(data)([String]) 
   })
 
   test('speed reader - demo index', async() => {

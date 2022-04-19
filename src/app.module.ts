@@ -2,7 +2,6 @@ import {Module, MiddlewareConsumer} from '@nestjs/common'
 import {AppController} from './app.controller'
 import {LambdasController} from './lambdas/lambdas.controller'
 import {SpeedReaderService} from 'lib/speed-reader'
-import {RssTranslateService} from 'lib/rss-translate'
 import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import {AuthMiddleware} from 'libs/utils/auth.middleware'
@@ -12,7 +11,6 @@ import { CorsController } from './cors/cors.controller';
 const providers = [
   SpeedReaderService,
   FsService,
-  RssTranslateService,
   WordProfileService,
   DbFsService,
 ] 

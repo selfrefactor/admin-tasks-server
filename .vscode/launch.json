@@ -18,7 +18,7 @@
       "internalConsoleOptions": "neverOpen"
     },
     {
-      "name": "Scrape - Debug Jest",
+      "name": "Foo - Debug Jest",
       "type": "node",
       "stopOnEntry": true ,
       "request": "launch",
@@ -28,7 +28,7 @@
         "--runInBand",
         "--coverage",
         "false",
-        "libs/rss-translate/src/modules/scrape.spec.ts"
+        "libs/foo/src/modules/foo.spec.ts"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
