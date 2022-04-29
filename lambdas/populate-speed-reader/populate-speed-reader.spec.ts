@@ -5,7 +5,7 @@ import {
 } from './populate-speed-reader'
 import {IS_WALLABY} from 'lib/constants'
 
-test('happy', async() => {
+test.skip('happy', async() => {
   if (IS_WALLABY) return
   await populateSpeedReader()
 })

@@ -1,4 +1,4 @@
-import {trim, flatten} from 'rambdax'
+import {trim, flatten, filter} from 'rambdax'
 import {Injectable} from '@nestjs/common'
 import {FsService} from 'lib/fs'
 import {bookIndexes} from '../../../lambdas/populate-speed-reader/book-indexes.json'
@@ -7,17 +7,27 @@ import {bookIndexes} from '../../../lambdas/populate-speed-reader/book-indexes.j
 export class SpeedReaderService {
   constructor(private fsService: FsService) {}
 
-  async readBook<K>(id: number) {
+  async readBook(id: number): Promise<any> {
     if (!bookIndexes[id]) return
-      const contentRaw = await this.fsService.readFromData(
-        `books/${bookIndexes[id]}.txt`
-      )
-      const content = 
-        contentRaw.split(' ')
-        .map(trim)
-        .map(x => x.split('\n'))
+    const first = await this.fsService.readFromData(
+      `books/${bookIndexes[id]}.txt`
+    )
+    const second = first
+      .split(' ')
+      .map(trim)
+      .map(x => x.split('\n'))
 
-        return flatten<string>(content).map(trim)
-        .map(x => x.length === 1 ? `${x.toUpperCase() }` : x)
+    const third = flatten<string>(second).map(trim)
+
+    let prev = undefined
+    
+    return filter((word) => {
+      if(prev === word){
+        return false
+      }
+
+      prev = word
+      return true
+    }, third)
   }
 }

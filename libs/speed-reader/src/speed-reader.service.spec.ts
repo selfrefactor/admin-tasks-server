@@ -14,8 +14,10 @@ describe('SpeedReaderService', () => {
   })
 
   test('read book', async() => {
-    const result = await service.readBook(1)
-    expect(result.length).toBeGreaterThan(1000)
+    const result = await service.readBook(11)
+    expect(
+      result
+    ).toMatchSnapshot() 
   })
 
   test('read book - fail', async() => {
@@ -25,6 +27,6 @@ describe('SpeedReaderService', () => {
 
   test('read book - demo', async() => {
     const result = await service.readBook(99)
-    expect(result.length).toBe(6)
+    expect(result.length).toBe(7)
   })
 })
