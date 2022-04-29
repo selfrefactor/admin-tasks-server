@@ -21,7 +21,7 @@ export class SpeedReaderService {
 
     let prev = undefined
     
-    return filter((word) => {
+    const result = filter((word) => {
       if(prev === word){
         return false
       }
@@ -29,5 +29,10 @@ export class SpeedReaderService {
       prev = word
       return true
     }, third)
+
+    return result
+    const [before,after] = result.join(' ').split('кремава')
+
+    return after.split(' ')
   }
 }
