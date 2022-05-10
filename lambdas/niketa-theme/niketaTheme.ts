@@ -51,7 +51,9 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
   [stable, insiders].forEach((path, i) => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
-    content['workbench.colorTheme'] = i === 0 ? newStableTheme : newInsidersTheme
+    const newTheme = i === 0 ? newStableTheme : newInsidersTheme
+    console.log(`newTheme`, newTheme, i)
+    content['workbench.colorTheme'] = newTheme
 
     outputJsonSync(path, content, {spaces: 2})
   })
