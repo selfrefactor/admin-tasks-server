@@ -61,7 +61,7 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
 
 function getCurrentThemes(){
   if(darkModeEnv) return [allDarkThemes,allDarkThemes]
-  if(mixModeEnv) return [allDarkThemes,allLightThemes]
+  if(mixModeEnv) return [allLightThemes, allDarkThemes]
 
   return [allLightThemes, allLightThemes]
 }
