@@ -80,7 +80,7 @@ Run tasks `niketa` and `server:mix` in parallel.
 
 Run tasks `niketa` and `server:mix:legacy` in parallel.
 
-## on:light:referenceonly
+## on:light:docker
 
 Run tasks `docker`, `niketa` and `server:light` in parallel.
 
