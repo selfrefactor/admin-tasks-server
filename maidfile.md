@@ -64,7 +64,7 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&& NIKETA_CLIENT_EXTENDED_LOG=ON 
 
 Run tasks `niketa` and `server:light` in parallel.
 
-## on:light
+## on:light:debug
 
 Run tasks `niketa:debug` and `server:light` in parallel.
 
