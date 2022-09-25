@@ -10,9 +10,10 @@ import {ValidationPipe} from '@nestjs/common'
 const PORT =
   process.env.PORT === undefined ? DEFAULT_PORT : Number(process.env.PORT)
 const DEV_MODE = process.env.DEV_MODE === 'ON'
+const OFFLINE = process.env.OFFLINE === 'ON'
 
 async function bootstrap() {
-  if (!DEV_MODE) {
+  if (!DEV_MODE && !OFFLINE) {
     ngrok(PORT)
   }
   cron(DEV_MODE)

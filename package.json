@@ -34,7 +34,8 @@
 		"test:e2e:watch": "jest  --watch --config ./test/jest-e2e.json -u",
 		"test:ts": "typescript-coverage-report --threshold=40",
 		"update": "nest update",
-		"offline": "maided server:dark"
+		"offline": "OFFLINE=ON maided on",
+		"offlinel": "OFFLINE=ON maided onl"
 	},
 	"version": "1.0.0",
 	"dependencies": {
