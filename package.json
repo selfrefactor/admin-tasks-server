@@ -35,7 +35,7 @@
 		"test:ts": "typescript-coverage-report --threshold=40",
 		"update": "nest update",
 		"offline": "OFFLINE=ON maided on",
-		"offlinel": "OFFLINE=ON maided onl"
+		"offlinel": "OFFLINE=ON maided on:light"
 	},
 	"version": "1.0.0",
 	"dependencies": {
