@@ -17,11 +17,9 @@
 		"on": "maided on",
 		"onl": "maided on:light",
 		"onl:debug": "maided on:light:debug",
-		"onll": "maided on:light:legacy",
 		"onm": "maided on:mix",
-		"onml": "maided on:mix:legacy",
 		"onclean": "maided on",
-		"out": "nest build && rd",
+		"out": "nest build && run d chore build",
 		"predev": "rimraf dist",
 		"prein": "rimraf dist",
 		"preonclean": "yarn out",
@@ -33,9 +31,7 @@
 		"test:e2e": "jest --config ./test/jest-e2e.json -u",
 		"test:e2e:watch": "jest  --watch --config ./test/jest-e2e.json -u",
 		"test:ts": "typescript-coverage-report --threshold=40",
-		"update": "nest update",
-		"offline": "OFFLINE=ON maided on",
-		"offlinel": "OFFLINE=ON maided on:light"
+		"update": "nest update"
 	},
 	"version": "1.0.0",
 	"dependencies": {
