@@ -21,7 +21,7 @@
 		"onm": "maided on:mix",
 		"onml": "maided on:mix:legacy",
 		"onclean": "maided on",
-		"out": "nest build",
+		"out": "nest build && rd",
 		"predev": "rimraf dist",
 		"prein": "rimraf dist",
 		"preonclean": "yarn out",

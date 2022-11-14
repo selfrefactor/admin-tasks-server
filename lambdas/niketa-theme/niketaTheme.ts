@@ -1,4 +1,4 @@
-import {pascalCase} from 'string-fn'
+import {pascalCase, titleCase} from 'string-fn'
 import {nextIndex, shuffle} from 'rambdax'
 import {readJsonSync, outputJsonSync} from 'fs-extra'
 import {existsSync} from 'fs'
@@ -39,6 +39,8 @@ const darkThemesList = [
   'south.park',
   'trip.tank',
   'ugly.americans',
+  'kawaine theme',
+  'luvia theme',
 ]
 const allLightThemes = shuffle(legacyLightMode ? lightThemesListLegacy :lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
@@ -66,12 +68,16 @@ function getCurrentThemes(){
   return [allLightThemes, allLightThemes]
 }
 
+function pascalCaseFn(x){
+  return x.includes('.') ? pascalCase(x) : titleCase(x)
+}
+
 let themeIndex = -1
 export async function niketaTheme() {
   const [stableThemes, insidersThemes] =  getCurrentThemes()
   const newThemeIndex = nextIndex(themeIndex, stableThemes)
-  const currentStableTheme = pascalCase(stableThemes[newThemeIndex])
-  const currentInsidersTheme = pascalCase(insidersThemes[newThemeIndex])
+  const currentStableTheme = pascalCaseFn(stableThemes[newThemeIndex])
+  const currentInsidersTheme = pascalCaseFn(insidersThemes[newThemeIndex])
 
   changeTheme(currentStableTheme, currentInsidersTheme)
   themeIndex = newThemeIndex
