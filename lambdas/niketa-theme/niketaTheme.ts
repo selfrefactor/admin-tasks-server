@@ -28,7 +28,7 @@ const darkThemesList = [
   'trip.tank',
   'ugly.americans',
   // 'kawaine theme',
-  'luvia theme',
+  // 'luvia theme',
 ]
 const allLightThemes = shuffle(lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
