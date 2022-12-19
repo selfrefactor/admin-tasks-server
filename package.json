@@ -14,6 +14,7 @@
 		"middleware": "nest g middleware",
 		"module": "nest g module --no-spec",
 		"on:debug": "maided on:debug",
+		"onx": "PORT=4000 maided on",
 		"on": "maided on",
 		"dis": "nordvpn disconnect && maided on",
 		"onl": "maided on:light",
