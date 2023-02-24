@@ -20,9 +20,7 @@ export async function startCode(){
   })
 }
 
-export async function fixWallaby() {
-  const outputFilePath = `${process.env.HOME}/work/dms-ui/package.json`
-
+export async function fixWallaby(outputFilePath) {
   if(!existsSync(outputFilePath)) return
 
   const currentState = await readJson(outputFilePath)
