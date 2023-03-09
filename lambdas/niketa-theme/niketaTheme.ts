@@ -2,9 +2,11 @@ import {pascalCase, titleCase} from 'string-fn'
 import {nextIndex, shuffle} from 'rambdax'
 import {readJsonSync, outputJsonSync} from 'fs-extra'
 import {existsSync} from 'fs'
+import dayjs = require('dayjs')
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
 const mixModeEnv = process.env.NIKETA_MIX_MODE === 'ON'
+const sunlightModeOffEnv = process.env.NIKETA_SUNLIGHT_MODE_OFF === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
@@ -49,11 +51,20 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
   })
 }
 
-function getCurrentThemes(){
-  if(darkModeEnv) return [allDarkThemes,allDarkThemes]
-  if(mixModeEnv) return [allLightThemes, allDarkThemes]
+function isBrightOutside(){
+  var currentHour = dayjs().hour() 
 
-  return [allLightThemes, allLightThemes]
+  return currentHour > 8 && currentHour < 18
+}
+
+function getCurrentThemes(){
+  if(sunlightModeOffEnv){
+    if(darkModeEnv) return [allDarkThemes,allDarkThemes]
+    if(mixModeEnv) return [allLightThemes, allDarkThemes]
+  
+    return [allLightThemes, allLightThemes]
+  }
+  return isBrightOutside() ? [allLightThemes, allLightThemes] : [allDarkThemes, allDarkThemes]
 }
 
 function pascalCaseFn(x){
