@@ -5,8 +5,7 @@ import {existsSync} from 'fs'
 import dayjs = require('dayjs')
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
-const mixModeEnv = process.env.NIKETA_MIX_MODE === 'ON'
-const sunlightModeOffEnv = process.env.NIKETA_SUNLIGHT_MODE_OFF === 'ON'
+const lightModeEnv = process.env.NIKETA_LIGHT === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
@@ -40,7 +39,7 @@ const stable = `${HOME}/.config/Code/User/settings.json`
 const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
 function changeTheme(newStableTheme: string, newInsidersTheme: string) {
-  [stable, insiders].forEach((path, i) => {
+  ;[stable, insiders].forEach((path, i) => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
     const newTheme = i === 0 ? newStableTheme : newInsidersTheme
@@ -51,28 +50,27 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
   })
 }
 
-function isBrightOutside(){
-  var currentHour = dayjs().hour() 
+function isBrightOutside() {
+  const currentHour = dayjs().hour()
   return currentHour >= 8 && currentHour <= 18
 }
 
-function getCurrentThemes(){
-  if(sunlightModeOffEnv){
-    if(darkModeEnv) return [allDarkThemes,allDarkThemes]
-    if(mixModeEnv) return [allLightThemes, allDarkThemes]
+function getCurrentThemes() {
+  if(lightModeEnv) return [allLightThemes, allLightThemes]
+  if(darkModeEnv) return [allDarkThemes, allDarkThemes]
   
-    return [allLightThemes, allLightThemes]
-  }
-  return isBrightOutside() ? [allLightThemes, allLightThemes] : [allDarkThemes, allDarkThemes]
+  return isBrightOutside()
+    ? [allLightThemes, allLightThemes]
+    : [allDarkThemes, allDarkThemes]
 }
 
-function pascalCaseFn(x){
+function pascalCaseFn(x) {
   return x.includes('.') ? pascalCase(x) : titleCase(x)
 }
 
 let themeIndex = -1
 export async function niketaTheme() {
-  const [stableThemes, insidersThemes] =  getCurrentThemes()
+  const [stableThemes, insidersThemes] = getCurrentThemes()
   const newThemeIndex = nextIndex(themeIndex, stableThemes)
   const currentStableTheme = pascalCaseFn(stableThemes[newThemeIndex])
   const currentInsidersTheme = pascalCaseFn(insidersThemes[newThemeIndex])

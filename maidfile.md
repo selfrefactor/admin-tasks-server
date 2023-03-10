@@ -6,12 +6,12 @@ Start server with dark themes
 CRON=25 NIKETA_DARK=ON node dist/main.js
 ```
 
-## server:mix
+## server
 
 Start server with dark themes
 
 ```bash
-CRON=25 NIKETA_MIX_MODE=ON node dist/main.js
+CRON=25 node dist/main.js
 ```
 
 ## server:light
@@ -48,19 +48,11 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&& NIKETA_CLIENT_EXTENDED_LOG=ON 
 
 Run tasks `niketa` and `server:light` in parallel.
 
-## on:light:debug
-
-Run tasks `niketa:debug` and `server:light` in parallel.
-
-## on:mix
-
-Run tasks `niketa` and `server:mix` in parallel.
-
-## on:light:docker
-
-Run tasks `docker`, `niketa` and `server:light` in parallel.
-
 ## on
+
+Run tasks `niketa` and `server` in parallel.
+
+## on:dark
 
 Run tasks `niketa` and `server:dark` in parallel.
 
