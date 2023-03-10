@@ -52,7 +52,7 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
 
 function isBrightOutside() {
   const currentHour = dayjs().hour()
-  return currentHour >= 8 && currentHour <= 18
+  return currentHour >= 8 && currentHour <= 17
 }
 
 function getCurrentThemes() {
