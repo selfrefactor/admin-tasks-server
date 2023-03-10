@@ -53,8 +53,7 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
 
 function isBrightOutside(){
   var currentHour = dayjs().hour() 
-console.log(currentHour, `currentHour`)
-  return currentHour > 8 && currentHour < 18
+  return currentHour >= 8 && currentHour <= 18
 }
 
 function getCurrentThemes(){
