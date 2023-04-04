@@ -17,7 +17,6 @@
 		"onx": "PORT=4000 maided on",
 		"on": "maided on",
 		"ond": "maided on:dark",
-		"onl": "maided on:light",
 		"dis": "nordvpn disconnect && maided on",
 		"onclean": "maided on",
 		"out": "nest build && run d chore build",

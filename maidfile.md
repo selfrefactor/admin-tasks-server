@@ -14,14 +14,6 @@ Start server with dark themes
 CRON=25 node dist/main.js
 ```
 
-## server:light
-
-Start server with light themes
-
-```bash
-CRON=30 node dist/main.js
-```
-
 ## docker
 
 ```bash
@@ -43,10 +35,6 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&&node start.js
 ```bash
 cd $HOME/repos/niketa/packages/node-ts/dist/src&& NIKETA_CLIENT_EXTENDED_LOG=ON node start.js
 ```
-
-## on:light
-
-Run tasks `niketa` and `server:light` in parallel.
 
 ## on
 

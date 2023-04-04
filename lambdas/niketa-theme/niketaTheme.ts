@@ -5,7 +5,6 @@ import {existsSync} from 'fs'
 import dayjs = require('dayjs')
 
 const darkModeEnv = process.env.NIKETA_DARK === 'ON'
-const lightModeEnv = process.env.NIKETA_LIGHT === 'ON'
 
 const lightThemesList = [
   'communication.breakdown',
@@ -43,7 +42,6 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
     const newTheme = i === 0 ? newStableTheme : newInsidersTheme
-    console.log(`newTheme`, newTheme, i)
     content['workbench.colorTheme'] = newTheme
 
     outputJsonSync(path, content, {spaces: 2})
@@ -56,7 +54,6 @@ function isBrightOutside() {
 }
 
 function getCurrentThemes() {
-  if(lightModeEnv) return [allLightThemes, allLightThemes]
   if(darkModeEnv) return [allDarkThemes, allDarkThemes]
   
   return isBrightOutside()
