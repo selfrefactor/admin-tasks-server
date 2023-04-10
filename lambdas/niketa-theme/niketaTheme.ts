@@ -42,7 +42,7 @@ function getIsDarkMode() {
 }
 
 
-function changeTheme(newStableTheme: string, newInsidersTheme: string, isDark: boolean) {
+function changeTheme(newStableTheme: string, newInsidersTheme: string) {
   ;[stable, insiders].forEach((path, i) => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
