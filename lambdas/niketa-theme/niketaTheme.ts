@@ -27,8 +27,6 @@ const darkThemesList = [
   'south.park',
   'trip.tank',
   'ugly.americans',
-  // 'kawaine theme',
-  // 'luvia theme',
 ]
 const allLightThemes = shuffle(lightThemesList)
 const allDarkThemes = shuffle(darkThemesList)
@@ -37,12 +35,20 @@ const {HOME} = process.env
 const stable = `${HOME}/.config/Code/User/settings.json`
 const insiders = `${HOME}/.config/Code - Insiders/User/settings.json`
 
-function changeTheme(newStableTheme: string, newInsidersTheme: string) {
+function getIsDarkMode() {
+  if(darkModeEnv) return true
+  
+  return !isBrightOutside()
+}
+
+
+function changeTheme(newStableTheme: string, newInsidersTheme: string, isDark: boolean) {
   ;[stable, insiders].forEach((path, i) => {
     if (!existsSync(path)) return
     const content = readJsonSync(path)
     const newTheme = i === 0 ? newStableTheme : newInsidersTheme
     content['workbench.colorTheme'] = newTheme
+    content['workbench.iconTheme'] = getIsDarkMode() ? 'catppuccin-latte' : 'catppuccin-mocha'
 
     outputJsonSync(path, content, {spaces: 2})
   })
