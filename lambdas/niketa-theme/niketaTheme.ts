@@ -60,11 +60,9 @@ function isBrightOutside() {
 }
 
 function getCurrentThemes() {
-  if(darkModeEnv) return [allDarkThemes, allDarkThemes]
-  
-  return isBrightOutside()
-    ? [allLightThemes, allLightThemes]
-    : [allDarkThemes, allDarkThemes]
+  return getIsDarkMode()
+  ? [allDarkThemes, allDarkThemes]
+  : [allLightThemes, allLightThemes]
 }
 
 function pascalCaseFn(x) {
