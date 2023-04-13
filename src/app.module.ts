@@ -19,8 +19,8 @@ const providers = [
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: `/home/sr/repos/secret-services/packages/bot-teacher/client/dist`,
-      serveRoot: ''
+      rootPath: `/home/sr/repos/secret-services/packages/bot-teacher/client-html/index.html`,
+      serveRoot: '/teacher'
     })
   ],
   providers,
