@@ -6,17 +6,23 @@ import {FsService} from 'lib/fs'
 import {WordProfileService} from 'lib/word-profile'
 import {AuthMiddleware} from 'libs/utils/auth.middleware'
 import {DbFsService} from 'lib/db-fs'
-import { CorsController } from './cors/cors.controller';
+import {CorsController} from './cors/cors.controller'
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 const providers = [
   SpeedReaderService,
   FsService,
   WordProfileService,
   DbFsService,
-] 
+]
 
 @Module({
-  imports: [],
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: `/home/sr/repos/secret-services/packages/bot-teacher/client/dist`,
+      serveRoot: ''
+    })
+  ],
   providers,
   controllers: [AppController, LambdasController, CorsController],
 })
