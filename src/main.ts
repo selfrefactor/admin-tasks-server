@@ -11,6 +11,7 @@ const PORT =
   process.env.PORT === undefined ? DEFAULT_PORT : Number(process.env.PORT)
 const DEV_MODE = process.env.DEV_MODE === 'ON'
 const OFFLINE = process.env.OFFLINE === 'ON'
+console.log(PORT, `PORT`)
 
 async function bootstrap() {
   if (!DEV_MODE && !OFFLINE) {
