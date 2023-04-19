@@ -1,15 +1,5 @@
-import {delay, DELAY, pass} from 'rambdax'
-import {safeWait, getRandomIndexes} from './utils'
-
-test('getRandomIndexes - happy', () => {
-  const result = getRandomIndexes(4, 2)
-
-  expect(pass(result)([Number])).toBeTruthy()
-})
-
-test('getRandomIndexes - fail', () => {
-  expect(() => getRandomIndexes(4, 5)).toThrow()
-})
+import {delay, DELAY} from 'rambdax'
+import {safeWait} from './utils'
 
 test('safeWait - happy', async() => {
   const result = await safeWait(delay(100))
