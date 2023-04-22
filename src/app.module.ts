@@ -15,11 +15,12 @@ const providers = [
   WordProfileService,
   DbFsService,
 ]
+let botTeacherPath = '/home/sr/repos/secret-services/packages/bot-teacher/client/src'
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: `/home/sr/repos/secret-services/packages/bot-teacher/client`,
+      rootPath: botTeacherPath,
       serveRoot: ''
     })
   ],

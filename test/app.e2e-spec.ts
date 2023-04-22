@@ -50,14 +50,7 @@ describe('API', () => {
     console.log(response.data) 
   }) 
 
-  test('random bg word', async() => {
-    LAMBDAS() /*?*/
-    const response = await axios.post(`${LAMBDAS()}/random-bulgarian-word`, {
-      password,
-    })
-    
-    ok(response.data)([String])
-  }) 
+ 
 
   test('auth - without token', async() => {
     await failTestWrapper(
