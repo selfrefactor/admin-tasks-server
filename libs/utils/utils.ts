@@ -5,7 +5,7 @@ export async function safeWait<T>(fn: Promise<T>): Promise<T | void> {
     const result = await fn
     return result
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return undefined
   }
 }

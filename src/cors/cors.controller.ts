@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import axios from 'axios'
-import { wait } from 'rambdax';
+import { wait } from 'rambdax'
 
 @Controller('cors')
 export class CorsController {

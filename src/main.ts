@@ -5,7 +5,7 @@ import {AppModule} from './app.module'
 import {cron} from '../lambdas/cron/cron'
 import {ngrok} from 'lib/ngrok'
 import {DEFAULT_PORT} from 'lib/constants'
-import {ValidationPipe} from '@nestjs/common'
+import {ValidationPipe} from '@nestjs/common';
 
 const PORT =
   process.env.PORT === undefined ? DEFAULT_PORT : Number(process.env.PORT)

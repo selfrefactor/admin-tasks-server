@@ -50,8 +50,6 @@ describe('API', () => {
     console.log(response.data) 
   }) 
 
- 
-
   test('auth - without token', async() => {
     await failTestWrapper(
       axios.post(`${LAMBDAS()}/speed-reader`, {id: 99}),
