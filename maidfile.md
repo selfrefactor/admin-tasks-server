@@ -46,17 +46,9 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&& NIKETA_CLIENT_EXTENDED_LOG=ON 
 
 Run tasks `niketa` and `server` in parallel.
 
-## onx
-
-Run tasks `niketa`, `teacher` and `server` in parallel.
-
 ## on:dark
 
 Run tasks `niketa` and `server:dark` in parallel.
-
-## onx:dark
-
-Run tasks `niketa`, `teacher` and `server:dark` in parallel.
 
 ## on:debug
 
