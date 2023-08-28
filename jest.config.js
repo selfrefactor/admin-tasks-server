@@ -1,5 +1,5 @@
 const {compilerOptions} = require('./tsconfig.json')
-const {pathsToModuleNameMapper} = require('ts-jest/utils')
+const {pathsToModuleNameMapper} = require('ts-jest')
 const {envFn} = require('env-fn')
 envFn('special')
 
