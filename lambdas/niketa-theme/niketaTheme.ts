@@ -48,8 +48,8 @@ function changeTheme(newStableTheme: string, newInsidersTheme: string) {
     const content = readJsonSync(path)
     const newTheme = i === 0 ? newStableTheme : newInsidersTheme
     content['workbench.colorTheme'] = newTheme
-    // let iconTheme = getIsDarkMode() ? 'catppuccin-mocha' : 'catppuccin-latte'
-    // content['workbench.iconTheme'] = iconTheme
+    let iconTheme = getIsDarkMode() ? 'catppuccin-perfect-mocha' : 'catppuccin-perfect-latte'
+    content['workbench.iconTheme'] = iconTheme
 
     outputJsonSync(path, content, {spaces: 2})
   })
