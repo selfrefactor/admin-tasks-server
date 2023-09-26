@@ -79,13 +79,5 @@
 	},
 	"license": "MIT",
 	"author": "selfrefactor",
-	"description": "Turn the server ON",
-	"wallaby": {
-		"autoDetect": true,
-		"runMode": "onsave",
-		"workers": {
-			"initial": 1,
-			"regular": 1
-		}
-	}
+	"description": "Turn the server ON"
 }

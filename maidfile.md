@@ -1,17 +1,9 @@
-## server:dark
-
-Start server with dark themes
-
-```bash
-CRON=25 NIKETA_DARK=ON node dist/main.js
-```
-
 ## server
 
 Start server with dark themes
 
 ```bash
-CRON=25 node dist/main.js
+node dist/main.js
 ```
 
 ## teacher
@@ -45,10 +37,6 @@ cd $HOME/repos/niketa/packages/node-ts/dist/src&& NIKETA_CLIENT_EXTENDED_LOG=ON 
 ## on
 
 Run tasks `niketa` and `server` in parallel.
-
-## on:dark
-
-Run tasks `niketa` and `server:dark` in parallel.
 
 ## on:debug
 
