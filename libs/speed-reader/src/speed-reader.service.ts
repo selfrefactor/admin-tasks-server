@@ -31,8 +31,5 @@ export class SpeedReaderService {
     }, third)
 
     return result
-    const [before,after] = result.join(' ').split('кремава')
-
-    return after.split(' ')
   }
 }
