@@ -12,14 +12,6 @@
 
 ## Scripts
 
-### Books
-
-> Expects new *.txt.zip files in `lambdas/populate-speed-reader/assets` 
-
-`yarn books` - when new books are downloaded
-
-Need rebuild!
-
 ### Lint folder
 
 `yarn folders` - lint folder structure 

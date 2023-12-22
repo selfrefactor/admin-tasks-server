@@ -1,7 +1,7 @@
 import {trim, flatten, filter} from 'rambdax'
 import {Injectable} from '@nestjs/common'
 import {FsService} from 'lib/fs'
-import {bookIndexes} from '../../../lambdas/populate-speed-reader/book-indexes.json'
+import {bookIndexes} from './book-indexes.json'
 
 @Injectable()
 export class SpeedReaderService {
