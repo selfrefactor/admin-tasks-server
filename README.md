@@ -2,11 +2,17 @@
 
 This README is source of truth for all other repos.
 
-## Lint sources of truth
+## Sources of truth
 
 - `admin-tasks` - TS
 - `now/select-correct-word` - TS with React
 - `niketa-dark-theme` - JS
+
+Each of the repos has list of repos that depend on it and through scripts, dependencies, configs and scripts are updated.
+
+### Lint script
+
+### Run test scripts
 
 ## Troubleshooting
 
