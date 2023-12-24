@@ -1,4 +1,12 @@
-# Server is on
+# Admin tasks
+
+This README is source of truth for all other repos.
+
+## Lint sources of truth
+
+- `admin-tasks` - TS
+- `now/select-correct-word` - TS with React
+- `niketa-dark-theme` - JS
 
 ## Troubleshooting
 
