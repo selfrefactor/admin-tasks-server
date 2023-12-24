@@ -16,6 +16,7 @@
 		"module": "nest g module --no-spec",
 		"on:debug": "maided on:debug",
 		"on": "maided on",
+		"onx": "yarn on && yarn x",
 		"ond": "maided on:dark",
 		"dis": "nordvpn disconnect && maided on",
 		"onclean": "maided on",
