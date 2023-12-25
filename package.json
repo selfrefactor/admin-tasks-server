@@ -1,9 +1,17 @@
 {
 	"name": "admin-tasks",
+	"niketaScripts": [
+    {
+      "**/*.ts": "yarn eslintx"
+    },
+    {
+      "**/*.ts": "yarn eslintx"
+    }
+  ],
 	"scripts": {
 		"controller": "nest g controller --no-spec",
 		"eslint": "eslint --fix src/app.controller.ts",
-		"marbles": "jest lambdas/_/marbles.spec.ts",
+		"eslintx": "eslint --fix",
 		"clean": "ts-prune -p tsconfig.json ",
 		"teacher": "cd $HOME/repos/secret-services/packages/bot-teacher/server && node index.js",
 		"x": "yarn teacher",
@@ -56,7 +64,12 @@
 		"string-fn": "3.1.0"
 	},
 	"devDependencies": {
-		"@hirez_io/observer-spy": "2.2.0",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
 		"@nestjs/cli": "10.2.1",
 		"@nestjs/schematics": "10.0.3",
 		"@nestjs/testing": "10.3.0",
