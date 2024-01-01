@@ -21,7 +21,7 @@ const botTeacherPath =
   imports: [
     ServeStaticModule.forRoot({
       rootPath: botTeacherPath,
-      serveRoot: '',
+      serveRoot: '/bot-teacher',
     }),
   ],
   providers,
