@@ -8,7 +8,6 @@ let port
 
 const URL = () => `http://localhost:${port}`
 const LAMBDAS = () => `${URL()}/lambdas`
-const CORS = () => `${URL()}/cors`
 const SPEED_READER = () =>  `${LAMBDAS()}/speed-reader`
 const WORD_PROFILE = () => `${LAMBDAS()}/word-profile`
 
@@ -40,15 +39,6 @@ describe('API', () => {
       port = DEV_PORT
     }
   })
-
-  test('cors', async() => {
-    LAMBDAS() /*?*/
-    const response = await axios.post(`${CORS()}`, {
-      password,
-      url: 'https://www.reddit.com/r/ProgrammerHumor/new.json?count=100&limit=100&after=undefined'
-    })  
-    console.log(response.data) 
-  }) 
 
   test('auth - without token', async() => {
     await failTestWrapper(

@@ -6,7 +6,6 @@ import { FsService } from 'lib/fs';
 import { WordProfileService } from 'lib/word-profile';
 import { AuthMiddleware } from 'libs/utils/auth.middleware';
 import { DbFsService } from 'lib/db-fs';
-import { CorsController } from './cors/cors.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
 const providers = [
@@ -26,7 +25,7 @@ const botTeacherPath =
     }),
   ],
   providers,
-  controllers: [AppController, LambdasController, CorsController],
+  controllers: [AppController, LambdasController],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
