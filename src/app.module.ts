@@ -6,14 +6,14 @@ import { WordProfileService } from 'lib/word-profile';
 import { AuthMiddleware } from 'libs/utils/auth.middleware';
 import { DbFsService } from 'lib/db-fs';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { REPOS_DIR } from './constants';
 
 const providers = [
   FsService,
   WordProfileService,
   DbFsService,
 ];
-const botTeacherPath =
-  '/home/sr/repos/secret-services/packages/bot-teacher/client/src';
+const botTeacherPath = `${REPOS_DIR}/secret-services/packages/bot-teacher/client/src`
 
 @Module({
   imports: [
