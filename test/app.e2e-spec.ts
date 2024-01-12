@@ -8,7 +8,6 @@ let port
 
 const URL = () => `http://localhost:${port}`
 const LAMBDAS = () => `${URL()}/lambdas`
-const SPEED_READER = () =>  `${LAMBDAS()}/speed-reader`
 const WORD_PROFILE = () => `${LAMBDAS()}/word-profile`
 
 const getErrorMessage = (status: number) => {
@@ -40,17 +39,6 @@ describe('API', () => {
     }
   })
 
-  test('auth - without token', async() => {
-    await failTestWrapper(
-      axios.post(`${LAMBDAS()}/speed-reader`, {id: 99}),
-      403
-    )
-  }) 
-
-  test('auth - without body', async() => {
-    await failTestWrapper(axios.post(`${LAMBDAS()}/speed-reader`), 403)
-  })
-
   test('auth - get is bypassed', async() => {
     await expect(axios.get(`${LAMBDAS()}/`)).resolves.not.toThrow()
   })
@@ -73,20 +61,5 @@ describe('API', () => {
       axios.post(WORD_PROFILE(), {password, word: 'foo'}),
       404
     )
-  })
-
-  test('speed reader - demo index', async() => {
-    const body = {id: 99, password}
-    const {data} = await axios.post(SPEED_READER(), body)
-    ok(data)([String])
-  })
-
-  test('speed reader - missing input', async() => {
-    try {
-      await axios.post(`${LAMBDAS()}/speed-reader`)
-      willFail()
-    } catch (e) {
-      expect(e.message).toBe(getErrorMessage(403))
-    }
   })
 })

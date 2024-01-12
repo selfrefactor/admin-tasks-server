@@ -15,8 +15,6 @@
     "lib/ngrok": "<rootDir>/../libs/ngrok/src",
     "lib/constants/(.*)": "<rootDir>/../libs/constants/src/$1",
     "lib/constants": "<rootDir>/../libs/constants/src",
-    "lib/speed-reader/(.*)": "<rootDir>/../libs/speed-reader/src/$1",
-    "lib/speed-reader": "<rootDir>/../libs/speed-reader/src",
     "lib/fs/(.*)": "<rootDir>/../libs/fs/src/$1",
     "lib/fs": "<rootDir>/../libs/fs/src",
     "lib/fs-db/(.*)": "<rootDir>/../libs/fs-db/src/$1",

@@ -1,5 +1,4 @@
 config.json
-libs/speed-reader/src/__snapshots__
 *.zip
 coverage-ts
 dist

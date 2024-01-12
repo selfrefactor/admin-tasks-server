@@ -8,7 +8,6 @@ import {
   Get,
 } from '@nestjs/common'
 import {Response} from 'express'
-import {SpeedReaderService} from 'lib/speed-reader'
 import {safeWait} from 'lib/utils'
 import {WordProfileService, WordProfile} from 'lib/word-profile'
 import {NotFoundException} from '@nestjs/common'
@@ -18,20 +17,9 @@ export class LambdasController {
   private logger = new Logger('Lambdas')
 
   constructor(
-    private speedReader: SpeedReaderService,
     private wordProfileService: WordProfileService,
   ) {}
  
-
-  @Post('speed-reader')
-  async createInstance(@Body() input: {id: number}, @Res() res: Response) {
-    if (!input) return res.status(400).send()
-    const bookIndex = defaultTo(0, Number(input.id))
-    const result = await this.speedReader.readBook(bookIndex)
-    if (!result) return res.status(400).send()
-
-    return res.status(200).send(result)
-  }
 
   @Post('word-profile/all-words')
   async getAllWords(@Res() res: Response) {

@@ -26,12 +26,6 @@
       "lib/constants/*": [
         "libs/constants/src/*"
       ],
-      "lib/speed-reader": [
-        "libs/speed-reader/src"
-      ],
-      "lib/speed-reader/*": [
-        "libs/speed-reader/src/*"
-      ],
       "lib/fs": [
         "libs/fs/src"
       ],

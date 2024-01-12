@@ -15,7 +15,7 @@
 		"clean": "ts-prune -p tsconfig.json ",
 		"teacher": "cd $HOME/repos/secret-services/packages/bot-teacher/server && node index.js",
 		"x": "yarn teacher",
-		"watch": "jest libs/speed-reader/src/speed-reader.service.spec.ts --watch -u",
+		"watch": "jest libs/foo.spec.ts --watch -u",
 		"in": "DEV_MODE=ON nest start --watch",
 		"dev": "DEV_MODE=ON PORT=8087 nest start --watch",
 		"library": "nest g library",
