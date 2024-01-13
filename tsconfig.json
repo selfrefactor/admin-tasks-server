@@ -14,12 +14,6 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "lib/ngrok": [
-        "libs/ngrok/src"
-      ],
-      "lib/ngrok/*": [
-        "libs/ngrok/src/*"
-      ],
       "lib/constants": [
         "libs/constants/src"
       ],

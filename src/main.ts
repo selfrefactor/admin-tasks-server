@@ -2,19 +2,13 @@ import {envFn} from 'env-fn'
 envFn('special')
 import {NestFactory} from '@nestjs/core'
 import {AppModule} from './app.module'
-import {ngrok} from 'lib/ngrok'
 import {DEFAULT_PORT} from 'lib/constants'
 import {ValidationPipe} from '@nestjs/common';
 
 const PORT =
   process.env.PORT === undefined ? DEFAULT_PORT : Number(process.env.PORT)
-const DEV_MODE = process.env.DEV_MODE === 'ON'
-const OFFLINE = process.env.OFFLINE === 'ON'
 
 async function bootstrap() {
-  if (!DEV_MODE && !OFFLINE) {
-    ngrok(PORT)
-  }
   const app = await NestFactory.create(AppModule)
   app.enableCors()
 
